@@ -1098,7 +1098,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -49.124, y: 64.8}
+  m_AnchoredPosition: {x: 39.6, y: 69.7}
   m_SizeDelta: {x: 42.248, y: 34.69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1299160038
@@ -1374,7 +1374,7 @@ GameObject:
   - component: {fileID: 1413318827}
   - component: {fileID: 1413318826}
   m_Layer: 5
-  m_Name: MuteText
+  m_Name: Turn music on/off Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1396,8 +1396,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -128, y: 69.7}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -123.08, y: 70.193}
+  m_SizeDelta: {x: 283.12, y: 80.29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1413318826
 MonoBehaviour:
@@ -1419,7 +1419,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Mute
+  m_text: 'Turn music on/off
 
 '
   m_isRightToLeft: 0

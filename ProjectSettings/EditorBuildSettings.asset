@@ -32,6 +32,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Easy/Easy_Level2.unity
     guid: 342cc6193ad75f14dacd46d9c8ae21a6
+  - enabled: 1
+    path: Assets/Scenes/Normal/Normal.unity
+    guid: 2b31b45a2bdb6694a99edf7829f7ad23
+  - enabled: 1
+    path: Assets/Scenes/Hard/Hard.unity
+    guid: b621a721ad4b70b49b168958486f9f50
+  - enabled: 1
+    path: Assets/Scenes/Other/Other.unity
+    guid: 0ba7da0456991174692d3f60bd628044
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

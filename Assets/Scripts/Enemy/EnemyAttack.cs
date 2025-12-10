@@ -51,12 +51,28 @@ public class EnemyAttack : MonoBehaviour
     }
 
     private void DealDamage(Collision2D collision)
+{
+    PlayerHealth playerHp = collision.collider.GetComponent<PlayerHealth>();
+    if (playerHp != null)
     {
-        PlayerHealth hp = collision.collider.GetComponent<PlayerHealth>();
-        if (hp != null)
-        {
-            hp.TakeDamage(damage);
-            lastHitTime = Time.time;
-        }
+        playerHp.TakeDamage(damage);
+        lastHitTime = Time.time;
+        return; 
     }
+
+    HealthRuby rubyHp = collision.collider.GetComponent<HealthRuby>();
+    if (rubyHp != null)
+    {
+        rubyHp.TakeDamage(damage);
+        lastHitTime = Time.time;
+        return; 
+    }
+
+    HealthWall wallHp = collision.collider.GetComponent<HealthWall>();
+    if (wallHp != null)
+    {
+        wallHp.TakeDamage(damage);
+        lastHitTime = Time.time;
+    }
+}
 }

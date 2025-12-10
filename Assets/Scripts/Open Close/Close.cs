@@ -2,28 +2,13 @@ using UnityEngine;
 
 public class Close : MonoBehaviour
 {
-    [Header("Canvas cần quản lý")]
-    public GameObject targetCanvas;
+    public GameObject Canvas_A;
+    public GameObject Canvas_B; 
+    
 
-    private const string key = "InstructClosed"; 
-
-    void Start()
+    public void CanvasOnClick()
     {
-        if (PlayerPrefs.GetInt(key, 0) == 1)
-        {
-            targetCanvas.SetActive(false);
-        }
-        else
-        {
-            targetCanvas.SetActive(true);
-        }
-    }
-
-    public void CloseCanvas()
-    {
-        targetCanvas.SetActive(false);
-
-        PlayerPrefs.SetInt(key, 1);
-        PlayerPrefs.Save();
+        Canvas_A.SetActive(false);
+        Canvas_B.SetActive(true);
     }
 }
