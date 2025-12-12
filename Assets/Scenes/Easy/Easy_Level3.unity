@@ -119,17 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &20509772 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4472962649057362899, guid: f24b3c1827465f743a454c4cc80833e3, type: 3}
-  m_PrefabInstance: {fileID: 1882025983}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7129403d9dc97bc4b955dc1783ee8bae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &23519824
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +553,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 90683542}
-        m_TargetAssemblyTypeName: CloseCV_Interact, Assembly-CSharp
+        m_TargetAssemblyTypeName: Close_CV_Interact_02, Assembly-CSharp
         m_MethodName: CanvasOnClick
         m_Mode: 1
         m_Arguments:
@@ -622,11 +611,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 90683536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7689935387298418f112891be6ff65, type: 3}
+  m_Script: {fileID: 11500000, guid: a1093193158dfea44b4b1d85417d648d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canvasToClose: {fileID: 772379879}
-  interactScript: {fileID: 20509772}
+  interact_02Script: {fileID: 1882025986}
 --- !u!1 &124374514
 GameObject:
   m_ObjectHideFlags: 0
@@ -3207,7 +3196,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 529580379}
-        m_TargetAssemblyTypeName: Close, Assembly-CSharp
+        m_TargetAssemblyTypeName: Close_CV_Interact_02_CheckCanvas, Assembly-CSharp
         m_MethodName: CanvasOnClick
         m_Mode: 1
         m_Arguments:
@@ -3285,11 +3274,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 529580374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3d50464c6cd52f499eeb0caa9d639e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 377d204fab224f742948674b472b53f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Canvas_A: {fileID: 1479515407}
   Canvas_B: {fileID: 1456553980}
+  interact_02Script: {fileID: 1882025986}
 --- !u!1 &550614880
 GameObject:
   m_ObjectHideFlags: 0
@@ -3545,7 +3535,7 @@ GameObject:
   - component: {fileID: 553189133}
   - component: {fileID: 553189132}
   - component: {fileID: 553189131}
-  - component: {fileID: 553189130}
+  - component: {fileID: 553189134}
   m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
@@ -3573,20 +3563,6 @@ RectTransform:
   m_AnchoredPosition: {x: 275, y: 144}
   m_SizeDelta: {x: 70.28, y: 62.18}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &553189130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553189128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7689935387298418f112891be6ff65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasToClose: {fileID: 1479515407}
-  interactScript: {fileID: 20509772}
 --- !u!114 &553189131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3631,8 +3607,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 553189130}
-        m_TargetAssemblyTypeName: CloseCV_Interact, Assembly-CSharp
+      - m_Target: {fileID: 553189134}
+        m_TargetAssemblyTypeName: Close_CV_Interact_02, Assembly-CSharp
         m_MethodName: CanvasOnClick
         m_Mode: 1
         m_Arguments:
@@ -3681,6 +3657,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553189128}
   m_CullTransparentMesh: 1
+--- !u!114 &553189134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553189128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1093193158dfea44b4b1d85417d648d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasToClose: {fileID: 1479515407}
+  interact_02Script: {fileID: 1882025986}
 --- !u!1 &561583017
 GameObject:
   m_ObjectHideFlags: 0
@@ -5369,7 +5359,7 @@ GameObject:
   - component: {fileID: 750346241}
   - component: {fileID: 750346240}
   - component: {fileID: 750346239}
-  - component: {fileID: 750346238}
+  - component: {fileID: 750346242}
   m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
@@ -5397,19 +5387,6 @@ RectTransform:
   m_AnchoredPosition: {x: 123.79, y: -139.21}
   m_SizeDelta: {x: 154.46, y: 44.41}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &750346238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 750346236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1439a3b2358d3d94d8166d4c34e62551, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Canvas_A: {fileID: 551622888}
 --- !u!114 &750346239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5454,9 +5431,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 750346238}
-        m_TargetAssemblyTypeName: CloseCanvas, Assembly-CSharp
-        m_MethodName: CloseCanvasOnClick
+      - m_Target: {fileID: 750346242}
+        m_TargetAssemblyTypeName: Close_CV_Interact_02, Assembly-CSharp
+        m_MethodName: CanvasOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5504,6 +5481,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750346236}
   m_CullTransparentMesh: 1
+--- !u!114 &750346242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750346236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1093193158dfea44b4b1d85417d648d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasToClose: {fileID: 551622888}
+  interact_02Script: {fileID: 1882025986}
 --- !u!1001 &758690377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5922,7 +5913,7 @@ GameObject:
   - component: {fileID: 806379107}
   - component: {fileID: 806379106}
   - component: {fileID: 806379105}
-  - component: {fileID: 806379104}
+  - component: {fileID: 806379108}
   m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
@@ -5950,20 +5941,6 @@ RectTransform:
   m_AnchoredPosition: {x: 275, y: 144}
   m_SizeDelta: {x: 70.28, y: 62.18}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &806379104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 806379102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7689935387298418f112891be6ff65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasToClose: {fileID: 1341467018}
-  interactScript: {fileID: 20509772}
 --- !u!114 &806379105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6008,8 +5985,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 806379104}
-        m_TargetAssemblyTypeName: CloseCV_Interact, Assembly-CSharp
+      - m_Target: {fileID: 806379108}
+        m_TargetAssemblyTypeName: Close_CV_Interact_02, Assembly-CSharp
         m_MethodName: CanvasOnClick
         m_Mode: 1
         m_Arguments:
@@ -6058,6 +6035,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806379102}
   m_CullTransparentMesh: 1
+--- !u!114 &806379108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806379102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1093193158dfea44b4b1d85417d648d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasToClose: {fileID: 1341467018}
+  interact_02Script: {fileID: 1882025986}
 --- !u!1 &839712937
 GameObject:
   m_ObjectHideFlags: 0
@@ -15972,8 +15963,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1123755665}
-        m_TargetAssemblyTypeName: CloseCanvas, Assembly-CSharp
-        m_MethodName: CloseCanvasOnClick
+        m_TargetAssemblyTypeName: Close_CV_Interact_02, Assembly-CSharp
+        m_MethodName: CanvasOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16030,10 +16021,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1123755659}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1439a3b2358d3d94d8166d4c34e62551, type: 3}
+  m_Script: {fileID: 11500000, guid: a1093193158dfea44b4b1d85417d648d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Canvas_A: {fileID: 461630868}
+  canvasToClose: {fileID: 461630868}
+  interact_02Script: {fileID: 1882025986}
 --- !u!1 &1167296239
 GameObject:
   m_ObjectHideFlags: 0
@@ -19214,7 +19206,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1563500098}
-        m_TargetAssemblyTypeName: CloseCV_Interact, Assembly-CSharp
+        m_TargetAssemblyTypeName: Close_02, Assembly-CSharp
         m_MethodName: CanvasOnClick
         m_Mode: 1
         m_Arguments:
@@ -19272,11 +19264,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1563500093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7689935387298418f112891be6ff65, type: 3}
+  m_Script: {fileID: 11500000, guid: a1093193158dfea44b4b1d85417d648d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canvasToClose: {fileID: 1847568345}
-  interactScript: {fileID: 20509772}
+  interact_02Script: {fileID: 1882025986}
 --- !u!1 &1575413400
 GameObject:
   m_ObjectHideFlags: 0
@@ -19519,11 +19511,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3622782747786994896, guid: 64bb7790a1bafb64582afb96ff7bed96, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5248041048957278308, guid: 64bb7790a1bafb64582afb96ff7bed96, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7170176338794383872, guid: 64bb7790a1bafb64582afb96ff7bed96, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299744119443630562, guid: 64bb7790a1bafb64582afb96ff7bed96, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -19851,7 +19851,7 @@ GameObject:
   - component: {fileID: 1616232422}
   - component: {fileID: 1616232421}
   - component: {fileID: 1616232420}
-  - component: {fileID: 1616232419}
+  - component: {fileID: 1616232423}
   m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
@@ -19879,20 +19879,6 @@ RectTransform:
   m_AnchoredPosition: {x: 275, y: 144}
   m_SizeDelta: {x: 70.28, y: 62.18}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1616232419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1616232417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7689935387298418f112891be6ff65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasToClose: {fileID: 1456553980}
-  interactScript: {fileID: 20509772}
 --- !u!114 &1616232420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19937,8 +19923,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1616232419}
-        m_TargetAssemblyTypeName: CloseCV_Interact, Assembly-CSharp
+      - m_Target: {fileID: 1616232423}
+        m_TargetAssemblyTypeName: Close_CV_Interact_02, Assembly-CSharp
         m_MethodName: CanvasOnClick
         m_Mode: 1
         m_Arguments:
@@ -19987,6 +19973,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1616232417}
   m_CullTransparentMesh: 1
+--- !u!114 &1616232423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616232417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1093193158dfea44b4b1d85417d648d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasToClose: {fileID: 1456553980}
+  interact_02Script: {fileID: 1882025986}
 --- !u!1 &1617634142
 GameObject:
   m_ObjectHideFlags: 0
@@ -25410,11 +25410,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4472962649057362899, guid: f24b3c1827465f743a454c4cc80833e3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6628978103141141882, guid: f24b3c1827465f743a454c4cc80833e3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1882025986}
   m_SourcePrefab: {fileID: 100100000, guid: f24b3c1827465f743a454c4cc80833e3, type: 3}
+--- !u!1 &1882025984 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6421182362983139577, guid: f24b3c1827465f743a454c4cc80833e3, type: 3}
+  m_PrefabInstance: {fileID: 1882025983}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1882025985 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6628978103141141882, guid: f24b3c1827465f743a454c4cc80833e3, type: 3}
+  m_PrefabInstance: {fileID: 1882025983}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1882025986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882025985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faacc703b9d8a264786e792a9c5cfed0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1882025984}
+  paperCanvas: {fileID: 1847568345}
+  checkCanvas: {fileID: 1456553980}
+  communicateCanvas: {fileID: 461630868}
+  showRange: 5
 --- !u!1 &1883752330
 GameObject:
   m_ObjectHideFlags: 0
