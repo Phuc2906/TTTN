@@ -4,16 +4,20 @@ public class OpenGameObject : MonoBehaviour
 {
     [SerializeField] private GameObject targetObject_A; 
     [SerializeField] private GameObject targetObject_B; 
+    private bool activated = false; 
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            if (targetObject_A != null)
-                targetObject_A.SetActive(true);
+        if (!other.CompareTag("Player")) return;
 
-            StartCoroutine(DelayActivateB());
-        }
+        if (activated) return;     
+
+        activated = true;         
+
+        if (targetObject_A != null)
+            targetObject_A.SetActive(true);
+
+        StartCoroutine(DelayActivateB());
     }
 
     private System.Collections.IEnumerator DelayActivateB()

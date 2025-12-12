@@ -496,8 +496,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 331011499}
-        m_TargetAssemblyTypeName: Hard, Assembly-CSharp
-        m_MethodName: LoadHard
+        m_TargetAssemblyTypeName: Hard_Level1, Assembly-CSharp
+        m_MethodName: LoadHard_Level1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -554,7 +554,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 331011494}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acddba04324b55d488d451f9720d24c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 40c8157bf5f475745923f1eed1cd0b97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &420479737
@@ -642,8 +642,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 420479742}
-        m_TargetAssemblyTypeName: Normal, Assembly-CSharp
-        m_MethodName: LoadNormal
+        m_TargetAssemblyTypeName: Normal_Level1, Assembly-CSharp
+        m_MethodName: LoadNormal_Level1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -700,7 +700,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 420479737}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6be88b02d5355c346928e36d0532498e, type: 3}
+  m_Script: {fileID: 11500000, guid: a67fc94776987a34f860f1f090e7cf48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &459108024
@@ -1357,8 +1357,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 836337573}
-        m_TargetAssemblyTypeName: Easy, Assembly-CSharp
-        m_MethodName: LoadEasy
+        m_TargetAssemblyTypeName: Easy_Level1, Assembly-CSharp
+        m_MethodName: LoadEasy_Level1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1415,7 +1415,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 836337568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72b37603990943c469e1adfbc9b9ec87, type: 3}
+  m_Script: {fileID: 11500000, guid: 447648d69b6550c4d9b2767c2e7437ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &883294113
