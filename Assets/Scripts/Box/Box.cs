@@ -5,41 +5,37 @@ public class Box : MonoBehaviour
 {
     public GameObject targetCanvas;
     public Animator animator;
-    public string openAnimStateName = "Box_01"; 
-    
-    bool triggered = false;
+
+    private bool triggered = false;
+    private Collider2D boxCollider;
+
+    private void Awake()
+    {
+        boxCollider = GetComponent<Collider2D>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player") && !triggered)
-        {
-            triggered = true;
+        if (!other.CompareTag("Player") || triggered) return;
 
-            targetCanvas.SetActive(true);
-            animator.SetTrigger("Open");
+        triggered = true;
 
-            StartCoroutine(StopAfterFinish());
-        }
+        if (boxCollider != null)
+            boxCollider.enabled = false;
+
+        animator.SetTrigger("Open");
+        StartCoroutine(OpenCanvasAfterAnim());
     }
 
-    IEnumerator StopAfterFinish()
+    IEnumerator OpenCanvasAfterAnim()
     {
         yield return null;
 
-        AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
-        while(!info.IsName(openAnimStateName))
-        {
-            yield return null;
-            info = animator.GetCurrentAnimatorStateInfo(0);
-        }
+        AnimatorClipInfo[] clips = animator.GetCurrentAnimatorClipInfo(0);
+        float animLength = clips[0].clip.length;
 
-        while(info.normalizedTime < 1f)
-        {
-            yield return null;
-            info = animator.GetCurrentAnimatorStateInfo(0);
-        }
-
-        animator.Play(openAnimStateName, 0, 1f); 
-        animator.speed = 0;                      
+        yield return new WaitForSeconds(animLength);
+        targetCanvas.SetActive(true);
+        Time.timeScale = 0f;
     }
 }

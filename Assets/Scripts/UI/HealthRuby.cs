@@ -12,6 +12,9 @@ public class HealthRuby : MonoBehaviour
     [Header("Canvas GameOver")]
     public GameObject gameOverCanvas;
 
+    [Header("Game Over")]
+    public bool pauseGameOnDeath = true;   // ← bật/tắt dừng game
+
     private int currentHealth;
 
     private void Start()
@@ -25,11 +28,11 @@ public class HealthRuby : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Chưa gán HealthBar vào PlayerHealth!");
+            Debug.LogWarning("Chưa gán HealthBar vào HealthRuby!");
         }
 
         if (gameOverCanvas != null)
-            gameOverCanvas.SetActive(false); 
+            gameOverCanvas.SetActive(false);
     }
 
     public void TakeDamage(int damage)
@@ -60,9 +63,12 @@ public class HealthRuby : MonoBehaviour
     private void Die()
     {
         Debug.Log($"{gameObject.name} đã chết!");
-        
+
         if (gameOverCanvas != null)
             gameOverCanvas.SetActive(true);
+
+        if (pauseGameOnDeath)
+            Time.timeScale = 0f;  
 
         gameObject.SetActive(false);
     }

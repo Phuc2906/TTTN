@@ -3,19 +3,22 @@ using System.Collections;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("Spawn Center")]
+    public Transform spawnCenter;    
+
     [Header("References")]
     public GameObject enemyPrefab;
-    public Transform player;
     public EnemyCountDisplay enemyCountDisplay;
 
     [Header("Spawn Settings")]
     public float spawnRate = 3f;
-    public float spawnRadius = 6f;
-    public int maxEnemiesAlive = 10;     
-    public int spawnLimit = 100;        
+    public float spawnRadius = 6f;        
+    public float minSpawnDistance = 2.5f; 
+    public int maxEnemiesAlive = 10;
+    public int spawnLimit = 100;
 
-    private int aliveCount = 0;          
-    private int totalSpawned = 0;      
+    private int aliveCount = 0;
+    private int totalSpawned = 0;
     private bool canSpawn = true;
 
     void Start()
@@ -30,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
         {
             if (aliveCount < maxEnemiesAlive && totalSpawned < spawnLimit)
             {
-                Vector3 spawnPos = GetRandomSpawnPos();
+                Vector3 spawnPos = GetValidSpawnPos();
                 GameObject e = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
 
                 EnemyHealth hp = e.GetComponent<EnemyHealth>();
@@ -51,16 +54,24 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    Vector3 GetRandomSpawnPos()
+    Vector3 GetValidSpawnPos()
     {
-        Vector2 rp = (Vector2)player.position + Random.insideUnitCircle * spawnRadius;
-        return new Vector3(rp.x, rp.y, 0);
+        Vector2 center = spawnCenter.position;
+
+        for (int i = 0; i < 10; i++) 
+        {
+            Vector2 randomPos = center + Random.insideUnitCircle.normalized *
+                                Random.Range(minSpawnDistance, spawnRadius);
+
+            return new Vector3(randomPos.x, randomPos.y, 0);
+        }
+
+        return new Vector3(center.x + spawnRadius, center.y, 0);
     }
 
     public void OnEnemyKilled()
     {
         aliveCount = Mathf.Max(0, aliveCount - 1);
-
         enemyCountDisplay?.UpdateCount(aliveCount, maxEnemiesAlive, totalSpawned, spawnLimit);
     }
 }

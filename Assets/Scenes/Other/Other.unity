@@ -270,6 +270,7 @@ MonoBehaviour:
   maxHealth: 500
   healthBar: {fileID: 111328331}
   gameOverCanvas: {fileID: 752558031}
+  pauseGameOnDeath: 1
 --- !u!1 &99167614
 GameObject:
   m_ObjectHideFlags: 0
@@ -18063,11 +18064,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe0daf463aeebc4288d9c4f3ded3a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnCenter: {fileID: 78922018}
   enemyPrefab: {fileID: 1016846193051686559, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
-  player: {fileID: 78922018}
   enemyCountDisplay: {fileID: 743433147}
   spawnRate: 1
   spawnRadius: 20
+  minSpawnDistance: 2.5
   maxEnemiesAlive: 10
   spawnLimit: 100
 --- !u!114 &743433147
