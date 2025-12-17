@@ -18065,13 +18065,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnCenter: {fileID: 78922018}
-  enemyPrefab: {fileID: 1016846193051686559, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
+  enemyPrefab: {fileID: 680320844915659940, guid: ade7703c82d663745b3011c5afb002e4, type: 3}
   enemyCountDisplay: {fileID: 743433147}
   spawnRate: 1
   spawnRadius: 20
-  minSpawnDistance: 2.5
+  innerSafeRadius: 3
   maxEnemiesAlive: 10
   spawnLimit: 100
+  blockMask:
+    serializedVersion: 2
+    m_Bits: 8
+  checkRadius: 0.6
 --- !u!114 &743433147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18540,14 +18544,22 @@ PrefabInstance:
     - target: {fileID: 2020879825718552601, guid: 11f04394b478f014c85748e4ccac4e21, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1115176749}
+      objectReference: {fileID: 1115176748}
     - target: {fileID: 2020879825718552601, guid: 11f04394b478f014c85748e4ccac4e21, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OpenSetting
       objectReference: {fileID: 0}
     - target: {fileID: 2020879825718552601, guid: 11f04394b478f014c85748e4ccac4e21, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Setting_Other, Assembly-CSharp
+      value: Setting, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2951773735271796104, guid: 11f04394b478f014c85748e4ccac4e21, type: 3}
+      propertyPath: savedSceneName
+      value: Other
+      objectReference: {fileID: 0}
+    - target: {fileID: 2951773735271796104, guid: 11f04394b478f014c85748e4ccac4e21, type: 3}
+      propertyPath: currentSceneName
+      value: Other
       objectReference: {fileID: 0}
     - target: {fileID: 5134370725458121869, guid: 11f04394b478f014c85748e4ccac4e21, type: 3}
       propertyPath: m_Camera
@@ -18645,34 +18657,24 @@ PrefabInstance:
     - {fileID: 2481520639225110803, guid: 11f04394b478f014c85748e4ccac4e21, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8742684660629505629, guid: 11f04394b478f014c85748e4ccac4e21, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1115176749}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11f04394b478f014c85748e4ccac4e21, type: 3}
 --- !u!1 &1115176747 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6604194712405861816, guid: 11f04394b478f014c85748e4ccac4e21, type: 3}
   m_PrefabInstance: {fileID: 1115176746}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1115176748 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8742684660629505629, guid: 11f04394b478f014c85748e4ccac4e21, type: 3}
+--- !u!114 &1115176748 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2951773735271796104, guid: 11f04394b478f014c85748e4ccac4e21, type: 3}
   m_PrefabInstance: {fileID: 1115176746}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1115176749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1115176748}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 275d665176685f24bb19f5661e610535, type: 3}
+  m_Script: {fileID: 11500000, guid: 9266572508749d848a303ddeed04a6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSceneName: Other
 --- !u!224 &1115176750 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8231630240284920232, guid: 11f04394b478f014c85748e4ccac4e21, type: 3}

@@ -898,7 +898,7 @@ GameObject:
   - component: {fileID: 299053704079522805}
   - component: {fileID: 7447411846044472751}
   - component: {fileID: 2020879825718552601}
-  - component: {fileID: 2312579505104022296}
+  - component: {fileID: 2951773735271796104}
   m_Layer: 5
   m_Name: Setting
   m_TagString: Untagged
@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2312579505104022296}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Setting_Easy_Level2, Assembly-CSharp
         m_MethodName: OpenSetting
         m_Mode: 1
@@ -1020,7 +1020,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2312579505104022296
+--- !u!114 &2951773735271796104
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1029,10 +1029,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8742684660629505629}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b437e90f08115964bbe5307aced1cfe6, type: 3}
+  m_Script: {fileID: 11500000, guid: 9266572508749d848a303ddeed04a6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSceneName: Easy_Level2
+  currentSceneName: Easy_Level1
+  savedSceneName: Easy_Level1
 --- !u!1 &9008995498164702249
 GameObject:
   m_ObjectHideFlags: 0
