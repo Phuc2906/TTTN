@@ -1,29 +1,46 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
-public class OpenGameObject : MonoBehaviour
+public class OpenGO : MonoBehaviour
 {
-    [SerializeField] private GameObject targetObject_A; 
-    [SerializeField] private GameObject targetObject_B; 
-    private bool activated = false; 
-    
+    [Header("Danh sách GameObject")]
+    public List<GameObject> doors;
+
+    [Header("Chỉ số bắt đầu delay ")]
+    public int delayStartIndex = 1; 
+    public float delayTime = 0.5f;
+
+    private bool activated = false;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Player")) return;
+        if (activated) return;
 
-        if (activated) return;     
+        if (other.CompareTag("Player"))
+        {
+            for (int i = 0; i < doors.Count; i++)
+            {
+                if (doors[i] == null) continue;
 
-        activated = true;         
+                if (i < delayStartIndex)
+                {
+                    doors[i].SetActive(true);
+                }
+                else
+                {
+                    StartCoroutine(ActivateWithDelay(doors[i], delayTime));
+                }
+            }
 
-        if (targetObject_A != null)
-            targetObject_A.SetActive(true);
-
-        StartCoroutine(DelayActivateB());
+            activated = true;
+        }
     }
 
-    private System.Collections.IEnumerator DelayActivateB()
+    private IEnumerator ActivateWithDelay(GameObject obj, float delay)
     {
-        yield return new WaitForSeconds(0.5f); 
-        if (targetObject_B != null)
-            targetObject_B.SetActive(true);
+        yield return new WaitForSeconds(delay);
+        if (obj != null)
+            obj.SetActive(true);
     }
 }

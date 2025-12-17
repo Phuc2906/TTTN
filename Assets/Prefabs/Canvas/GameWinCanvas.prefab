@@ -172,8 +172,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030518, y: -0.0000076294}
-  m_SizeDelta: {x: 693.2, y: 398.6}
+  m_AnchoredPosition: {x: -46.35, y: 36.63}
+  m_SizeDelta: {x: 1752.07, y: 873.29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2959596114433382492
 CanvasRenderer:
@@ -825,7 +825,7 @@ GameObject:
   - component: {fileID: 6401626389673401799}
   - component: {fileID: 9116858504355634284}
   - component: {fileID: 5332632711281736784}
-  - component: {fileID: 6625008896652811219}
+  - component: {fileID: 6865066633103986664}
   m_Layer: 5
   m_Name: Continue
   m_TagString: Untagged
@@ -935,9 +935,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6625008896652811219}
-        m_TargetAssemblyTypeName: Easy, Assembly-CSharp
-        m_MethodName: LoadEasy
+      - m_Target: {fileID: 6865066633103986664}
+        m_TargetAssemblyTypeName: Easy_Level2, Assembly-CSharp
+        m_MethodName: LoadEasy_Level2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -947,7 +947,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6625008896652811219
+--- !u!114 &6865066633103986664
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -956,7 +956,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6805576894096520955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72b37603990943c469e1adfbc9b9ec87, type: 3}
+  m_Script: {fileID: 11500000, guid: 01e702d2bdc3d774a9ace7ca78700f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6810359600506783621
