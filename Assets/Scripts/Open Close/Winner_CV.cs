@@ -2,9 +2,13 @@ using UnityEngine;
 
 public class Winner_CV : MonoBehaviour
 {
+    [Header("UI")]
     public GameObject gameWinCanvas;     
     public GameObject missionCanvas;     
     public GameObject noticeCanvas;     
+
+    [Header("Level Save")]
+    public string levelClearKey;  
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,19 +18,25 @@ public class Winner_CV : MonoBehaviour
         {
             if (noticeCanvas != null)
                 noticeCanvas.SetActive(true);
+
+            return;
         }
-        else
+
+        if (gameWinCanvas != null)
+            gameWinCanvas.SetActive(true);
+
+        if (!string.IsNullOrEmpty(levelClearKey))
         {
-            if (gameWinCanvas != null)
-                gameWinCanvas.SetActive(true);
-
-            Time.timeScale = 0f;
-
-            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-                Destroy(enemy);
-
-            foreach (GameObject bullet in GameObject.FindGameObjectsWithTag("Bullet"))
-                Destroy(bullet);
+            PlayerPrefs.SetInt(levelClearKey, 1);
+            PlayerPrefs.Save();
         }
+
+        Time.timeScale = 0f;
+
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            Destroy(enemy);
+
+        foreach (GameObject bullet in GameObject.FindGameObjectsWithTag("Bullet"))
+            Destroy(bullet);
     }
 }

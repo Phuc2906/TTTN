@@ -15,7 +15,6 @@ public class PlayerMove : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         rb.gravityScale = 0;
 
-        // Load vị trí nếu có
         if (PlayerPrefs.HasKey("PlayerX"))
         {
             transform.position = new Vector2(

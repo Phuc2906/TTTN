@@ -887,6 +887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6625008896652811219, guid: 7afb51646b46a484eb7bef740a27bc6b, type: 3}
+    - {fileID: 6865066633103986664, guid: 7afb51646b46a484eb7bef740a27bc6b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -2443,6 +2444,7 @@ MonoBehaviour:
   gameWinCanvas: {fileID: 292344735}
   missionCanvas: {fileID: 1298212644}
   noticeCanvas: {fileID: 1743138618}
+  levelClearKey: Easy_Level2
 --- !u!1001 &812462297
 PrefabInstance:
   m_ObjectHideFlags: 0
