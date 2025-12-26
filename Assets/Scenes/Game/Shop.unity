@@ -3566,6 +3566,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1393504046}
   - component: {fileID: 1393504045}
+  - component: {fileID: 1393504047}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3604,6 +3605,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1393504047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393504044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edcde8eda2e81394f8ca83e79eede9b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1438775901
 GameObject:
   m_ObjectHideFlags: 0
@@ -5407,7 +5420,7 @@ MonoBehaviour:
   buttonImage: {fileID: 2077525572}
   buttonText: {fileID: 1439469514}
   noticeCanvas: {fileID: 1802418625}
-  price: 20
+  price: 1
   normalColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   boughtColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!1 &2138611494

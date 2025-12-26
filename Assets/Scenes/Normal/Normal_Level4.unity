@@ -5321,6 +5321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameWinCanvas: {fileID: 177888934}
+  levelClearKey: Normal_Level4
 --- !u!61 &1704827146
 BoxCollider2D:
   m_ObjectHideFlags: 0

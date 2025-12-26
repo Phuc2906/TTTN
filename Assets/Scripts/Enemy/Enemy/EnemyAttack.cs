@@ -39,7 +39,7 @@ public class EnemyAttack : MonoBehaviour
         isAttacking = true;
 
         if (rb)
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
 
         if (Time.time - lastHitTime < attackCooldown) return;
 

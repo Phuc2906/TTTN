@@ -795,11 +795,11 @@ PrefabInstance:
       objectReference: {fileID: 292344737}
     - target: {fileID: 5332632711281736784, guid: 7afb51646b46a484eb7bef740a27bc6b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadEasy_Level3
+      value: LoadHard_Level3
       objectReference: {fileID: 0}
     - target: {fileID: 5332632711281736784, guid: 7afb51646b46a484eb7bef740a27bc6b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Easy_Level3, Assembly-CSharp
+      value: Hard_Level3, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6162541620833621283, guid: 7afb51646b46a484eb7bef740a27bc6b, type: 3}
       propertyPath: m_Pivot.x
@@ -887,6 +887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6625008896652811219, guid: 7afb51646b46a484eb7bef740a27bc6b, type: 3}
+    - {fileID: 6865066633103986664, guid: 7afb51646b46a484eb7bef740a27bc6b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -924,7 +925,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 292344736}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72b37603990943c469e1adfbc9b9ec87, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cf92289101174b439ed5851aa5f542a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &292344738 stripped
@@ -2443,6 +2444,7 @@ MonoBehaviour:
   gameWinCanvas: {fileID: 292344735}
   missionCanvas: {fileID: 1298212644}
   noticeCanvas: {fileID: 1743138618}
+  levelClearKey: Hard_Level2
 --- !u!1001 &812462297
 PrefabInstance:
   m_ObjectHideFlags: 0
