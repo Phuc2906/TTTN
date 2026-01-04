@@ -5,6 +5,9 @@ public class EnemyMove : MonoBehaviour
 {
     enum AIState { Idle, Chase, WallFollow }
 
+    [Header("Save")]
+    public int enemyID;
+
     [Header("Target")]
     public Transform player;
 
@@ -28,7 +31,11 @@ public class EnemyMove : MonoBehaviour
     private Vector2 wallDir;
     private Vector2 lastWallNormal;
 
-    void Start()
+    string keyX;
+    string keyY;
+    string keyFacing;
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
@@ -36,6 +43,22 @@ public class EnemyMove : MonoBehaviour
 
         rb.gravityScale = 0;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        keyX = "Enemy_X_" + enemyID;
+        keyY = "Enemy_Y_" + enemyID;
+        keyFacing = "Enemy_Facing_" + enemyID;
+
+        if (PlayerPrefs.HasKey(keyX) && PlayerPrefs.HasKey(keyY))
+        {
+            float x = PlayerPrefs.GetFloat(keyX);
+            float y = PlayerPrefs.GetFloat(keyY);
+            transform.position = new Vector3(x, y, transform.position.z);
+        }
+
+        if (PlayerPrefs.HasKey(keyFacing) && sr)
+        {
+            sr.flipX = PlayerPrefs.GetInt(keyFacing) == 1;
+        }
     }
 
     void FixedUpdate()
@@ -47,6 +70,12 @@ public class EnemyMove : MonoBehaviour
 
         UpdateState();
         Move();
+
+        PlayerPrefs.SetFloat(keyX, transform.position.x);
+        PlayerPrefs.SetFloat(keyY, transform.position.y);
+
+        if (sr)
+            PlayerPrefs.SetInt(keyFacing, sr.flipX ? 1 : 0);
     }
 
     void UpdateState()
@@ -63,7 +92,6 @@ public class EnemyMove : MonoBehaviour
         {
             if (HasClearPathToPlayer())
                 state = AIState.Chase;
-
             return;
         }
 
@@ -103,7 +131,6 @@ public class EnemyMove : MonoBehaviour
     bool CheckWallAhead(out RaycastHit2D hit)
     {
         Vector2 dirToPlayer = ((Vector2)player.position - rb.position).normalized;
-
         hit = Physics2D.Raycast(rb.position, dirToPlayer, wallCheckDistance, obstacleMask);
         return hit.collider != null;
     }

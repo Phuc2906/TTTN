@@ -22,6 +22,10 @@ public class PlayerMove : MonoBehaviour
                 PlayerPrefs.GetFloat("PlayerY")
             );
         }
+        if (PlayerPrefs.HasKey("PlayerFacing"))
+        {
+            sr.flipX = PlayerPrefs.GetInt("PlayerFacing") == 1;
+        }
     }
 
     void Update()
@@ -45,6 +49,9 @@ public class PlayerMove : MonoBehaviour
     {
         PlayerPrefs.SetFloat("PlayerX", transform.position.x);
         PlayerPrefs.SetFloat("PlayerY", transform.position.y);
+
+        PlayerPrefs.SetInt("PlayerFacing", sr.flipX ? 1 : 0);
+
         PlayerPrefs.Save();
     }
 }

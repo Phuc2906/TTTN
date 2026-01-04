@@ -3,22 +3,22 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [Header("Health")]
     public int maxHealth = 10;
     public int maxExp = 5;
     private int currentHealth;
 
-    [Header("UI")]
     public Slider healthBar;
-
     public EnemySpawner spawner;
 
     private Animator anim;
     private bool isDead = false;
 
+    private EnemySave save;
+
     void Start()
     {
         anim = GetComponent<Animator>();
+        save = GetComponent<EnemySave>();
 
         currentHealth = maxHealth;
 
@@ -52,7 +52,7 @@ public class EnemyHealth : MonoBehaviour
 
         FindObjectOfType<PlayerExpManager>().GainExp(maxExp);
 
-        if (spawner != null)
+         if (spawner != null)
             spawner.OnEnemyKilled();
 
         Collider2D col = GetComponent<Collider2D>();
@@ -76,6 +76,9 @@ public class EnemyHealth : MonoBehaviour
             Destroy(bullet);
         }
 
-        Destroy(gameObject, 1f);
+        if (save != null)
+            save.Collect();
+        else
+            Destroy(gameObject, 1f);
     }
 }
