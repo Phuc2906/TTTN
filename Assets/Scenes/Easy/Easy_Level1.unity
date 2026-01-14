@@ -576,6 +576,7 @@ GameObject:
   - component: {fileID: 104044302}
   - component: {fileID: 104044305}
   - component: {fileID: 104044306}
+  - component: {fileID: 104044307}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -663,6 +664,19 @@ MonoBehaviour:
   healAmount: 25
   duration: 30
   healInterval: 1
+--- !u!114 &104044307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104044301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c319614a746df43947139672d63527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedInventorySlot: {fileID: 0}
 --- !u!1 &114048079
 GameObject:
   m_ObjectHideFlags: 0
@@ -2771,8 +2785,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 123056269}
-  - {fileID: 1187147986}
   - {fileID: 2063332577}
+  - {fileID: 1187147986}
   m_Father: {fileID: 812656032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -7432,7 +7446,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: {fileID: 1922373715}
-  itemPrefab: {fileID: 1382937427112741863, guid: ad095b1464288384f870dff451b710e8, type: 3}
+  slotPrefab: {fileID: 1382937427112741863, guid: ad095b1464288384f870dff451b710e8, type: 3}
+  totalSlots: 20
+  playerPrefKeys:
+  - Item_01_Bought
+  - Item_02_Bought
+  - Item_03_Bought
+  itemIcons:
+  - {fileID: 21300000, guid: aaaa202a3df1f0b4a94127accd1d48fe, type: 3}
+  - {fileID: 21300000, guid: 6daa3f6a352f79145aefc2d43a4c5f9b, type: 3}
+  - {fileID: 21300000, guid: c074e8495c45a6c4b89a71d9c189e5f4, type: 3}
 --- !u!114 &1922373719
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,38 +13,37 @@ public class Item_03 : MonoBehaviour
     public Canvas noticeCanvas;
 
     [Header("Item Properties")]
-    public int price = 3;
+    public int price = 1000;
     public Color normalColor = Color.yellow;
     public Color boughtColor = Color.gray;
 
     private bool isBought = false;
+    private string playerPrefKey = "Item_03_Bought";
 
     private void Start()
     {
-        // Check UI để tránh lỗi null
-        if (buyButton == null) Debug.LogError("[Item_03] buyButton chưa gán!");
-        if (buttonImage == null) Debug.LogError("[Item_03] buttonImage chưa gán!");
-        if (buttonText == null) Debug.LogError("[Item_03] buttonText chưa gán!");
+        isBought = PlayerPrefs.GetInt(playerPrefKey, 0) == 1;
 
         buyButton.onClick.AddListener(OnBuyButtonClicked);
-
         UpdateButtonUI();
     }
+
 
     private void OnBuyButtonClicked()
     {
         if (isBought) return;
 
-        // Check CoinManager tồn tại
         if (CoinManager.Instance == null)
         {
-            Debug.LogError("[Item_03] CoinManager.Instance = NULL! Không thể trừ coin.");
             return;
         }
 
         if (CoinManager.Instance.SpendCoin(price))
         {
             isBought = true;
+
+            PlayerPrefs.SetInt(playerPrefKey, 1);
+            PlayerPrefs.Save();
             UpdateButtonUI();
         }
         else
@@ -59,7 +58,7 @@ public class Item_03 : MonoBehaviour
         if (isBought)
         {
             buttonImage.color = boughtColor;
-            buttonText.text = "Bought";
+            buttonText.text = "Đã mua";
             buyButton.interactable = false;
         }
         else

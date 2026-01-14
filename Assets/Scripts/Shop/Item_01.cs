@@ -4,62 +4,46 @@ using TMPro;
 
 public class Item_01 : MonoBehaviour
 {
-    [Header("UI Reference")]
     public Button buyButton;
     public Image buttonImage;
     public TMP_Text buttonText;
 
-    [Header("Notice")]
     public Canvas noticeCanvas;
-
-    [Header("Item Properties")]
-    public int price = 1;
+    public int price = 20;
     public Color normalColor = Color.yellow;
     public Color boughtColor = Color.gray;
 
     private bool isBought = false;
+    private string playerPrefKey = "Item_01_Bought";
 
     private void Start()
     {
-        Debug.Log("[Item_01] Start() được gọi");
-
-        // Check gán UI
-        if (buyButton == null) Debug.LogError("[Item_01] buyButton chưa gán!");
-        if (buttonImage == null) Debug.LogError("[Item_01] buttonImage chưa gán!");
-        if (buttonText == null) Debug.LogError("[Item_01] buttonText chưa gán!");
-
+        
+        isBought = PlayerPrefs.GetInt(playerPrefKey, 0) == 1;
         buyButton.onClick.AddListener(OnBuyButtonClicked);
-
         UpdateButtonUI();
     }
 
     private void OnBuyButtonClicked()
     {
-        Debug.Log("[Item_01] Button được click!");
-
+        
         if (isBought)
         {
-            Debug.LogWarning("[Item_01] Đã mua rồi, không thể mua lại!");
             return;
         }
-
-        if (CoinManager.Instance == null)
-        {
-            Debug.LogError("[Item_01] CoinManager.Instance = NULL!");
-            return;
-        }
-
-        Debug.Log($"[Item_01] Thử mua với giá {price} coin");
-
+        
         if (CoinManager.Instance.SpendCoin(price))
         {
-            Debug.Log("[Item_01] ✓ Mua thành công!");
             isBought = true;
+            
+            PlayerPrefs.SetInt(playerPrefKey, 1);
+            PlayerPrefs.Save();
+            
+            int verify = PlayerPrefs.GetInt(playerPrefKey, -1);
             UpdateButtonUI();
         }
         else
         {
-            Debug.LogWarning("[Item_01] ❌ Không đủ tiền!");
             if (noticeCanvas != null)
                 noticeCanvas.gameObject.SetActive(true);
         }
@@ -70,16 +54,14 @@ public class Item_01 : MonoBehaviour
         if (isBought)
         {
             buttonImage.color = boughtColor;
-            buttonText.text = "Bought";
+            buttonText.text = "Đã mua";
             buyButton.interactable = false;
-            Debug.Log("[Item_01] UI: BOUGHT");
         }
         else
         {
             buttonImage.color = normalColor;
             buttonText.text = price.ToString();
             buyButton.interactable = true;
-            Debug.Log($"[Item_01] UI: {price} coin");
         }
     }
 }
