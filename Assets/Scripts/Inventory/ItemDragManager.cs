@@ -8,6 +8,7 @@ public class ItemDragManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        selectedInventorySlot = null; 
     }
 
     public void SelectInventorySlot(InventorySlot slot)

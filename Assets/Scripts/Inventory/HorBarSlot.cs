@@ -6,6 +6,8 @@ public class HotbarSlot : MonoBehaviour
     public Image iconImage;
     public GameObject iconObject;
     public Button button;
+    public WeaponController weaponController;
+
 
     public string playerPrefKey;
 
@@ -29,49 +31,64 @@ public class HotbarSlot : MonoBehaviour
     }
 
     void OnClick()
+{
+    SetSelected(true);
+
+    InventorySlot invSlot = ItemDragManager.Instance.selectedInventorySlot;
+
+    if (invSlot != null)
     {
-        SetSelected(true);
-
-        InventorySlot invSlot = ItemDragManager.Instance.selectedInventorySlot;
-
-        if (invSlot != null)
+        Assign(invSlot);
+        ItemDragManager.Instance.Clear();
+    }
+    else
+    {
+        if (!string.IsNullOrEmpty(playerPrefKey))
         {
-            Assign(invSlot);
-            ItemDragManager.Instance.Clear();
+            weaponController.EquipWeaponByKey(playerPrefKey);
         }
     }
+}
+
 
     void Assign(InventorySlot invSlot)
+{
+    if (equippedInventorySlot != null)
     {
-        if (equippedInventorySlot != null)
-        {
-            equippedInventorySlot.isEquipped = false;
-            equippedInventorySlot.equippedHotbarSlot = null;
-            equippedInventorySlot.SetEquipped(false);
-        }
-
-        playerPrefKey = invSlot.playerPrefKey;
-        iconImage.sprite = invSlot.iconImage.sprite;
-
-        iconImage.enabled = true;
-        iconObject.SetActive(true);
-
-        equippedInventorySlot = invSlot;
-
-        invSlot.SetEquipped(true);
-        invSlot.equippedHotbarSlot = this;
+        equippedInventorySlot.isEquipped = false;
+        equippedInventorySlot.equippedHotbarSlot = null;
+        equippedInventorySlot.SetEquipped(false);
     }
 
-    public void ForceUnequip()
-    {
-        playerPrefKey = "";
-        iconImage.sprite = null;
-        iconImage.enabled = false;
+    playerPrefKey = invSlot.playerPrefKey;
+    iconImage.sprite = invSlot.iconImage.sprite;
 
-        equippedInventorySlot = null;
+    iconImage.enabled = true;
+    iconObject.SetActive(true);
 
-        ClearSelection();
-    }
+    equippedInventorySlot = invSlot;
+
+    invSlot.SetEquipped(true);
+    invSlot.equippedHotbarSlot = this;
+
+    weaponController.EquipWeaponByKey(playerPrefKey);
+}
+
+
+   public void ForceUnequip()
+{
+    playerPrefKey = "";
+    iconImage.sprite = null;
+    iconImage.enabled = false;
+
+    equippedInventorySlot = null;
+
+    
+    weaponController.UnequipWeapon();
+
+    ClearSelection();
+}
+
 
     void SetSelected(bool value)
     {

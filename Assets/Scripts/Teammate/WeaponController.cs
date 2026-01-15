@@ -4,47 +4,86 @@ public class WeaponController : MonoBehaviour
 {
     public Transform weaponHolder;
 
-    [Header("Default Weapon")]
-    public GameObject gunPrefab;
+    [Header("Default Weapon (Optional)")]
+    public GameObject defaultWeaponPrefab; 
+    public string defaultWeaponKey;        
 
     private GameObject currentWeapon;
     private SpriteRenderer playerSprite;
-    private Gun currentGun;
+    private bool usingDefaultWeapon;
 
     void Start()
     {
         playerSprite = GetComponent<SpriteRenderer>();
-        EquipWeapon(gunPrefab);
     }
 
     void Update()
+{
+    if (currentWeapon == null) return;
+
+    SpriteRenderer weaponSprite = currentWeapon.GetComponent<SpriteRenderer>();
+    if (weaponSprite != null)
+        weaponSprite.flipX = playerSprite.flipX;
+
+    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    Vector2 direction = (Vector2)mousePos - (Vector2)currentWeapon.transform.position;
+    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+    currentWeapon.transform.rotation = Quaternion.Euler(0, 0, angle);
+}
+
+    public void EquipWeaponByKey(string weaponKey)
     {
-        if (currentWeapon == null) return;
+        WeaponData data = WeaponDatabase.Instance.GetWeaponByKey(weaponKey);
 
-        SpriteRenderer weaponSprite = currentWeapon.GetComponent<SpriteRenderer>();
-        if (weaponSprite != null)
-            weaponSprite.flipX = playerSprite.flipX;
+        if (data == null || data.weaponPrefab == null)
+        {
+            UnequipWeapon(); 
+            return;
+        }
 
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = mousePos - currentWeapon.transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        currentWeapon.transform.rotation = Quaternion.Euler(0, 0, angle);
+        EquipWeapon(data.weaponPrefab);
+        usingDefaultWeapon = false;
     }
 
-    public void EquipWeapon(GameObject weaponPrefab)
+    void EquipDefaultIfAvailable()
     {
-        if (weaponPrefab == null) return;
+        if (defaultWeaponPrefab == null)
+        {
+            UnequipWeapon();
+            return;
+        }
+
+        EquipWeapon(defaultWeaponPrefab);
+        usingDefaultWeapon = true;
+    }
+
+    void EquipWeapon(GameObject prefab)
+    {
+        if (prefab == null) return;
 
         if (currentWeapon != null)
             Destroy(currentWeapon);
 
         currentWeapon = Instantiate(
-            weaponPrefab,
+            prefab,
             weaponHolder.position,
             weaponHolder.rotation,
             weaponHolder
         );
+    }
 
-        currentGun = currentWeapon.GetComponent<Gun>();
+    public void UnequipWeapon()
+    {
+        if (currentWeapon != null)
+            Destroy(currentWeapon);
+
+        currentWeapon = null;
+        usingDefaultWeapon = false;
+    }
+
+    public void ReturnToDefault()
+    {
+        EquipDefaultIfAvailable();
     }
 }

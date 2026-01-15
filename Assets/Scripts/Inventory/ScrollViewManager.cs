@@ -5,10 +5,10 @@ public class ScrollViewManager : MonoBehaviour
     public Transform content;
     public GameObject slotPrefab;
 
-    [Header("Inventory Config")]
+    [Header("Inventory Slots")]
     public int totalSlots = 20;
 
-    [Header("Item Data")]
+    [Header("Item")]
     public string[] playerPrefKeys;
     public Sprite[] itemIcons;
 
@@ -19,21 +19,27 @@ public class ScrollViewManager : MonoBehaviour
 
     void SpawnSlots()
     {
-        int itemCount = Mathf.Min(playerPrefKeys.Length, itemIcons.Length);
+        int slotIndex = 0;
 
-        for (int i = 0; i < totalSlots; i++)
+        for (int i = 0; i < playerPrefKeys.Length && slotIndex < totalSlots; i++)
+        {
+            string key = playerPrefKeys[i];
+
+            if (PlayerPrefs.HasKey(key))
+            {
+                GameObject slotGO = Instantiate(slotPrefab, content);
+                InventorySlot slot = slotGO.GetComponent<InventorySlot>();
+                slot.InitItem(key, itemIcons[i]);
+                slotIndex++;
+            }
+        }
+
+        while (slotIndex < totalSlots)
         {
             GameObject slotGO = Instantiate(slotPrefab, content);
             InventorySlot slot = slotGO.GetComponent<InventorySlot>();
-
-            if (i < itemCount)
-            {
-                slot.InitItem(playerPrefKeys[i], itemIcons[i]);
-            }
-            else
-            {
-                slot.InitEmpty();
-            }
+            slot.InitEmpty();
+            slotIndex++;
         }
     }
 }

@@ -13,12 +13,11 @@ public class InventorySlot : MonoBehaviour
     public Button button;
 
     public bool isEquipped;
-
     public HotbarSlot equippedHotbarSlot;
 
     public Image slotImage;
 
-    private Color originalSlotColor;
+    private Color originalSlotColor = Color.white; 
     public Color equippedColor = new Color(1f, 0.6f, 0f); 
 
     private static InventorySlot currentSelectedSlot;
@@ -26,16 +25,12 @@ public class InventorySlot : MonoBehaviour
     void Awake()
     {
         button.onClick.AddListener(OnClick);
-
-        if (slotImage != null)
-            originalSlotColor = slotImage.color;
     }
 
     void OnClick()
     {
         if (string.IsNullOrEmpty(playerPrefKey)) return;
 
-        // ===== ĐANG TRANG BỊ → THU HỒI =====
         if (isEquipped)
         {
             if (equippedHotbarSlot != null)
@@ -46,7 +41,13 @@ public class InventorySlot : MonoBehaviour
 
             SetEquipped(false);
             ClearSelection();
+            ItemDragManager.Instance.Clear();
             return;
+        }
+
+        if (currentSelectedSlot != null && currentSelectedSlot != this)
+        {
+            currentSelectedSlot.ClearSelection();
         }
 
         ItemDragManager.Instance.SelectInventorySlot(this);
@@ -58,10 +59,13 @@ public class InventorySlot : MonoBehaviour
         playerPrefKey = "";
         iconImage.sprite = null;
         iconObject.SetActive(false);
-        equippedText.gameObject.SetActive(false);
+
         isEquipped = false;
         equippedHotbarSlot = null;
+        equippedText.gameObject.SetActive(false);
+
         ClearSelection();
+        ResetColor();
     }
 
     public void InitItem(string key, Sprite icon)
@@ -69,25 +73,27 @@ public class InventorySlot : MonoBehaviour
         playerPrefKey = key;
         iconImage.sprite = icon;
         iconObject.SetActive(true);
-        equippedText.gameObject.SetActive(false);
+
         isEquipped = false;
         equippedHotbarSlot = null;
+        equippedText.gameObject.SetActive(false);
+
         ClearSelection();
+        ResetColor();
     }
 
     public void SetEquipped(bool value)
     {
+        if (string.IsNullOrEmpty(playerPrefKey))
+            return;
+
         isEquipped = value;
         equippedText.gameObject.SetActive(value);
 
         if (value)
-        {
             ApplyEquippedColor();
-        }
         else
-        {
             ResetColor();
-        }
     }
 
     void SetSelected(bool value)
@@ -97,9 +103,7 @@ public class InventorySlot : MonoBehaviour
         if (value)
         {
             if (currentSelectedSlot != null && currentSelectedSlot != this)
-            {
                 currentSelectedSlot.ResetColor();
-            }
 
             currentSelectedSlot = this;
             slotImage.color = Color.yellow;
@@ -135,6 +139,6 @@ public class InventorySlot : MonoBehaviour
         if (isEquipped)
             slotImage.color = equippedColor;
         else
-            slotImage.color = originalSlotColor;
+            slotImage.color = originalSlotColor; 
     }
 }
