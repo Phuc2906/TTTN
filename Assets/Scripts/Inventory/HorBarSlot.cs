@@ -39,7 +39,7 @@ public class HotbarSlot : MonoBehaviour
     void OnClick()
     {
         SetSelected(true);
-        SaveSelected(); 
+        SaveSelected();
 
         InventorySlot invSlot = ItemDragManager.Instance.selectedInventorySlot;
         if (invSlot != null)
@@ -77,23 +77,33 @@ public class HotbarSlot : MonoBehaviour
     }
 
     public void ForceUnequip()
+{
+    bool wasSelected = (currentSelectedSlot == this);
+
+    playerPrefKey = "";
+    iconImage.sprite = null;
+    iconImage.enabled = false;
+
+    if (equippedInventorySlot != null)
     {
-        playerPrefKey = "";
-        iconImage.sprite = null;
-        iconImage.enabled = false;
+        equippedInventorySlot.SetEquipped(false);
+        equippedInventorySlot.equippedHotbarSlot = null;
+    }
 
-        if (equippedInventorySlot != null)
-        {
-            equippedInventorySlot.SetEquipped(false);
-            equippedInventorySlot.equippedHotbarSlot = null;
-        }
+    equippedInventorySlot = null;
 
-        equippedInventorySlot = null;
+    if (wasSelected)
         weaponController.UnequipWeapon();
 
-        Save();
-        ClearSelection();
+    Save();
+
+    if (wasSelected)
+    {
+        SetSelected(true);
+        SaveSelected();
     }
+}
+
 
     void Save()
     {
@@ -108,17 +118,29 @@ public class HotbarSlot : MonoBehaviour
     void Load()
     {
         string key = "HOTBAR_" + hotbarIndex;
-        if (!PlayerPrefs.HasKey(key)) return;
+        if (!PlayerPrefs.HasKey(key))
+        {
+            playerPrefKey = "";
+            iconImage.sprite = null;
+            iconImage.enabled = false;
+            iconObject.SetActive(false);
+            return;
+        }
 
         playerPrefKey = PlayerPrefs.GetString(key);
 
+        if (string.IsNullOrEmpty(playerPrefKey))
+        {
+            iconImage.sprite = null;
+            iconImage.enabled = false;
+            iconObject.SetActive(false);
+            return;
+        }
+
         Sprite icon = ItemIconDatabase.Instance.GetIcon(playerPrefKey);
         iconImage.sprite = icon;
-
         iconImage.enabled = true;
         iconObject.SetActive(true);
-
-        weaponController.EquipWeaponByKey(playerPrefKey);
     }
 
     void SaveSelected()
@@ -131,9 +153,18 @@ public class HotbarSlot : MonoBehaviour
         if (!PlayerPrefs.HasKey("HOTBAR_SELECTED")) return;
 
         int selectedIndex = PlayerPrefs.GetInt("HOTBAR_SELECTED");
-        if (selectedIndex == hotbarIndex)
+
+        if (selectedIndex != hotbarIndex) return;
+
+        SetSelected(true);
+
+        if (string.IsNullOrEmpty(playerPrefKey))
         {
-            SetSelected(true);
+            weaponController.UnequipWeapon();
+        }
+        else
+        {
+            weaponController.EquipWeaponByKey(playerPrefKey);
         }
     }
 
@@ -153,14 +184,6 @@ public class HotbarSlot : MonoBehaviour
         {
             ResetColor();
         }
-    }
-
-    void ClearSelection()
-    {
-        if (currentSelectedSlot == this)
-            currentSelectedSlot = null;
-
-        ResetColor();
     }
 
     void ResetColor()

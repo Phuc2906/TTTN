@@ -5,12 +5,11 @@ public class WeaponController : MonoBehaviour
     public Transform weaponHolder;
 
     [Header("Default Weapon (Optional)")]
-    public GameObject defaultWeaponPrefab; 
-    public string defaultWeaponKey;        
+    public GameObject defaultWeaponPrefab;
+    public string defaultWeaponKey;
 
     private GameObject currentWeapon;
     private SpriteRenderer playerSprite;
-    private bool usingDefaultWeapon;
 
     void Start()
     {
@@ -18,44 +17,37 @@ public class WeaponController : MonoBehaviour
     }
 
     void Update()
-{
-    if (currentWeapon == null) return;
+    {
+        if (currentWeapon == null) return;
 
-    SpriteRenderer weaponSprite = currentWeapon.GetComponent<SpriteRenderer>();
-    if (weaponSprite != null)
-        weaponSprite.flipX = playerSprite.flipX;
+        SpriteRenderer weaponSprite = currentWeapon.GetComponent<SpriteRenderer>();
+        if (weaponSprite != null)
+            weaponSprite.flipX = playerSprite.flipX;
 
-    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    Vector2 direction = (Vector2)mousePos - (Vector2)currentWeapon.transform.position;
-    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = (Vector2)mousePos - (Vector2)currentWeapon.transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-    currentWeapon.transform.rotation = Quaternion.Euler(0, 0, angle);
-}
+        currentWeapon.transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
 
     public void EquipWeaponByKey(string weaponKey)
     {
-        WeaponData data = WeaponDatabase.Instance.GetWeaponByKey(weaponKey);
-
-        if (data == null || data.weaponPrefab == null)
-        {
-            UnequipWeapon(); 
-            return;
-        }
-
-        EquipWeapon(data.weaponPrefab);
-        usingDefaultWeapon = false;
-    }
-
-    void EquipDefaultIfAvailable()
-    {
-        if (defaultWeaponPrefab == null)
+        if (string.IsNullOrEmpty(weaponKey))
         {
             UnequipWeapon();
             return;
         }
 
-        EquipWeapon(defaultWeaponPrefab);
-        usingDefaultWeapon = true;
+        WeaponData data = WeaponDatabase.Instance.GetWeaponByKey(weaponKey);
+
+        if (data == null || data.weaponPrefab == null)
+        {
+            UnequipWeapon();
+            return;
+        }
+
+        EquipWeapon(data.weaponPrefab);
     }
 
     void EquipWeapon(GameObject prefab)
@@ -79,11 +71,5 @@ public class WeaponController : MonoBehaviour
             Destroy(currentWeapon);
 
         currentWeapon = null;
-        usingDefaultWeapon = false;
-    }
-
-    public void ReturnToDefault()
-    {
-        EquipDefaultIfAvailable();
     }
 }
