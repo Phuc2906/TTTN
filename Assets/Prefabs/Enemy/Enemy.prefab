@@ -241,7 +241,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyID: 1
-  player: {fileID: 0}
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   moveSpeed: 2.5
   detectRange: 12
   stopDistance: 1.1

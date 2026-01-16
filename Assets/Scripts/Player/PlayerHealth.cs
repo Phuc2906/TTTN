@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -13,14 +12,16 @@ public class PlayerHealth : MonoBehaviour
     public GameObject player;
 
     [Header("PlayerPrefs key")]
-    public string playerRefKey = "PlayerHealth"; 
+    public string playerRefKey = "PlayerHealth";
 
     void Start()
     {
         if (PlayerPrefs.HasKey(playerRefKey))
-            currentHealth = PlayerPrefs.GetInt(playerRefKey);  
+            currentHealth = PlayerPrefs.GetInt(playerRefKey);
         else
-            currentHealth = maxHealth;  
+            currentHealth = maxHealth;
+
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
         if (healthBar != null)
         {
@@ -34,8 +35,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
-        currentHealth -= dmg;
-        currentHealth = Mathf.Max(currentHealth, 0);
+        currentHealth = Mathf.Max(currentHealth - dmg, 0);
 
         if (healthBar != null)
             healthBar.SetHealth(currentHealth);
@@ -48,8 +48,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void Heal(int amount)
     {
-        currentHealth += amount;
-        currentHealth = Mathf.Min(currentHealth, maxHealth);
+        if (currentHealth <= 0) return;
+
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+
         if (healthBar != null)
             healthBar.SetHealth(currentHealth);
 
@@ -59,40 +61,26 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-        {
             Destroy(enemy);
-        }
 
         foreach (GameObject bullet in GameObject.FindGameObjectsWithTag("Bullet"))
-        {
             Destroy(bullet);
-        }
 
         if (gameOverCanvas != null)
             gameOverCanvas.SetActive(true);
 
         player.SetActive(false);
-
         Time.timeScale = 0f;
     }
 
-    public int GetHealth()
-    {
-        return currentHealth;
-    }
-
-    public void SetHealth(int value)
-    {
-        currentHealth = Mathf.Clamp(value, 0, maxHealth);
-        if (healthBar != null)
-            healthBar.SetHealth(currentHealth);
-
-        SaveHealth();
-    }
-
-    private void SaveHealth()
+    void SaveHealth()
     {
         PlayerPrefs.SetInt(playerRefKey, currentHealth);
         PlayerPrefs.Save();
+    }
+
+    public bool IsAlive()
+    {
+        return currentHealth > 0;
     }
 }

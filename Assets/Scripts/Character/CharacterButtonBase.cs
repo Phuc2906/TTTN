@@ -4,130 +4,111 @@ using TMPro;
 
 public class CharacterButtonBase : MonoBehaviour, ICharacterButton
 {
-    [Header("UI Components")]
-    public Button Equipped;
-    public TMP_Text TextPro;
+    [Header("Character ID (0 → 3)")]
+    public int characterID;
 
-    [Header("NoticeCanvas")]
+    [Header("UI")]
+    public Button equipButton;
+    public TMP_Text buttonText;
+
+    [Header("Price")]
+    public int price;
+    public bool isFree;
+
+    [Header("Notice")]
     public GameObject noticeCanvas;
 
-    [HideInInspector]
-    public int price = 0; 
-    public bool isFree = false;
+    protected bool isPurchased;
+    protected bool isEquipped;
 
-    protected bool isEquipped = false;
-    protected bool isPurchased = false;
-
-   protected virtual void Start()
-{
-    CharacterManager.Instance.Register(this);
-    Equipped.onClick.AddListener(OnClick);
-
-    if (isFree)
+    protected virtual void Start()
     {
-        price = 0; 
-        isPurchased = true;
+        CharacterManager.Instance.Register(this);
+        equipButton.onClick.AddListener(OnClick);
 
-        if (!PlayerPrefs.HasKey($"{gameObject.name}_Equipped"))
-        {
-            isEquipped = true; 
-        }
+        LoadState();
+
+        if (isEquipped)
+            CharacterManager.Instance.OnCharacterEquipped(this);
+
+        UpdateUI();
+    }
+
+    void LoadState()
+    {
+        isPurchased = isFree || PlayerPrefs.GetInt($"Char_{characterID}_Buy", 0) == 1;
+        isEquipped  = PlayerPrefs.GetInt("SelectedPlayerID", 0) == characterID;
+    }
+
+    void OnClick()
+    {
+        if (!isPurchased)
+            Buy();
         else
-        {
-            isEquipped = PlayerPrefs.GetInt($"{gameObject.name}_Equipped", 0) == 1;
-        }
-    }
-    else
-    {
-        isPurchased = PlayerPrefs.GetInt($"{gameObject.name}_Purchased", 0) == 1;
-        isEquipped = PlayerPrefs.GetInt($"{gameObject.name}_Equipped", 0) == 1;
+            Equip();
     }
 
-    if (isEquipped)
-        CharacterManager.Instance.OnCharacterEquipped(this);
-
-    UpdateButton();
-}
-
-
-    protected void OnClick()
+    void Buy()
     {
-        if (!isPurchased && price > 0)
-        {
-            BuyCharacter();
-        }
-        else
-        {
-            ToggleEquip();
-        }
-    }
-
-    protected void BuyCharacter()
-    {
-        if (isFree || CoinManager.Instance.SpendCoin(price))
+        if (isFree)
         {
             isPurchased = true;
-            EquipCharacter();
+            PlayerPrefs.SetInt($"Char_{characterID}_Buy", 1);
+            Equip();
+            return;
+        }
+
+        if (CoinManager.Instance.SpendCoin(price))
+        {
+            isPurchased = true;
+            PlayerPrefs.SetInt($"Char_{characterID}_Buy", 1);
+            Equip();
         }
         else
         {
-            if (noticeCanvas != null)
-                noticeCanvas.SetActive(true);
+            ShowNotice();
         }
     }
 
-    protected void ToggleEquip()
+    void Equip()
     {
-        if (!isPurchased) return;
-
-        if (!isEquipped)
-            EquipCharacter();
-        else
-            SetEquipped(false);
-    }
-
-    public void EquipCharacter()
-    {
-        if (!isPurchased) return;
-
         isEquipped = true;
+
+        PlayerPrefs.SetInt("SelectedPlayerID", characterID);
+        PlayerPrefs.Save();
+
         CharacterManager.Instance.OnCharacterEquipped(this);
-        SaveState();
-        UpdateButton();
+        UpdateUI();
     }
 
     public void SetEquipped(bool equipped)
     {
         isEquipped = equipped;
-        SaveState();
-        UpdateButton();
+        UpdateUI();
     }
 
-    protected void UpdateButton()
+    void ShowNotice()
     {
-        Image img = Equipped.GetComponent<Image>();
+        if (noticeCanvas != null)
+            noticeCanvas.SetActive(true);
+    }
 
+    void UpdateUI()
+    {
         if (isEquipped)
         {
-            img.color = Color.yellow;
-            TextPro.text = "Equipped";
+            buttonText.text = "Đã mặc";
+            equipButton.image.color = Color.yellow;
         }
         else if (!isPurchased)
         {
-            img.color = Color.red;
-            TextPro.text = price <= 0 ? "Free" : price.ToString();
+            buttonText.text = isFree ? "Free" : price.ToString();
+            equipButton.image.color = Color.red;
         }
         else
         {
-            img.color = Color.blue;
-            TextPro.text = "Equip";
+            buttonText.text = "Mặc";
+            equipButton.image.color = Color.blue;
         }
-    }
-
-    protected void SaveState()
-    {
-        PlayerPrefs.SetInt($"{gameObject.name}_Purchased", isPurchased ? 1 : 0);
-        PlayerPrefs.SetInt($"{gameObject.name}_Equipped", isEquipped ? 1 : 0);
-        PlayerPrefs.Save();
     }
 }

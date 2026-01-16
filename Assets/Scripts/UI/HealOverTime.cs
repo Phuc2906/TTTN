@@ -1,39 +1,62 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class HealOverTime : MonoBehaviour
 {
-    [Header("Canvas cần Heal (kéo vào)")]
-    public GameObject targetCanvas;     
+    [Header("Canvas cần Heal")]
+    public GameObject targetCanvas;
 
     [Header("Player")]
-    public PlayerHealth playerHealth;
+    public List<PlayerHealth> players = new List<PlayerHealth>();
 
-    [Header("Hồi máu mỗi lần")]
+    [Header("Heal")]
     public int healAmount = 25;
-
-    [Header("Thời gian hồi (giây)")]
     public float duration = 30f;
-
-    [Header("Khoảng cách mỗi lần hồi (giây)")]
     public float healInterval = 1f;
 
     Coroutine healRoutine;
+    PlayerHealth currentPlayer;
 
-    private void Update()
+    void Update()
     {
         if (targetCanvas != null && targetCanvas.activeSelf)
         {
             if (healRoutine == null)
-                healRoutine = StartCoroutine(HealProcess());
+            {
+                FindActivePlayer();
+                if (currentPlayer != null)
+                    healRoutine = StartCoroutine(HealProcess());
+            }
         }
         else
         {
-            if (healRoutine != null)
+            StopHeal();
+        }
+    }
+
+    void FindActivePlayer()
+    {
+        foreach (var p in players)
+        {
+            if (p != null && p.gameObject.activeInHierarchy)
             {
-                StopCoroutine(healRoutine);
-                healRoutine = null;
+                currentPlayer = p;
+                return;
             }
+        }
+
+        GameObject obj = GameObject.FindGameObjectWithTag("Player");
+        if (obj)
+            currentPlayer = obj.GetComponent<PlayerHealth>();
+    }
+
+    void StopHeal()
+    {
+        if (healRoutine != null)
+        {
+            StopCoroutine(healRoutine);
+            healRoutine = null;
         }
     }
 
@@ -41,9 +64,9 @@ public class HealOverTime : MonoBehaviour
     {
         float timer = duration;
 
-        while (timer > 0 && targetCanvas.activeSelf)
+        while (timer > 0 && targetCanvas.activeSelf && currentPlayer != null)
         {
-            playerHealth.Heal(healAmount);
+            currentPlayer.Heal(healAmount);
             timer -= healInterval;
             yield return new WaitForSeconds(healInterval);
         }

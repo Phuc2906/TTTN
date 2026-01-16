@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyMove : MonoBehaviour
@@ -9,7 +10,8 @@ public class EnemyMove : MonoBehaviour
     public int enemyID;
 
     [Header("Target")]
-    public Transform player;
+    public List<Transform> players = new List<Transform>(); 
+    private Transform player;
 
     [Header("Movement")]
     public float moveSpeed = 2.5f;
@@ -56,14 +58,12 @@ public class EnemyMove : MonoBehaviour
         }
 
         if (PlayerPrefs.HasKey(keyFacing) && sr)
-        {
             sr.flipX = PlayerPrefs.GetInt(keyFacing) == 1;
-        }
     }
 
     void FixedUpdate()
     {
-        FindPlayerIfNeeded();
+        FindPlayerIfNeeded();   
         if (!player) return;
 
         if (attack && attack.isAttacking) return;
@@ -76,6 +76,23 @@ public class EnemyMove : MonoBehaviour
 
         if (sr)
             PlayerPrefs.SetInt(keyFacing, sr.flipX ? 1 : 0);
+    }
+
+    void FindPlayerIfNeeded()
+    {
+        if (player != null && player.gameObject.activeInHierarchy)
+            return;
+
+        player = null;
+
+        foreach (var p in players)
+        {
+            if (p != null && p.gameObject.activeInHierarchy)
+            {
+                player = p;
+                return;
+            }
+        }
     }
 
     void UpdateState()
@@ -162,13 +179,5 @@ public class EnemyMove : MonoBehaviour
         if (!sr) return;
         if (Mathf.Abs(x) < 0.05f) return;
         sr.flipX = x < 0;
-    }
-
-    void FindPlayerIfNeeded()
-    {
-        if (player) return;
-
-        GameObject p = GameObject.FindGameObjectWithTag("Player");
-        if (p) player = p.transform;
     }
 }

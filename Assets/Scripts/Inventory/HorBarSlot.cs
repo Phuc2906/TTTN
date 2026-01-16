@@ -6,7 +6,6 @@ public class HotbarSlot : MonoBehaviour
     public Image iconImage;
     public GameObject iconObject;
     public Button button;
-    public WeaponController weaponController;
 
     public string playerPrefKey;
     public InventorySlot equippedInventorySlot;
@@ -32,8 +31,18 @@ public class HotbarSlot : MonoBehaviour
 
     void Start()
     {
-        Load();          
-        LoadSelected();  
+        Load();
+        LoadSelected();
+    }
+
+    WeaponController WC
+    {
+        get
+        {
+            return PlayerManager.Instance != null
+                ? PlayerManager.Instance.CurrentWeaponController
+                : null;
+        }
     }
 
     void OnClick()
@@ -49,10 +58,12 @@ public class HotbarSlot : MonoBehaviour
             return;
         }
 
+        if (WC == null) return;
+
         if (!string.IsNullOrEmpty(playerPrefKey))
-            weaponController.EquipWeaponByKey(playerPrefKey);
+            WC.EquipWeaponByKey(playerPrefKey);
         else
-            weaponController.UnequipWeapon();
+            WC.UnequipWeapon();
     }
 
     void Assign(InventorySlot invSlot)
@@ -72,38 +83,39 @@ public class HotbarSlot : MonoBehaviour
         invSlot.SetEquipped(true);
         invSlot.equippedHotbarSlot = this;
 
-        weaponController.EquipWeaponByKey(playerPrefKey);
+        if (WC != null)
+            WC.EquipWeaponByKey(playerPrefKey);
+
         Save();
     }
 
     public void ForceUnequip()
-{
-    bool wasSelected = (currentSelectedSlot == this);
-
-    playerPrefKey = "";
-    iconImage.sprite = null;
-    iconImage.enabled = false;
-
-    if (equippedInventorySlot != null)
     {
-        equippedInventorySlot.SetEquipped(false);
-        equippedInventorySlot.equippedHotbarSlot = null;
+        bool wasSelected = (currentSelectedSlot == this);
+
+        playerPrefKey = "";
+        iconImage.sprite = null;
+        iconImage.enabled = false;
+
+        if (equippedInventorySlot != null)
+        {
+            equippedInventorySlot.SetEquipped(false);
+            equippedInventorySlot.equippedHotbarSlot = null;
+        }
+
+        equippedInventorySlot = null;
+
+        if (wasSelected && WC != null)
+            WC.UnequipWeapon();
+
+        Save();
+
+        if (wasSelected)
+        {
+            SetSelected(true);
+            SaveSelected();
+        }
     }
-
-    equippedInventorySlot = null;
-
-    if (wasSelected)
-        weaponController.UnequipWeapon();
-
-    Save();
-
-    if (wasSelected)
-    {
-        SetSelected(true);
-        SaveSelected();
-    }
-}
-
 
     void Save()
     {
@@ -118,6 +130,7 @@ public class HotbarSlot : MonoBehaviour
     void Load()
     {
         string key = "HOTBAR_" + hotbarIndex;
+
         if (!PlayerPrefs.HasKey(key))
         {
             playerPrefKey = "";
@@ -153,19 +166,16 @@ public class HotbarSlot : MonoBehaviour
         if (!PlayerPrefs.HasKey("HOTBAR_SELECTED")) return;
 
         int selectedIndex = PlayerPrefs.GetInt("HOTBAR_SELECTED");
-
         if (selectedIndex != hotbarIndex) return;
 
         SetSelected(true);
 
+        if (WC == null) return;
+
         if (string.IsNullOrEmpty(playerPrefKey))
-        {
-            weaponController.UnequipWeapon();
-        }
+            WC.UnequipWeapon();
         else
-        {
-            weaponController.EquipWeaponByKey(playerPrefKey);
-        }
+            WC.EquipWeaponByKey(playerPrefKey);
     }
 
     void SetSelected(bool value)
