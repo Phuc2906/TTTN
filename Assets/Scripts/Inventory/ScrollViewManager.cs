@@ -29,7 +29,10 @@ public class ScrollViewManager : MonoBehaviour
             {
                 GameObject slotGO = Instantiate(slotPrefab, content);
                 InventorySlot slot = slotGO.GetComponent<InventorySlot>();
+
                 slot.InitItem(key, itemIcons[i]);
+                slot.SyncFromHotbar();
+
                 slotIndex++;
             }
         }
@@ -38,7 +41,10 @@ public class ScrollViewManager : MonoBehaviour
         {
             GameObject slotGO = Instantiate(slotPrefab, content);
             InventorySlot slot = slotGO.GetComponent<InventorySlot>();
+
             slot.InitEmpty();
+            slot.SyncFromHotbar();
+
             slotIndex++;
         }
     }

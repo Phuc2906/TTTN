@@ -8,16 +8,16 @@ public class HotbarSlot : MonoBehaviour
     public Button button;
     public WeaponController weaponController;
 
-
     public string playerPrefKey;
-
     public InventorySlot equippedInventorySlot;
 
     public Image slotImage;
 
     private Color originalSlotColor;
-
     private static HotbarSlot currentSelectedSlot;
+
+    [Header("Save / Load")]
+    public int hotbarIndex;
 
     void Awake()
     {
@@ -30,65 +30,112 @@ public class HotbarSlot : MonoBehaviour
             originalSlotColor = slotImage.color;
     }
 
+    void Start()
+    {
+        Load();          
+        LoadSelected();  
+    }
+
     void OnClick()
-{
-    SetSelected(true);
-
-    InventorySlot invSlot = ItemDragManager.Instance.selectedInventorySlot;
-
-    if (invSlot != null)
     {
-        Assign(invSlot);
-        ItemDragManager.Instance.Clear();
-    }
-    else
-    {
-        if (!string.IsNullOrEmpty(playerPrefKey))
+        SetSelected(true);
+        SaveSelected(); 
+
+        InventorySlot invSlot = ItemDragManager.Instance.selectedInventorySlot;
+        if (invSlot != null)
         {
-            weaponController.EquipWeaponByKey(playerPrefKey);
+            Assign(invSlot);
+            ItemDragManager.Instance.Clear();
+            return;
         }
-    }
-}
 
+        if (!string.IsNullOrEmpty(playerPrefKey))
+            weaponController.EquipWeaponByKey(playerPrefKey);
+        else
+            weaponController.UnequipWeapon();
+    }
 
     void Assign(InventorySlot invSlot)
-{
-    if (equippedInventorySlot != null)
     {
-        equippedInventorySlot.isEquipped = false;
-        equippedInventorySlot.equippedHotbarSlot = null;
-        equippedInventorySlot.SetEquipped(false);
+        if (equippedInventorySlot != null)
+        {
+            equippedInventorySlot.SetEquipped(false);
+            equippedInventorySlot.equippedHotbarSlot = null;
+        }
+
+        playerPrefKey = invSlot.playerPrefKey;
+        iconImage.sprite = invSlot.iconImage.sprite;
+        iconImage.enabled = true;
+        iconObject.SetActive(true);
+
+        equippedInventorySlot = invSlot;
+        invSlot.SetEquipped(true);
+        invSlot.equippedHotbarSlot = this;
+
+        weaponController.EquipWeaponByKey(playerPrefKey);
+        Save();
     }
 
-    playerPrefKey = invSlot.playerPrefKey;
-    iconImage.sprite = invSlot.iconImage.sprite;
+    public void ForceUnequip()
+    {
+        playerPrefKey = "";
+        iconImage.sprite = null;
+        iconImage.enabled = false;
 
-    iconImage.enabled = true;
-    iconObject.SetActive(true);
+        if (equippedInventorySlot != null)
+        {
+            equippedInventorySlot.SetEquipped(false);
+            equippedInventorySlot.equippedHotbarSlot = null;
+        }
 
-    equippedInventorySlot = invSlot;
+        equippedInventorySlot = null;
+        weaponController.UnequipWeapon();
 
-    invSlot.SetEquipped(true);
-    invSlot.equippedHotbarSlot = this;
+        Save();
+        ClearSelection();
+    }
 
-    weaponController.EquipWeaponByKey(playerPrefKey);
-}
+    void Save()
+    {
+        string key = "HOTBAR_" + hotbarIndex;
 
+        if (string.IsNullOrEmpty(playerPrefKey))
+            PlayerPrefs.DeleteKey(key);
+        else
+            PlayerPrefs.SetString(key, playerPrefKey);
+    }
 
-   public void ForceUnequip()
-{
-    playerPrefKey = "";
-    iconImage.sprite = null;
-    iconImage.enabled = false;
+    void Load()
+    {
+        string key = "HOTBAR_" + hotbarIndex;
+        if (!PlayerPrefs.HasKey(key)) return;
 
-    equippedInventorySlot = null;
+        playerPrefKey = PlayerPrefs.GetString(key);
 
-    
-    weaponController.UnequipWeapon();
+        Sprite icon = ItemIconDatabase.Instance.GetIcon(playerPrefKey);
+        iconImage.sprite = icon;
 
-    ClearSelection();
-}
+        iconImage.enabled = true;
+        iconObject.SetActive(true);
 
+        weaponController.EquipWeaponByKey(playerPrefKey);
+    }
+
+    void SaveSelected()
+    {
+        PlayerPrefs.SetInt("HOTBAR_SELECTED", hotbarIndex);
+    }
+
+    void LoadSelected()
+    {
+        if (!PlayerPrefs.HasKey("HOTBAR_SELECTED")) return;
+
+        int selectedIndex = PlayerPrefs.GetInt("HOTBAR_SELECTED");
+        if (selectedIndex == hotbarIndex)
+        {
+            SetSelected(true);
+        }
+    }
 
     void SetSelected(bool value)
     {
@@ -97,9 +144,7 @@ public class HotbarSlot : MonoBehaviour
         if (value)
         {
             if (currentSelectedSlot != null && currentSelectedSlot != this)
-            {
                 currentSelectedSlot.ResetColor();
-            }
 
             currentSelectedSlot = this;
             slotImage.color = Color.yellow;

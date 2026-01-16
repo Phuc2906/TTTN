@@ -17,8 +17,8 @@ public class InventorySlot : MonoBehaviour
 
     public Image slotImage;
 
-    private Color originalSlotColor = Color.white; 
-    public Color equippedColor = new Color(1f, 0.6f, 0f); 
+    private Color originalSlotColor = Color.white;
+    public Color equippedColor = new Color(1f, 0.6f, 0f);
 
     private static InventorySlot currentSelectedSlot;
 
@@ -46,9 +46,7 @@ public class InventorySlot : MonoBehaviour
         }
 
         if (currentSelectedSlot != null && currentSelectedSlot != this)
-        {
             currentSelectedSlot.ClearSelection();
-        }
 
         ItemDragManager.Instance.SelectInventorySlot(this);
         SetSelected(true);
@@ -64,7 +62,6 @@ public class InventorySlot : MonoBehaviour
         equippedHotbarSlot = null;
         equippedText.gameObject.SetActive(false);
 
-        ClearSelection();
         ResetColor();
     }
 
@@ -78,22 +75,16 @@ public class InventorySlot : MonoBehaviour
         equippedHotbarSlot = null;
         equippedText.gameObject.SetActive(false);
 
-        ClearSelection();
         ResetColor();
     }
 
     public void SetEquipped(bool value)
     {
-        if (string.IsNullOrEmpty(playerPrefKey))
-            return;
+        if (string.IsNullOrEmpty(playerPrefKey)) return;
 
         isEquipped = value;
         equippedText.gameObject.SetActive(value);
-
-        if (value)
-            ApplyEquippedColor();
-        else
-            ResetColor();
+        slotImage.color = value ? equippedColor : originalSlotColor;
     }
 
     void SetSelected(bool value)
@@ -108,37 +99,39 @@ public class InventorySlot : MonoBehaviour
             currentSelectedSlot = this;
             slotImage.color = Color.yellow;
         }
-        else
-        {
-            ResetColor();
-        }
+        else ResetColor();
     }
 
     void ClearSelection()
     {
         if (currentSelectedSlot == this)
             currentSelectedSlot = null;
-
         ResetColor();
-    }
-
-    void ApplyEquippedColor()
-    {
-        if (slotImage == null) return;
-
-        if (currentSelectedSlot == this)
-            currentSelectedSlot = null;
-
-        slotImage.color = equippedColor;
     }
 
     void ResetColor()
     {
         if (slotImage == null) return;
+        slotImage.color = isEquipped ? equippedColor : originalSlotColor;
+    }
 
-        if (isEquipped)
-            slotImage.color = equippedColor;
-        else
-            slotImage.color = originalSlotColor; 
+    public void SyncFromHotbar()
+    {
+        HotbarSlot[] hotbarSlots = FindObjectsOfType<HotbarSlot>();
+
+        foreach (var slot in hotbarSlots)
+        {
+            if (!string.IsNullOrEmpty(slot.playerPrefKey) &&
+                slot.playerPrefKey == playerPrefKey)
+            {
+                isEquipped = true;
+                equippedHotbarSlot = slot;
+                slot.equippedInventorySlot = this;
+                SetEquipped(true);
+                return;
+            }
+        }
+
+        SetEquipped(false);
     }
 }
