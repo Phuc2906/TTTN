@@ -4,12 +4,14 @@ using TMPro;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [Header("Enemy ID")]
+    public int enemyID = 0;
+
     public int maxHealth = 10;
     public int maxExp = 5;
     private int currentHealth;
 
     public Slider healthBar;
-
     public TMP_Text healthValueText;
 
     private Animator anim;
@@ -17,12 +19,21 @@ public class EnemyHealth : MonoBehaviour
 
     private EnemySave save;
 
+    private string HEALTH_KEY;
+
     void Start()
     {
         anim = GetComponent<Animator>();
         save = GetComponent<EnemySave>();
 
-        currentHealth = maxHealth;
+        HEALTH_KEY = "EnemyHealth_" + enemyID;
+
+        if (PlayerPrefs.HasKey(HEALTH_KEY))
+            currentHealth = PlayerPrefs.GetInt(HEALTH_KEY);
+        else
+            currentHealth = maxHealth;
+
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
         if (healthBar != null)
         {
@@ -30,7 +41,7 @@ public class EnemyHealth : MonoBehaviour
             healthBar.value = currentHealth;
         }
 
-        UpdateHealthText(); 
+        UpdateHealthText();
     }
 
     public void TakeDamage(int damage)
@@ -43,7 +54,10 @@ public class EnemyHealth : MonoBehaviour
         if (healthBar != null)
             healthBar.value = currentHealth;
 
-        UpdateHealthText(); 
+        UpdateHealthText();
+
+        PlayerPrefs.SetInt(HEALTH_KEY, currentHealth);
+        PlayerPrefs.Save();
 
         if (currentHealth <= 0)
         {
@@ -89,6 +103,9 @@ public class EnemyHealth : MonoBehaviour
 
         currentHealth = 0;
         UpdateHealthText();
+
+        PlayerPrefs.SetInt(HEALTH_KEY, 0);
+        PlayerPrefs.Save();
 
         if (save != null)
             save.Collect();

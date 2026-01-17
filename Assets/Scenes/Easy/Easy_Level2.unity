@@ -6068,6 +6068,10 @@ PrefabInstance:
       value: Enemy_02
       objectReference: {fileID: 0}
     - target: {fileID: 3120425244717457523, guid: 6241da1be355639409386541765c4738, type: 3}
+      propertyPath: enemyID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3120425244717457523, guid: 6241da1be355639409386541765c4738, type: 3}
       propertyPath: healthValueText
       value: 
       objectReference: {fileID: 1792738876}
@@ -6130,6 +6134,10 @@ PrefabInstance:
     - target: {fileID: 5793364671779256334, guid: 6241da1be355639409386541765c4738, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -961.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638026061814395146, guid: 6241da1be355639409386541765c4738, type: 3}
+      propertyPath: enemyID
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8638026061814395146, guid: 6241da1be355639409386541765c4738, type: 3}
       propertyPath: players.Array.size

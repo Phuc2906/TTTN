@@ -9,20 +9,26 @@ public class HealthRuby : MonoBehaviour
 
     [Header("Thanh máu UI")]
     public Slider healthBar;
-
     public TMP_Text healthValueText;
 
     [Header("Canvas GameOver")]
     public GameObject gameOverCanvas;
 
     [Header("Game Over")]
-    public bool pauseGameOnDeath = true;   
+    public bool pauseGameOnDeath = true;
 
     private int currentHealth;
 
+    private const string HEALTH_RUBY_KEY = "HealthRuby";
+
     private void Start()
     {
-        currentHealth = maxHealth;
+        if (PlayerPrefs.HasKey(HEALTH_RUBY_KEY))
+            currentHealth = PlayerPrefs.GetInt(HEALTH_RUBY_KEY);
+        else
+            currentHealth = maxHealth;
+
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
         if (healthBar != null)
         {
@@ -34,7 +40,7 @@ public class HealthRuby : MonoBehaviour
             Debug.LogWarning("Chưa gán HealthBar vào HealthRuby!");
         }
 
-        UpdateHealthText(); 
+        UpdateHealthText();
 
         if (gameOverCanvas != null)
             gameOverCanvas.SetActive(false);
@@ -44,8 +50,10 @@ public class HealthRuby : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        SaveHealth();
         UpdateHealthBar();
-        UpdateHealthText(); 
+        UpdateHealthText();
 
         if (currentHealth <= 0)
         {
@@ -57,8 +65,10 @@ public class HealthRuby : MonoBehaviour
     {
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        SaveHealth();
         UpdateHealthBar();
-        UpdateHealthText(); 
+        UpdateHealthText();
     }
 
     private void UpdateHealthBar()
@@ -78,6 +88,7 @@ public class HealthRuby : MonoBehaviour
     private void Die()
     {
         currentHealth = 0;
+        SaveHealth();
         UpdateHealthBar();
         UpdateHealthText();
 
@@ -88,6 +99,12 @@ public class HealthRuby : MonoBehaviour
             Time.timeScale = 0f;
 
         gameObject.SetActive(false);
+    }
+
+    private void SaveHealth()
+    {
+        PlayerPrefs.SetInt(HEALTH_RUBY_KEY, currentHealth);
+        PlayerPrefs.Save();
     }
 
     public int GetCurrentHealth()

@@ -9,14 +9,27 @@ public class HealthWall : MonoBehaviour
 
     [Header("Thanh máu UI")]
     public Slider healthBar;
-
     public TMP_Text healthValueText;
 
     private int currentHealth;
 
+    private const string HEALTH_WALL_KEY = "HealthWall";
+    private const string HEALTH_WALL_DEAD_KEY = "HealthWall_Dead";
+
     private void Start()
     {
-        currentHealth = maxHealth;
+        if (PlayerPrefs.GetInt(HEALTH_WALL_DEAD_KEY, 0) == 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        if (PlayerPrefs.HasKey(HEALTH_WALL_KEY))
+            currentHealth = PlayerPrefs.GetInt(HEALTH_WALL_KEY);
+        else
+            currentHealth = maxHealth;
+
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
         if (healthBar != null)
         {
@@ -28,15 +41,17 @@ public class HealthWall : MonoBehaviour
             Debug.LogWarning("Chưa gán HealthBar vào HealthWall!");
         }
 
-        UpdateHealthText(); 
+        UpdateHealthText();
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        SaveHealth();
         UpdateHealthBar();
-        UpdateHealthText(); 
+        UpdateHealthText();
 
         if (currentHealth <= 0)
         {
@@ -48,8 +63,10 @@ public class HealthWall : MonoBehaviour
     {
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        SaveHealth();
         UpdateHealthBar();
-        UpdateHealthText(); 
+        UpdateHealthText();
     }
 
     private void UpdateHealthBar()
@@ -69,10 +86,21 @@ public class HealthWall : MonoBehaviour
     private void Die()
     {
         currentHealth = 0;
+
+        PlayerPrefs.SetInt(HEALTH_WALL_DEAD_KEY, 1);
+        PlayerPrefs.SetInt(HEALTH_WALL_KEY, 0);
+        PlayerPrefs.Save();
+
         UpdateHealthBar();
         UpdateHealthText();
 
-        Destroy(gameObject);   
+        Destroy(gameObject);
+    }
+
+    private void SaveHealth()
+    {
+        PlayerPrefs.SetInt(HEALTH_WALL_KEY, currentHealth);
+        PlayerPrefs.Save();
     }
 
     public int GetCurrentHealth()
