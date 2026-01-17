@@ -8,7 +8,6 @@ public class EnemyHealth : MonoBehaviour
     private int currentHealth;
 
     public Slider healthBar;
-    public EnemySpawner spawner;
 
     private Animator anim;
     private bool isDead = false;
@@ -51,9 +50,6 @@ public class EnemyHealth : MonoBehaviour
         anim.SetTrigger("Dead");
 
         FindObjectOfType<PlayerExpManager>().GainExp(maxExp);
-
-         if (spawner != null)
-            spawner.OnEnemyKilled();
 
         Collider2D col = GetComponent<Collider2D>();
         if (col != null) col.enabled = false;

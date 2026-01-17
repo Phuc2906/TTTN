@@ -10,7 +10,7 @@ public class EnemyMove : MonoBehaviour
     public int enemyID;
 
     [Header("Target")]
-    public List<Transform> players = new List<Transform>(); 
+    public List<Transform> players = new List<Transform>();
     private Transform player;
 
     [Header("Movement")]
@@ -63,7 +63,7 @@ public class EnemyMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        FindPlayerIfNeeded();   
+        FindPlayerIfNeeded();
         if (!player) return;
 
         if (attack && attack.isAttacking) return;
@@ -108,13 +108,25 @@ public class EnemyMove : MonoBehaviour
         if (state == AIState.WallFollow)
         {
             if (HasClearPathToPlayer())
+            {
                 state = AIState.Chase;
+                return;
+            }
+
+            if (CheckWallAhead(out RaycastHit2D hit))
+            {
+                if (Vector2.Dot(hit.normal, lastWallNormal) < 0.95f)
+                {
+                    EnterWallFollow(hit);
+                }
+            }
+
             return;
         }
 
-        if (CheckWallAhead(out RaycastHit2D hit))
+        if (CheckWallAhead(out RaycastHit2D hit2))
         {
-            EnterWallFollow(hit);
+            EnterWallFollow(hit2);
             return;
         }
 
@@ -137,7 +149,15 @@ public class EnemyMove : MonoBehaviour
         else if (state == AIState.WallFollow)
         {
             Vector2 pushAway = lastWallNormal * wallPushForce;
-            nextPos += (wallDir + pushAway) * moveSpeed * Time.fixedDeltaTime;
+            Vector2 finalDir = wallDir + pushAway;
+
+            if (finalDir.sqrMagnitude < 0.001f)
+            {
+                finalDir = wallDir;
+            }
+
+            finalDir.Normalize();
+            nextPos += finalDir * moveSpeed * Time.fixedDeltaTime;
 
             Flip(wallDir.x);
         }
@@ -170,8 +190,14 @@ public class EnemyMove : MonoBehaviour
         Vector2 dir = ((Vector2)player.position - rb.position).normalized;
         float dist = Vector2.Distance(rb.position, player.position);
 
-        RaycastHit2D hit = Physics2D.Raycast(rb.position, dir, dist, obstacleMask);
-        return hit.collider == null;
+        RaycastHit2D center = Physics2D.Raycast(rb.position, dir, dist, obstacleMask);
+
+        Vector2 side = Vector2.Perpendicular(dir) * 0.3f;
+
+        RaycastHit2D left  = Physics2D.Raycast(rb.position + side, dir, dist, obstacleMask);
+        RaycastHit2D right = Physics2D.Raycast(rb.position - side, dir, dist, obstacleMask);
+
+        return center.collider == null || left.collider == null || right.collider == null;
     }
 
     void Flip(float x)

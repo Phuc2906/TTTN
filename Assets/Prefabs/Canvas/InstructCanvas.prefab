@@ -669,8 +669,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0004112, y: 0}
-  m_SizeDelta: {x: 693.2, y: 421.8}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1000, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2442217271652452980
 CanvasRenderer:
@@ -722,6 +722,7 @@ GameObject:
   - component: {fileID: 4058971957928653850}
   - component: {fileID: 4268487521190383583}
   - component: {fileID: 7356799868816693629}
+  - component: {fileID: 7085998163558138770}
   m_Layer: 5
   m_Name: InstructCanvas
   m_TagString: Untagged
@@ -817,6 +818,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7085998163558138770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8107560642191239213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7fcca3d1246aab4d872045a0d5aa6c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasPrefKey: Canvas_02
 --- !u!1 &8609712384493015606
 GameObject:
   m_ObjectHideFlags: 0

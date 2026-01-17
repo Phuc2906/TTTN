@@ -14,7 +14,7 @@ public class PlayerHealth : MonoBehaviour
     [Header("PlayerPrefs key")]
     public string playerRefKey = "PlayerHealth";
 
-    void Start()
+    void Awake()
     {
         if (PlayerPrefs.HasKey(playerRefKey))
             currentHealth = PlayerPrefs.GetInt(playerRefKey);
@@ -22,7 +22,10 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = maxHealth;
 
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+    }
 
+    void Start()
+    {
         if (healthBar != null)
         {
             healthBar.SetMaxHealth(maxHealth);
@@ -35,11 +38,11 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
+        if (currentHealth <= 0) return;
+
         currentHealth = Mathf.Max(currentHealth - dmg, 0);
 
-        if (healthBar != null)
-            healthBar.SetHealth(currentHealth);
-
+        UpdateUI();
         SaveHealth();
 
         if (currentHealth <= 0)
@@ -49,13 +52,18 @@ public class PlayerHealth : MonoBehaviour
     public void Heal(int amount)
     {
         if (currentHealth <= 0) return;
+        if (currentHealth >= maxHealth) return;
 
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
 
+        UpdateUI();
+        SaveHealth();
+    }
+
+    void UpdateUI()
+    {
         if (healthBar != null)
             healthBar.SetHealth(currentHealth);
-
-        SaveHealth();
     }
 
     void Die()
@@ -69,7 +77,9 @@ public class PlayerHealth : MonoBehaviour
         if (gameOverCanvas != null)
             gameOverCanvas.SetActive(true);
 
-        player.SetActive(false);
+        if (player != null)
+            player.SetActive(false);
+
         Time.timeScale = 0f;
     }
 
@@ -79,8 +89,23 @@ public class PlayerHealth : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
     public bool IsAlive()
     {
         return currentHealth > 0;
+    }
+
+    public bool IsHealthFull()
+    {
+        return currentHealth >= maxHealth;
     }
 }
