@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class EnemyHealth : MonoBehaviour
     private int currentHealth;
 
     public Slider healthBar;
+
+    public TMP_Text healthValueText;
 
     private Animator anim;
     private bool isDead = false;
@@ -26,6 +29,8 @@ public class EnemyHealth : MonoBehaviour
             healthBar.maxValue = maxHealth;
             healthBar.value = currentHealth;
         }
+
+        UpdateHealthText(); 
     }
 
     public void TakeDamage(int damage)
@@ -38,9 +43,19 @@ public class EnemyHealth : MonoBehaviour
         if (healthBar != null)
             healthBar.value = currentHealth;
 
+        UpdateHealthText(); 
+
         if (currentHealth <= 0)
         {
             Die();
+        }
+    }
+
+    void UpdateHealthText()
+    {
+        if (healthValueText != null)
+        {
+            healthValueText.text = $"{currentHealth}/{maxHealth}";
         }
     }
 
@@ -71,6 +86,9 @@ public class EnemyHealth : MonoBehaviour
         {
             Destroy(bullet);
         }
+
+        currentHealth = 0;
+        UpdateHealthText();
 
         if (save != null)
             save.Collect();

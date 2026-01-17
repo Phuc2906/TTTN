@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthRuby : MonoBehaviour
 {
@@ -9,11 +10,13 @@ public class HealthRuby : MonoBehaviour
     [Header("Thanh máu UI")]
     public Slider healthBar;
 
+    public TMP_Text healthValueText;
+
     [Header("Canvas GameOver")]
     public GameObject gameOverCanvas;
 
     [Header("Game Over")]
-    public bool pauseGameOnDeath = true;   // ← bật/tắt dừng game
+    public bool pauseGameOnDeath = true;   
 
     private int currentHealth;
 
@@ -31,6 +34,8 @@ public class HealthRuby : MonoBehaviour
             Debug.LogWarning("Chưa gán HealthBar vào HealthRuby!");
         }
 
+        UpdateHealthText(); 
+
         if (gameOverCanvas != null)
             gameOverCanvas.SetActive(false);
     }
@@ -40,6 +45,7 @@ public class HealthRuby : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthBar();
+        UpdateHealthText(); 
 
         if (currentHealth <= 0)
         {
@@ -52,6 +58,7 @@ public class HealthRuby : MonoBehaviour
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthBar();
+        UpdateHealthText(); 
     }
 
     private void UpdateHealthBar()
@@ -60,15 +67,25 @@ public class HealthRuby : MonoBehaviour
             healthBar.value = currentHealth;
     }
 
+    private void UpdateHealthText()
+    {
+        if (healthValueText != null)
+        {
+            healthValueText.text = $"{currentHealth}/{maxHealth}";
+        }
+    }
+
     private void Die()
     {
-        Debug.Log($"{gameObject.name} đã chết!");
+        currentHealth = 0;
+        UpdateHealthBar();
+        UpdateHealthText();
 
         if (gameOverCanvas != null)
             gameOverCanvas.SetActive(true);
 
         if (pauseGameOnDeath)
-            Time.timeScale = 0f;  
+            Time.timeScale = 0f;
 
         gameObject.SetActive(false);
     }

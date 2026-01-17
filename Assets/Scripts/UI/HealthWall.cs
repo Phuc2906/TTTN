@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthWall : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class HealthWall : MonoBehaviour
 
     [Header("Thanh máu UI")]
     public Slider healthBar;
+
+    public TMP_Text healthValueText;
 
     private int currentHealth;
 
@@ -24,6 +27,8 @@ public class HealthWall : MonoBehaviour
         {
             Debug.LogWarning("Chưa gán HealthBar vào HealthWall!");
         }
+
+        UpdateHealthText(); 
     }
 
     public void TakeDamage(int damage)
@@ -31,6 +36,7 @@ public class HealthWall : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthBar();
+        UpdateHealthText(); 
 
         if (currentHealth <= 0)
         {
@@ -43,6 +49,7 @@ public class HealthWall : MonoBehaviour
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthBar();
+        UpdateHealthText(); 
     }
 
     private void UpdateHealthBar()
@@ -51,10 +58,21 @@ public class HealthWall : MonoBehaviour
             healthBar.value = currentHealth;
     }
 
+    private void UpdateHealthText()
+    {
+        if (healthValueText != null)
+        {
+            healthValueText.text = $"{currentHealth}/{maxHealth}";
+        }
+    }
+
     private void Die()
     {
-        Debug.Log($"{gameObject.name} đã chết!");
-        Destroy(gameObject);   // Khi tường bị phá thì tự hủy
+        currentHealth = 0;
+        UpdateHealthBar();
+        UpdateHealthText();
+
+        Destroy(gameObject);   
     }
 
     public int GetCurrentHealth()

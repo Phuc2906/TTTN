@@ -10,40 +10,50 @@ public class EnemyAttack : MonoBehaviour
 
     private float lastHitTime;
     private Rigidbody2D rb;
+    private Collision2D currentCollision;
 
-    void Awake() 
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
+        rb.gravityScale = 0;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        TryAttack(collision);
+        if (!IsTarget(collision)) return;
+
+        currentCollision = collision;
+        isAttacking = true;
+
+        TryAttack();
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        TryAttack(collision);
+        if (collision != currentCollision) return;
+
+        TryAttack();
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (IsTarget(collision))
+        if (collision == currentCollision)
+        {
+            currentCollision = null;
             isAttacking = false;
+        }
     }
 
-    void TryAttack(Collision2D collision)
+    void TryAttack()
     {
-        if (!IsTarget(collision)) return;
+        if (currentCollision == null) return;
 
-        isAttacking = true;
-
-        if (rb)
-            rb.linearVelocity = Vector2.zero;
+        rb.WakeUp(); 
 
         if (Time.time - lastHitTime < attackCooldown) return;
 
-        DealDamage(collision);
+        DealDamage(currentCollision);
         lastHitTime = Time.time;
     }
 
@@ -57,13 +67,15 @@ public class EnemyAttack : MonoBehaviour
 
     void DealDamage(Collision2D collision)
     {
-        if (collision.collider.TryGetComponent(out PlayerHealth p))
+        Collider2D c = collision.collider;
+
+        if (c.TryGetComponent(out PlayerHealth p))
             p.TakeDamage(damage);
-        else if (collision.collider.TryGetComponent(out TeammateHealth t))
+        else if (c.TryGetComponent(out TeammateHealth t))
             t.TakeDamage(damage);
-        else if (collision.collider.TryGetComponent(out HealthRuby r))
+        else if (c.TryGetComponent(out HealthRuby r))
             r.TakeDamage(damage);
-        else if (collision.collider.TryGetComponent(out HealthWall w))
+        else if (c.TryGetComponent(out HealthWall w))
             w.TakeDamage(damage);
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TeammateHealth : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class TeammateHealth : MonoBehaviour
 
     [Header("UI")]
     public Slider healthBar;
+
+    public TMP_Text healthValueText;
 
     private bool isDead = false;
 
@@ -21,6 +24,8 @@ public class TeammateHealth : MonoBehaviour
             healthBar.maxValue = maxHealth;
             healthBar.value = currentHealth;
         }
+
+        UpdateHealthText(); 
     }
 
     public void TakeDamage(int damage)
@@ -32,6 +37,8 @@ public class TeammateHealth : MonoBehaviour
 
         if (healthBar != null)
             healthBar.value = currentHealth;
+
+        UpdateHealthText(); 
 
         if (currentHealth <= 0)
         {
@@ -48,10 +55,22 @@ public class TeammateHealth : MonoBehaviour
 
         if (healthBar != null)
             healthBar.value = currentHealth;
+
+        UpdateHealthText(); 
+    }
+
+    void UpdateHealthText()
+    {
+        if (healthValueText != null)
+        {
+            healthValueText.text = $"{currentHealth}/{maxHealth}";
+        }
     }
 
     void Die()
     {
         isDead = true;
+        currentHealth = 0;
+        UpdateHealthText();
     }
 }
