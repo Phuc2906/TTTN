@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class CanvasManager : MonoBehaviour
 {
-    public GameObject Canvas_A;
-    public GameObject Canvas_B;
-    public GameObject Canvas_C; 
-    
+    public GameObject CanvasA;
+    public GameObject CanvasB;
+    public GameObject CanvasC;
 
-    public void CloseCanvasOnClick()
+    public void OnGetClick()
     {
-        Canvas_A.SetActive(false); 
-        Canvas_B.SetActive(true);
-        Canvas_C.SetActive(true);
+        CanvasA.SetActive(false);
+        CanvasB.SetActive(true);
+        CanvasC.SetActive(true);
     }
 }

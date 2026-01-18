@@ -9,21 +9,23 @@ public class Setting : MonoBehaviour
     public string savedSceneName;
 
     public void OpenSetting()
+{
+
+    PlayerPrefs.SetString("LastScene", currentSceneName);
+
+    PlayerMove player = FindObjectOfType<PlayerMove>();
+    if (player != null) player.SavePosition();
+
+    if (currentSceneName == savedSceneName && GameManager.instance != null)
     {
-        PlayerPrefs.SetString("LastScene", currentSceneName);
-        
-        PlayerMove player = FindObjectOfType<PlayerMove>();
-        if (player != null) player.SavePosition();
-
-        if(currentSceneName == savedSceneName && GameManager.instance != null)
-        {
-            PlayerPrefs.SetInt("WasPaused", GameManager.instance.IsPaused() ? 1 : 0);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("WasPaused", 0);
-        }
-
-        SceneManager.LoadScene("Setting");
+        PlayerPrefs.SetInt("WasPaused", GameManager.instance.IsPaused() ? 1 : 0);
     }
+    else
+    {
+        PlayerPrefs.SetInt("WasPaused", 0);
+    }
+
+    PlayerPrefs.Save();
+    SceneManager.LoadScene("Setting");
+}
 }

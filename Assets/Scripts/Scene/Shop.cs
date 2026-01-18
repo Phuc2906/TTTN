@@ -20,29 +20,32 @@ public class Shop : MonoBehaviour
     public GameObject warningCanvas;
 
     public void LoadTargetScene()
+{
+    PlayerHealth activePlayer = GetActivePlayer();
+
+    if (activePlayer != null && !activePlayer.IsHealthFull())
     {
-        PlayerHealth activePlayer = GetActivePlayer();
-
-        if (activePlayer != null && !activePlayer.IsHealthFull())
-        {
-            if (warningCanvas != null)
-                warningCanvas.SetActive(true);
-            return;
-        }
-
-        PlayerPrefs.SetString("LastScene", currentSceneName);
-
-        PlayerMove playerMove = FindObjectOfType<PlayerMove>();
-        if (playerMove != null)
-            playerMove.SavePosition();
-
-        if (savePauseState && currentSceneName == "Easy_Level1" && GameManager.instance != null)
-            PlayerPrefs.SetInt("WasPaused", GameManager.instance.IsPaused() ? 1 : 0);
-        else
-            PlayerPrefs.SetInt("WasPaused", 0);
-
-        SceneManager.LoadScene(targetSceneName);
+        if (warningCanvas != null)
+            warningCanvas.SetActive(true);
+        return;
     }
+
+    PlayerPrefs.SetString("LastScene", currentSceneName);
+
+    PlayerMove playerMove = FindObjectOfType<PlayerMove>();
+    if (playerMove != null)
+        playerMove.SavePosition();
+
+    if (savePauseState && currentSceneName == "Easy_Level1" && GameManager.instance != null)
+        PlayerPrefs.SetInt("WasPaused", GameManager.instance.IsPaused() ? 1 : 0);
+    else
+        PlayerPrefs.SetInt("WasPaused", 0);
+
+    PlayerPrefs.Save();
+
+    SceneManager.LoadScene(targetSceneName);
+}
+
 
     PlayerHealth GetActivePlayer()
     {
