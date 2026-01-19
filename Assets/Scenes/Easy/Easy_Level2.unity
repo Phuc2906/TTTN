@@ -364,6 +364,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8438293668460704040, guid: 4fdec596ccae4714f98f5f9458051381, type: 3}
+      propertyPath: compareSceneName
+      value: Easy_Level2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438293668460704040, guid: 4fdec596ccae4714f98f5f9458051381, type: 3}
+      propertyPath: currentSceneName
+      value: Easy_Level2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438293668460704040, guid: 4fdec596ccae4714f98f5f9458051381, type: 3}
+      propertyPath: lockCanvases.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438293668460704040, guid: 4fdec596ccae4714f98f5f9458051381, type: 3}
+      propertyPath: 'lockCanvases.Array.data[0]'
+      value: 
+      objectReference: {fileID: 329617517}
+    - target: {fileID: 8438293668460704040, guid: 4fdec596ccae4714f98f5f9458051381, type: 3}
+      propertyPath: 'lockCanvases.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1934761245}
+    - target: {fileID: 8438293668460704040, guid: 4fdec596ccae4714f98f5f9458051381, type: 3}
+      propertyPath: 'lockCanvases.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1298212644}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3629,6 +3653,7 @@ GameObject:
   - component: {fileID: 1298212647}
   - component: {fileID: 1298212646}
   - component: {fileID: 1298212645}
+  - component: {fileID: 1298212649}
   m_Layer: 5
   m_Name: MissionCanvas
   m_TagString: Untagged
@@ -3720,6 +3745,18 @@ RectTransform:
   m_AnchoredPosition: {x: -29.034489, y: 46.712883}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!225 &1298212649
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298212644}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1385117589
 GameObject:
   m_ObjectHideFlags: 0

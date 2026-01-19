@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class BacktoMainMenu : MonoBehaviour
+public class Back : MonoBehaviour
 {
-    public void Back()
+    public void LoadSceneMainMenu()
     {
         string lastScene = PlayerPrefs.GetString("LastScene", "MainMenu");
 

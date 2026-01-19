@@ -870,8 +870,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1309609004}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: LoadTargetScene
+        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
+        m_MethodName: LoadSceneName
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -928,12 +928,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1309608999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aa698139c3d07040a1257be7743fdd1, type: 3}
+  m_Script: {fileID: 11500000, guid: dbffdeb5ab2da3048a4785b69f686f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSceneName: MainMenu
-  targetSceneName: Shop
-  savePauseState: 0
+  sceneName: Shop
 --- !u!1 &1315801698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,8 +1587,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1979078618}
-        m_TargetAssemblyTypeName: Setting, Assembly-CSharp
-        m_MethodName: OpenSetting
+        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
+        m_MethodName: LoadSceneName
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1647,11 +1645,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1979078613}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9266572508749d848a303ddeed04a6ed, type: 3}
+  m_Script: {fileID: 11500000, guid: dbffdeb5ab2da3048a4785b69f686f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSceneName: MainMenu
-  savedSceneName: 
+  sceneName: Setting
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
