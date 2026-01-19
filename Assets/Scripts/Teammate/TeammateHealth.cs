@@ -10,14 +10,23 @@ public class TeammateHealth : MonoBehaviour
 
     [Header("UI")]
     public Slider healthBar;
-
     public TMP_Text healthValueText;
 
     private bool isDead = false;
 
+    private const string HEALTH_KEY = "TeammateHealth";
+    private const string DEAD_KEY = "TeammateDead";
+
     void Start()
     {
-        currentHealth = maxHealth;
+        if (PlayerPrefs.GetInt(DEAD_KEY, 0) == 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        currentHealth = PlayerPrefs.GetInt(HEALTH_KEY, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
         if (healthBar != null)
         {
@@ -25,7 +34,7 @@ public class TeammateHealth : MonoBehaviour
             healthBar.value = currentHealth;
         }
 
-        UpdateHealthText(); 
+        UpdateHealthText();
     }
 
     public void TakeDamage(int damage)
@@ -38,7 +47,8 @@ public class TeammateHealth : MonoBehaviour
         if (healthBar != null)
             healthBar.value = currentHealth;
 
-        UpdateHealthText(); 
+        UpdateHealthText();
+        SaveHealth();
 
         if (currentHealth <= 0)
         {
@@ -56,7 +66,8 @@ public class TeammateHealth : MonoBehaviour
         if (healthBar != null)
             healthBar.value = currentHealth;
 
-        UpdateHealthText(); 
+        UpdateHealthText();
+        SaveHealth();
     }
 
     void UpdateHealthText()
@@ -71,6 +82,16 @@ public class TeammateHealth : MonoBehaviour
     {
         isDead = true;
         currentHealth = 0;
-        UpdateHealthText();
+
+        PlayerPrefs.SetInt(DEAD_KEY, 1); 
+        SaveHealth();
+
+        Destroy(gameObject); 
+    }
+
+    void SaveHealth()
+    {
+        PlayerPrefs.SetInt(HEALTH_KEY, currentHealth);
+        PlayerPrefs.Save();
     }
 }

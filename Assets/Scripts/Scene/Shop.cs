@@ -25,7 +25,10 @@ public class Shop : MonoBehaviour
         if (IsAnyLockCanvasActive())
         {
             if (warningCanvas != null)
+            {
                 warningCanvas.SetActive(true);
+                Time.timeScale = 0f;
+            }
             return;
         }
 

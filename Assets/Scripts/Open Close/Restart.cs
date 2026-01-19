@@ -64,9 +64,14 @@ public class RestartGame : MonoBehaviour
         PlayerPrefs.DeleteKey("Mission_A_Destroyed");
         PlayerPrefs.DeleteKey("Toggle_Unlocked");
 
+        PlayerPrefs.DeleteKey("TeammateDead");
+        PlayerPrefs.DeleteKey("TeammateHealth");
+
+
         PlayerPrefs.Save();
 
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
+
 }
