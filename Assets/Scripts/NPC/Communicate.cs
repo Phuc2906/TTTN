@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Communicate : MonoBehaviour
 {
     [Header("UI")]
-    public TextMeshProUGUI textHintTMP; 
+    public TextMeshProUGUI textHintTMP;
     public GameObject canvas_A;
     public GameObject canvas_B;
     public Toggle targetToggle;
@@ -13,16 +13,23 @@ public class Communicate : MonoBehaviour
     [Header("Interact")]
     public float showRange = 5f;
 
+    [Header("Save Key")]
+    public string npcDestroyedKey = "NPC_A_Destroyed";
+
     private Transform player;
     private bool isInteracting = false;
 
     void Start()
     {
+        if (PlayerPrefs.GetInt(npcDestroyedKey, 0) == 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
-        if (textHintTMP != null)
-            textHintTMP.gameObject.SetActive(false);   
-
+        textHintTMP?.gameObject.SetActive(false);
         canvas_A.SetActive(false);
         canvas_B.SetActive(false);
     }
@@ -37,16 +44,14 @@ public class Communicate : MonoBehaviour
         {
             if (dist <= showRange)
             {
-                if (!textHintTMP.gameObject.activeSelf)
-                    textHintTMP.gameObject.SetActive(true);
+                textHintTMP?.gameObject.SetActive(true);
 
                 if (Input.GetKeyDown(KeyCode.E))
                     StartInteract();
             }
             else
             {
-                if (textHintTMP.gameObject.activeSelf)
-                    textHintTMP.gameObject.SetActive(false);
+                textHintTMP?.gameObject.SetActive(false);
             }
         }
         else
@@ -61,12 +66,12 @@ public class Communicate : MonoBehaviour
         isInteracting = true;
         textHintTMP?.gameObject.SetActive(false);
 
-        if (!targetToggle.isOn) 
+        if (!targetToggle.isOn)
         {
             canvas_A.SetActive(true);
             canvas_B.SetActive(false);
         }
-        else // toggle ON
+        else
         {
             canvas_B.SetActive(true);
             canvas_A.SetActive(false);

@@ -60,6 +60,10 @@ public class RestartGame : MonoBehaviour
 
         PlayerPrefs.DeleteKey("HealthRuby");
 
+        PlayerPrefs.DeleteKey("NPC_A_Destroyed");
+        PlayerPrefs.DeleteKey("Mission_A_Destroyed");
+        PlayerPrefs.DeleteKey("Toggle_Unlocked");
+
         PlayerPrefs.Save();
 
         Scene currentScene = SceneManager.GetActiveScene();
