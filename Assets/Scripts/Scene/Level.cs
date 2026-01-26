@@ -8,6 +8,9 @@ public class Level : MonoBehaviour
     public int levelIndex;
     public Button button;
 
+    [Header("Complete Canvas")]
+    public GameObject completeCanvas;
+
     void Start()
     {
         bool unlocked = levelIndex == 1 ||
@@ -18,6 +21,16 @@ public class Level : MonoBehaviour
 
     public void PlayLevel()
     {
-        SceneManager.LoadScene(mode + "_Level" + levelIndex);
+        string key = mode + "_Level" + levelIndex;
+
+        if (PlayerPrefs.GetInt(key, 0) == 1)
+        {
+            if (completeCanvas != null)
+                completeCanvas.SetActive(true);
+        }
+        else
+        {
+            SceneManager.LoadScene(mode + "_Level" + levelIndex);
+        }
     }
 }

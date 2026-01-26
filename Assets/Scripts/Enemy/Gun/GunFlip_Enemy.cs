@@ -10,11 +10,11 @@ public class GunFlip_Enemy : MonoBehaviour
 
         if (enemy.localScale.x < 0)
         {
-            transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         else
         {
-            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
 
         transform.rotation = Quaternion.identity;

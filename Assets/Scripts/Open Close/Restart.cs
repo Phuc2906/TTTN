@@ -3,29 +3,20 @@ using UnityEngine.SceneManagement;
 
 public class RestartGame : MonoBehaviour
 {
-    [Header("Tổng số coin / reward ban đầu")]
-    public int totalCoins = 48;
-
-    [Header("Tổng số Enemy ban đầu")]
+    [Header("Enemies")]
     public int totalEnemies = 20;
 
-    [Header("Tổng số nhóm Enemy (Enemy CHA)")]
+    [Header("Enemy Groups")]
     public int totalEnemyGroups = 5;
 
-    [Header("Tổng số OpenGO")]
+    [Header("Total OpenGO")]
     public int totalOpenGO = 10;
 
-    [Header("Tổng số Box")]
+    [Header("Total Box")]
     public int totalBox = 5;
-
 
     public void RestartCurrentScene()
     {
-        for (int i = 0; i < totalCoins; i++)
-        {
-            PlayerPrefs.DeleteKey("Coin_" + i);
-        }
-
         for (int i = 0; i < totalEnemies; i++)
         {
             PlayerPrefs.DeleteKey("Enemy_" + i);
@@ -64,9 +55,10 @@ public class RestartGame : MonoBehaviour
         PlayerPrefs.DeleteKey("Mission_A_Destroyed");
         PlayerPrefs.DeleteKey("Toggle_Unlocked");
 
+        PlayerPrefs.DeleteKey("NPC_01_Destroyed");
+
         PlayerPrefs.DeleteKey("TeammateDead");
         PlayerPrefs.DeleteKey("TeammateHealth");
-
 
         PlayerPrefs.Save();
 

@@ -1,22 +1,37 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class GameManagerList : MonoBehaviour
 {
+    [Header("Card")]
     public List<CardUI> cards = new List<CardUI>();
+
+    [Header("UI")]
     public GameObject continueButton;
-    public PlayerHealth playerHealth;  
+    public GameObject gameCanvas;
+    public GameObject warningCanvas;
+    public TextMeshProUGUI playCountText;
+
+    [Header("Play Count")]
+    public int maxPlays = 3;
+    private int currentPlays;
 
     private CardUI firstCard;
     private CardUI secondCard;
-
     private bool canClick = true;
 
     void Start()
     {
         if (continueButton != null)
             continueButton.SetActive(false);
+
+        if (warningCanvas != null)
+            warningCanvas.SetActive(false);
+
+        currentPlays = maxPlays;
+        UpdatePlayText();
 
         foreach (CardUI card in cards)
         {
@@ -42,14 +57,12 @@ public class GameManagerList : MonoBehaviour
     IEnumerator CheckMatch()
     {
         canClick = false;
-
         yield return new WaitForSeconds(0.5f);
 
         if (firstCard.frontImage.name == secondCard.frontImage.name)
         {
             firstCard.Hide();
             secondCard.Hide();
-
             CheckAllMatched();
         }
         else
@@ -57,16 +70,33 @@ public class GameManagerList : MonoBehaviour
             firstCard.Flip();
             secondCard.Flip();
 
-            
-        if (playerHealth != null)
-            playerHealth.TakeDamage((int)(playerHealth.maxHealth * 0.25f));
+            currentPlays--;
+            UpdatePlayText();
 
+            if (currentPlays <= 0)
+            {
+                EndGame();
+            }
         }
 
         firstCard = null;
         secondCard = null;
-
         canClick = true;
+    }
+
+    void UpdatePlayText()
+    {
+        if (playCountText != null)
+            playCountText.text = "Số lần chơi: " + currentPlays;
+    }
+
+    void EndGame()
+    {
+        if (gameCanvas != null)
+            gameCanvas.SetActive(false);
+
+        if (warningCanvas != null)
+            warningCanvas.SetActive(true);
     }
 
     void CheckAllMatched()

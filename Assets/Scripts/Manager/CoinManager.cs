@@ -4,22 +4,22 @@ using TMPro;
 public class CoinManager : MonoBehaviour
 {
     public static CoinManager Instance;
+    private const string COIN_KEY = "Coin";
 
-    [Header("UI hiển thị coin trong game")]
-    public TextMeshProUGUI coinText_Game;      
-    public TextMeshProUGUI coinText_GameWin;   
-    public TextMeshProUGUI coinText_GameOver;  
+    [Header("UI")]
+    public TextMeshProUGUI coinText_Game;
+    public TextMeshProUGUI coinText_GameWin;
+    public TextMeshProUGUI coinText_GameOver;
 
-    [Header("UI tổng coin (nếu có)")]
+    [Header("Total UI")]
     public TextMeshProUGUI coinText_Total;
 
-    private int coin = 0;
+    private int coin;
 
     private void Awake()
     {
         if (Instance == null)
         {
-            // PlayerPrefs.DeleteAll();
             Instance = this;
         }
         else
@@ -28,32 +28,31 @@ public class CoinManager : MonoBehaviour
             return;
         }
 
-        coin = PlayerPrefs.GetInt("TotalCoin", 30);
+        coin = PlayerPrefs.GetInt(COIN_KEY, 30);
 
         UpdateAllTexts();
     }
+
     public void AddCoin(int value)
     {
         coin += value;
-
-        PlayerPrefs.SetInt("TotalCoin", coin);
-        PlayerPrefs.Save();
-
-        UpdateAllTexts();
+        SaveCoin();
     }
+
     public bool SpendCoin(int cost)
     {
-        if (coin >= cost)
-        {
-            coin -= cost;
+        if (coin < cost) return false;
 
-            PlayerPrefs.SetInt("TotalCoin", coin);
-            PlayerPrefs.Save();
+        coin -= cost;
+        SaveCoin();
+        return true;
+    }
 
-            UpdateAllTexts();
-            return true;
-        }
-        return false;
+    private void SaveCoin()
+    {
+        PlayerPrefs.SetInt(COIN_KEY, coin);
+        PlayerPrefs.Save();
+        UpdateAllTexts();
     }
 
     private void UpdateAllTexts()
