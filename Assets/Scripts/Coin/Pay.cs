@@ -2,22 +2,39 @@ using UnityEngine;
 
 public class Pay : MonoBehaviour
 {
-    [Header("Cấu hình")]
-    public int cost = 10;                
-    public GameObject objectToDisable;
-    public GameObject communicateCanvas;    
-    public GameObject notEnoughCanvas;    
+    [Header("Save")]
+    public string rentID = "Rent_NPC_01";
+
+    [Header("Cost")]
+    public int cost = 30;
+
+    [Header("Objects To Destroy")]
+    public GameObject objectToDestroy;   
+    public GameObject textToDestroy;     
+
+    [Header("Canvas")]
+    public GameObject communicateCanvas;
+    public GameObject notEnoughCanvas;
+
+    void Start()
+    {
+        if (PlayerPrefs.GetInt(rentID, 0) == 1)
+        {
+            DestroySavedObjects();
+        }
+    }
 
     public void OnButtonClick()
     {
         if (CoinManager.Instance == null) return;
 
-        bool success = CoinManager.Instance.SpendCoin(cost);
-
-        if (success)
+        if (CoinManager.Instance.SpendCoin(cost))
         {
-            if (objectToDisable != null)
-                objectToDisable.SetActive(false);
+            PlayerPrefs.SetInt(rentID, 1);
+            PlayerPrefs.Save();
+
+            DestroySavedObjects();
+
             if (communicateCanvas != null)
                 communicateCanvas.SetActive(false);
         }
@@ -26,5 +43,14 @@ public class Pay : MonoBehaviour
             if (notEnoughCanvas != null)
                 notEnoughCanvas.SetActive(true);
         }
+    }
+
+    void DestroySavedObjects()
+    {
+        if (objectToDestroy != null)
+            Destroy(objectToDestroy);
+
+        if (textToDestroy != null)
+            Destroy(textToDestroy);
     }
 }

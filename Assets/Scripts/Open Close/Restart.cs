@@ -60,6 +60,12 @@ public class RestartGame : MonoBehaviour
         PlayerPrefs.DeleteKey("TeammateDead");
         PlayerPrefs.DeleteKey("TeammateHealth");
 
+        foreach (var tm in FindObjectsOfType<TeammateMove>())
+        tm.DeleteSave();
+
+        
+        PlayerPrefs.DeleteKey("Rent_NPC_01");
+
         PlayerPrefs.Save();
 
         Scene currentScene = SceneManager.GetActiveScene();

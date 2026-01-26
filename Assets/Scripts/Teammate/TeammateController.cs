@@ -2,22 +2,33 @@ using UnityEngine;
 
 public class TeammateController : MonoBehaviour
 {
-    public GameObject targetObject;           
-    public TeammateMove teammateMove;          
+    public GameObject targetObject;
+    public TeammateMove teammateMove;
+
+    void Awake()
+    {
+        ApplyState();
+    }
+
+    void OnEnable()
+    {
+        ApplyState();
+    }
 
     void Update()
     {
-        if (targetObject == null) return;
+        ApplyState();
+    }
 
-        bool isActive = targetObject.activeSelf;
+    void ApplyState()
+    {
+        if (teammateMove == null) return;
 
-        if (isActive)
+        bool shouldDisableMove = targetObject != null;
+
+        if (teammateMove.enabled == shouldDisableMove)
         {
-            if (teammateMove.enabled) teammateMove.enabled = false;
-        }
-        else
-        {
-            if (!teammateMove.enabled) teammateMove.enabled = true;
+            teammateMove.enabled = !shouldDisableMove;
         }
     }
 }
