@@ -60,9 +60,12 @@ public class EnemyAttack : MonoBehaviour
     bool IsTarget(Collision2D col)
     {
         return col.collider.CompareTag("Player")
+            || col.collider.GetComponent<PlayerHealth>()
             || col.collider.GetComponent<TeammateHealth>()
             || col.collider.GetComponent<HealthRuby>()
             || col.collider.GetComponent<HealthWall>();
+            
+            
     }
 
     void DealDamage(Collision2D collision)
@@ -77,5 +80,13 @@ public class EnemyAttack : MonoBehaviour
             r.TakeDamage(damage);
         else if (c.TryGetComponent(out HealthWall w))
             w.TakeDamage(damage);
+    }
+
+    void Update()
+    {
+        if (currentCollision != null)
+        {
+            TryAttack();
+        }
     }
 }

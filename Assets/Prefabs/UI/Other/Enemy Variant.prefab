@@ -13,6 +13,10 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 127856022375086304, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
+      propertyPath: players.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 127856022375086304, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
       propertyPath: obstacleMask.m_Bits
       value: 128
       objectReference: {fileID: 0}
@@ -22,15 +26,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3348065889662358736, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.6373482
+      value: 2.4230366
       objectReference: {fileID: 0}
     - target: {fileID: 3348065889662358736, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22.06
+      value: -0.8410128
       objectReference: {fileID: 0}
     - target: {fileID: 3348065889662358736, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.06934638
       objectReference: {fileID: 0}
     - target: {fileID: 3348065889662358736, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
       propertyPath: m_LocalRotation.w
@@ -38,15 +42,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3348065889662358736, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3348065889662358736, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3348065889662358736, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3348065889662358736, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -63,6 +67,10 @@ PrefabInstance:
     - target: {fileID: 6162377902869858345, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6836295262607832173, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
+      propertyPath: enemyID
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9213471290603262169, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
       propertyPath: m_AnchorMax.y

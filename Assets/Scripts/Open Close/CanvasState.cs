@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SaveCanvasState : MonoBehaviour
+public class CanvasState : MonoBehaviour
 {
     [Header("PlayerPrefs")]
     public string canvasPrefKey = "Canvas_01";
