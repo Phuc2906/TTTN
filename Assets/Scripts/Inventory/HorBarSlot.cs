@@ -128,32 +128,42 @@ public class HotbarSlot : MonoBehaviour
     }
 
     void Load()
+{
+    string key = "HOTBAR_" + hotbarIndex;
+
+    if (!PlayerPrefs.HasKey(key))
     {
-        string key = "HOTBAR_" + hotbarIndex;
+        ClearSlot();
+        return;
+    }
 
-        if (!PlayerPrefs.HasKey(key))
-        {
-            playerPrefKey = "";
-            iconImage.sprite = null;
-            iconImage.enabled = false;
-            iconObject.SetActive(false);
-            return;
-        }
+    playerPrefKey = PlayerPrefs.GetString(key);
 
-        playerPrefKey = PlayerPrefs.GetString(key);
+    if (PlayerPrefs.GetInt(playerPrefKey, 0) != 1)
+    {
+        ClearSlot();
+        return;
+    }
 
-        if (string.IsNullOrEmpty(playerPrefKey))
-        {
-            iconImage.sprite = null;
-            iconImage.enabled = false;
-            iconObject.SetActive(false);
-            return;
-        }
+    Sprite icon = ItemIconDatabase.Instance.GetIcon(playerPrefKey);
 
-        Sprite icon = ItemIconDatabase.Instance.GetIcon(playerPrefKey);
+    if (icon == null)
+    {
+        ClearSlot();
+        return;
+    }
+
         iconImage.sprite = icon;
         iconImage.enabled = true;
         iconObject.SetActive(true);
+    }
+
+    void ClearSlot()
+    {
+        playerPrefKey = "";
+        iconImage.sprite = null;
+        iconImage.enabled = false;
+        iconObject.SetActive(false);
     }
 
     void SaveSelected()

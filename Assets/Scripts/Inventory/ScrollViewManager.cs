@@ -5,15 +5,23 @@ public class ScrollViewManager : MonoBehaviour
     public Transform content;
     public GameObject slotPrefab;
 
-    [Header("Inventory Slots")]
     public int totalSlots = 20;
 
-    [Header("Item")]
     public string[] playerPrefKeys;
     public Sprite[] itemIcons;
 
     void Start()
     {
+        SpawnSlots();
+    }
+
+    public void Refresh()
+    {
+        foreach (Transform child in content)
+        {
+            Destroy(child.gameObject);
+        }
+
         SpawnSlots();
     }
 
