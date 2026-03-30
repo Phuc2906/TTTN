@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI; 
 using System.Collections.Generic;
 
 public class Shop : MonoBehaviour
@@ -17,19 +18,22 @@ public class Shop : MonoBehaviour
     [Header("Canvases")]
     public List<GameObject> lockCanvases = new List<GameObject>();
 
-    [Header("UI")]
-    public GameObject warningCanvas;
+    [Header("Button")] 
+    public Button loadButton;
+
+    void Update() 
+    {
+        if (loadButton != null)
+        {
+            loadButton.interactable = !IsAnyLockCanvasActive();
+        }
+    }
 
     public void LoadTargetScene()
     {
         if (IsAnyLockCanvasActive())
         {
-            if (warningCanvas != null)
-            {
-                warningCanvas.SetActive(true);
-                Time.timeScale = 0f;
-            }
-            return;
+            return; 
         }
 
         PlayerPrefs.SetString("LastScene", currentSceneName);

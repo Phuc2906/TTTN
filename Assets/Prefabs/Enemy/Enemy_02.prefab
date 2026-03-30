@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 3120425244717457523}
   - component: {fileID: 5181435330341344557}
   - component: {fileID: 4851281128768952857}
+  - component: {fileID: 1079754641878944546}
   m_Layer: 6
   m_Name: Enemy_02
   m_TagString: Enemy
@@ -414,7 +415,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -441,7 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b692e2e845f71ee43800132366779f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 1
+  enemyID: 41
   players:
   - {fileID: 0}
   - {fileID: 0}
@@ -467,7 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5c39acb2b4c534c97ee3d8cfcdca3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 1
+  enemyID: 41
   maxHealth: 10
   maxExp: 10
   healthBar: {fileID: 1789288029254517524}
@@ -500,6 +501,19 @@ MonoBehaviour:
   weaponHolder: {fileID: 3407174165801287907}
   player: {fileID: 0}
   gunPrefab: {fileID: 7043293794339684202}
+--- !u!114 &1079754641878944546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2228641350216336353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c4d2cae1c63c140a7747a5d8ea5dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyID: 48
 --- !u!1 &3360473458373946500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,11 +1119,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7829410655257909050, guid: df80d064b9518d447a258db7ac9d8ed0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.052053
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 7829410655257909050, guid: df80d064b9518d447a258db7ac9d8ed0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.763298
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 7829410655257909050, guid: df80d064b9518d447a258db7ac9d8ed0, type: 3}
       propertyPath: m_LocalPosition.z

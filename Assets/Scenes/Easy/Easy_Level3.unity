@@ -19565,6 +19565,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AwardCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4989928676590089098, guid: 70920c22fd8b7a443b729776f192b171, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6496723972606815516, guid: 70920c22fd8b7a443b729776f192b171, type: 3}
       propertyPath: m_Sprite
       value: 
