@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     public float speed = 5f;
+    public GameObject buffCanvas;
     private Rigidbody2D rb;
     private Vector2 move;
     private Animator anim;
@@ -42,7 +43,14 @@ public class PlayerMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + move * speed * Time.fixedDeltaTime);
+        float finalSpeed = speed;
+
+        if (buffCanvas != null && buffCanvas.activeSelf)
+        {
+            finalSpeed += 2f;
+        }
+
+        rb.MovePosition(rb.position + move * finalSpeed * Time.fixedDeltaTime);
     }
 
     public void SavePosition()

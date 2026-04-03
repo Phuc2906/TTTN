@@ -25,6 +25,8 @@ public class EnemyMove : MonoBehaviour
     [Header("Wall Follow Fix")]
     public float wallPushForce = 0.2f;
 
+    public GameObject buffCanvas; 
+
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private EnemyAttack attack;
@@ -137,12 +139,19 @@ public class EnemyMove : MonoBehaviour
     {
         Vector2 nextPos = rb.position;
 
+        float finalSpeed = moveSpeed;
+        if (buffCanvas != null && buffCanvas.activeSelf)
+        {
+            finalSpeed -= 1.5f;
+            if (finalSpeed < 0.5f) finalSpeed = 0.5f; 
+        }
+
         if (state == AIState.Chase)
         {
             Vector2 dir = ((Vector2)player.position - rb.position).normalized;
 
             if (Vector2.Distance(rb.position, player.position) > stopDistance)
-                nextPos += dir * moveSpeed * Time.fixedDeltaTime;
+                nextPos += dir * finalSpeed * Time.fixedDeltaTime;
 
             Flip(dir.x);
         }
@@ -157,7 +166,7 @@ public class EnemyMove : MonoBehaviour
             }
 
             finalDir.Normalize();
-            nextPos += finalDir * moveSpeed * Time.fixedDeltaTime;
+            nextPos += finalDir * finalSpeed * Time.fixedDeltaTime;
 
             Flip(wallDir.x);
         }

@@ -11,11 +11,17 @@ public class PlayerHealth : MonoBehaviour
     public GameObject gameOverCanvas;
     public GameObject player;
 
+    public GameObject buffCanvas; 
+
     [Header("PlayerPrefs key")]
     public string playerRefKey = "PlayerHealth";
 
+    private int baseMaxHealth; 
+
     void Awake()
     {
+        baseMaxHealth = maxHealth; 
+
         if (PlayerPrefs.HasKey(playerRefKey))
             currentHealth = PlayerPrefs.GetInt(playerRefKey);
         else
@@ -34,6 +40,32 @@ public class PlayerHealth : MonoBehaviour
 
         if (gameOverCanvas != null)
             gameOverCanvas.SetActive(false);
+    }
+
+    void Update()
+    {
+        UpdateBuffHealth(); 
+    }
+
+    void UpdateBuffHealth()
+    {
+        int targetMax = baseMaxHealth;
+
+        if (buffCanvas != null && buffCanvas.activeSelf)
+            targetMax += 200;
+
+        if (maxHealth != targetMax)
+        {
+            maxHealth = targetMax;
+
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+            if (healthBar != null)
+            {
+                healthBar.SetMaxHealth(maxHealth);
+                healthBar.SetHealth(currentHealth);
+            }
+        }
     }
 
     public void TakeDamage(int dmg)
