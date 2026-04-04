@@ -9,6 +9,10 @@ public class Gun : MonoBehaviour
     public float detectionRange = 8f;
     public LayerMask enemyLayer; 
 
+    [Header("Buff Range")]
+    public GameObject rangeBuffCanvas;
+    public float rangeBoost = 3f;
+
     [Header("Buff Damage")]
     public GameObject damageBuffCanvas;
 
@@ -73,7 +77,13 @@ public class Gun : MonoBehaviour
 
     Transform FindNearestEnemy()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(firePoint.position, detectionRange, enemyLayer);
+        float finalRange = detectionRange;
+
+        if (rangeBuffCanvas != null && rangeBuffCanvas.activeSelf)
+        {
+            finalRange += rangeBoost;
+        }
+        Collider2D[] hits = Physics2D.OverlapCircleAll(firePoint.position, finalRange, enemyLayer);
         Transform nearest = null;
         float minDist = Mathf.Infinity;
 
