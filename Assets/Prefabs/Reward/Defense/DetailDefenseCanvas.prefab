@@ -65,8 +65,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "C\xF4ng n\u0103ng: Gi\u1EA3m t\u1ED1c \u0111\u1ED9 di chuy\u1EC3n c\u1EE7a
-    qu\xE1i trong m\u1ED9t kho\u1EA3ng th\u1EDDi gian nh\u1EA5t \u0111\u1ECBnh"
+  m_text: "C\xF4ng n\u0103ng: Ch\u1EB7n m\u1ECDi s\xE1t th\u01B0\u01A1ng, tr\u1EEB
+    s\xE1t th\u01B0\u01A1ng b\u1EABy trong m\u1ED9t kho\u1EA3ng th\u1EDDi gian nh\u1EA5t
+    \u0111\u1ECBnh"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -150,7 +151,7 @@ GameObject:
   - component: {fileID: 6278311529007061803}
   - component: {fileID: 8919091396246472060}
   m_Layer: 5
-  m_Name: DetailReduceSpeedCanvas
+  m_Name: DetailDefenseCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -33,4 +33,9 @@ public class Bullet : MonoBehaviour
         enemy.TakeDamage(normalDamage); 
         Destroy(gameObject);
     }
+
+    public void SetDamage(int dmg)
+    {
+        normalDamage = dmg;
+    }
 }

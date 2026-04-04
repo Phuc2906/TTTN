@@ -13,6 +13,9 @@ public class PlayerHealth : MonoBehaviour
 
     public GameObject buffCanvas; 
 
+    [Header("Defense")]
+    public GameObject shieldCanvas;
+
     [Header("PlayerPrefs key")]
     public string playerRefKey = "PlayerHealth";
 
@@ -70,6 +73,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
+        if (shieldCanvas != null && shieldCanvas.activeSelf)
+        return;
+
         if (currentHealth <= 0) return;
 
         currentHealth = Mathf.Max(currentHealth - dmg, 0);

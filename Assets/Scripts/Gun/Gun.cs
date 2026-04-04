@@ -9,6 +9,12 @@ public class Gun : MonoBehaviour
     public float detectionRange = 8f;
     public LayerMask enemyLayer; 
 
+    [Header("Buff Damage")]
+    public GameObject damageBuffCanvas;
+
+    [Header("Buff Fire Rate")]
+    public GameObject fireRateBuffCanvas;
+    public float fireRateBoost = 0.2f; 
     private float fireTimer = 0f;
     private SpriteRenderer playerSprite;
 
@@ -34,11 +40,21 @@ public class Gun : MonoBehaviour
             if (fireTimer <= 0f)
             {
                 Shoot();
-                fireTimer = fireRate;
+
+                float finalFireRate = fireRate;
+
+            if (fireRateBuffCanvas != null && fireRateBuffCanvas.activeSelf)
+            {
+                finalFireRate -= fireRateBoost;
+
+                if (finalFireRate < 0.05f)
+                finalFireRate = 0.05f;
+            }
+
+                fireTimer = finalFireRate;
             }
         }
     }
-
 
     void FlipWithPlayer()
     {
@@ -89,10 +105,25 @@ public class Gun : MonoBehaviour
         if (!bulletPrefab) return;
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
+        if (bulletScript != null)
+        {
+            int finalDamage = bulletScript.normalDamage;
+
+            if (damageBuffCanvas != null && damageBuffCanvas.activeSelf)
+            {
+                finalDamage *= 2;
+            }
+
+            bulletScript.SetDamage(finalDamage);
+        }
+
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
+        {
             rb.linearVelocity = firePoint.right * bulletSpeed;
+        }
     }
 
     void OnDrawGizmosSelected()
