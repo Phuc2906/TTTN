@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b692e2e845f71ee43800132366779f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 1
+  enemyID: 120
   players:
   - {fileID: 0}
   - {fileID: 0}
@@ -319,8 +319,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfdc915ea8fd21345bb9de724a98fe8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 75
   attackCooldown: 0.5
+  attackRange: 1.25
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  teammates: []
+  rubies: []
+  walls: []
   isAttacking: 0
 --- !u!114 &6182483320157016881
 MonoBehaviour:
@@ -334,7 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5c39acb2b4c534c97ee3d8cfcdca3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 0
+  enemyID: 120
   maxHealth: 50
   maxExp: 5
   healthBar: {fileID: 148715593978383771}
@@ -351,7 +360,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -378,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c4d2cae1c63c140a7747a5d8ea5dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 1
+  enemyID: 120
 --- !u!95 &5295431987683024913
 Animator:
   serializedVersion: 7

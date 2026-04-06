@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b692e2e845f71ee43800132366779f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 1
+  enemyID: 7
   players:
   - {fileID: 0}
   - {fileID: 0}
@@ -268,6 +268,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   attackCooldown: 0.5
+  attackRange: 1.25
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  teammates: []
+  rubies: []
+  walls: []
   isAttacking: 0
 --- !u!114 &6836295262607832173
 MonoBehaviour:
@@ -281,6 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5c39acb2b4c534c97ee3d8cfcdca3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 7
   maxHealth: 1
   maxExp: 5
   healthBar: {fileID: 955953863442117340}
@@ -324,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c4d2cae1c63c140a7747a5d8ea5dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 1
+  enemyID: 7
 --- !u!1 &1798277264863421387
 GameObject:
   m_ObjectHideFlags: 0

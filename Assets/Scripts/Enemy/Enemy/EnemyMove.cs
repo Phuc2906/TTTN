@@ -66,7 +66,14 @@ public class EnemyMove : MonoBehaviour
         FindPlayerIfNeeded();
         if (!player) return;
 
-        if (attack && attack.isAttacking) return;
+        if (attack && attack.isAttacking)
+        {
+            rb.linearVelocity = Vector2.zero;
+
+            Flip(player.position.x - transform.position.x);
+
+            return;
+        }
 
         UpdateState();
         Move();

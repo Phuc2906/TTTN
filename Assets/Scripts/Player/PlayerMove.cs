@@ -14,6 +14,7 @@ public class PlayerMove : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
         rb.gravityScale = 0;
 
         if (PlayerPrefs.HasKey("PlayerX"))

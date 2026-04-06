@@ -1,92 +1,128 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class EnemyAttack : MonoBehaviour
 {
+    [Header("Attack Settings")]
     public int damage = 5;
     public float attackCooldown = 0.6f;
+    public float attackRange = 1.25f;
+
+    [Header("Players")]
+    public List<PlayerHealth> players;
+
+    [Header("Other Targets")]
+    public List<TeammateHealth> teammates;
+    public List<HealthRuby> rubies;
+    public List<HealthWall> walls;
 
     [HideInInspector] public bool isAttacking;
 
     private float lastHitTime;
-    private Rigidbody2D rb;
-    private Collision2D currentCollision;
-
-    void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
-        rb.gravityScale = 0;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!IsTarget(collision)) return;
-
-        currentCollision = collision;
-        isAttacking = true;
-
-        TryAttack();
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision != currentCollision) return;
-
-        TryAttack();
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision == currentCollision)
-        {
-            currentCollision = null;
-            isAttacking = false;
-        }
-    }
-
-    void TryAttack()
-    {
-        if (currentCollision == null) return;
-
-        rb.WakeUp(); 
-
-        if (Time.time - lastHitTime < attackCooldown) return;
-
-        DealDamage(currentCollision);
-        lastHitTime = Time.time;
-    }
-
-    bool IsTarget(Collision2D col)
-    {
-        return col.collider.CompareTag("Player")
-            || col.collider.GetComponent<PlayerHealth>()
-            || col.collider.GetComponent<TeammateHealth>()
-            || col.collider.GetComponent<HealthRuby>()
-            || col.collider.GetComponent<HealthWall>();
-            
-            
-    }
-
-    void DealDamage(Collision2D collision)
-    {
-        Collider2D c = collision.collider;
-
-        if (c.TryGetComponent(out PlayerHealth p))
-            p.TakeDamage(damage);
-        else if (c.TryGetComponent(out TeammateHealth t))
-            t.TakeDamage(damage);
-        else if (c.TryGetComponent(out HealthRuby r))
-            r.TakeDamage(damage);
-        else if (c.TryGetComponent(out HealthWall w))
-            w.TakeDamage(damage);
-    }
 
     void Update()
     {
-        if (currentCollision != null)
+        bool foundTarget = false;
+
+        foreach (var p in players)
         {
-            TryAttack();
+            if (p == null || !p.gameObject.activeInHierarchy) continue;
+
+            if (IsInRange(p.transform))
+            {
+                AttackPlayer(p);
+                foundTarget = true;
+                break;
+            }
         }
+
+        if (!foundTarget)
+        {
+            foreach (var t in teammates)
+            {
+                if (t == null || !t.gameObject.activeInHierarchy) continue;
+
+                if (IsInRange(t.transform))
+                {
+                    AttackTeammate(t);
+                    foundTarget = true;
+                    break;
+                }
+            }
+        }
+
+        if (!foundTarget)
+        {
+            foreach (var r in rubies)
+            {
+                if (r == null) continue;
+
+                if (IsInRange(r.transform))
+                {
+                    AttackRuby(r);
+                    foundTarget = true;
+                    break;
+                }
+            }
+        }
+
+        if (!foundTarget)
+        {
+            foreach (var w in walls)
+            {
+                if (w == null) continue;
+
+                if (IsInRange(w.transform))
+                {
+                    AttackWall(w);
+                    foundTarget = true;
+                    break;
+                }
+            }
+        }
+
+        isAttacking = foundTarget;
+    }
+
+    bool IsInRange(Transform target)
+    {
+        return Vector2.Distance(transform.position, target.position) <= attackRange;
+    }
+
+    void AttackPlayer(PlayerHealth p)
+    {
+        if (Time.time - lastHitTime < attackCooldown) return;
+
+        p.TakeDamage(damage);
+        lastHitTime = Time.time;
+    }
+
+    void AttackTeammate(TeammateHealth t)
+    {
+        if (Time.time - lastHitTime < attackCooldown) return;
+
+        t.TakeDamage(damage);
+        lastHitTime = Time.time;
+    }
+
+    void AttackRuby(HealthRuby r)
+    {
+        if (Time.time - lastHitTime < attackCooldown) return;
+
+        r.TakeDamage(damage);
+        lastHitTime = Time.time;
+    }
+
+    void AttackWall(HealthWall w)
+    {
+        if (Time.time - lastHitTime < attackCooldown) return;
+
+        w.TakeDamage(damage);
+        lastHitTime = Time.time;
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
