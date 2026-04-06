@@ -10278,6 +10278,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 808090773}
     m_Modifications:
     - target: {fileID: 127856022375086304, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
+      propertyPath: enemyID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 127856022375086304, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
       propertyPath: 'players.Array.data[0]'
       value: 
       objectReference: {fileID: 50580648}
@@ -10365,6 +10369,10 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 680442845}
+    - target: {fileID: 7627645378887881309, guid: e91bf4845cb5c6c40a9c5fc7810ed020, type: 3}
+      propertyPath: enemyID
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

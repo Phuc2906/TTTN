@@ -18,12 +18,22 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("PlayerPrefs key")]
     public string playerRefKey = "PlayerHealth";
+    public string playerDeadKey = "Player_Dead"; 
 
     private int baseMaxHealth; 
 
     void Awake()
     {
         baseMaxHealth = maxHealth; 
+
+        if (PlayerPrefs.GetInt(playerDeadKey, 0) == 1)
+        {
+            if (gameOverCanvas != null)
+                gameOverCanvas.SetActive(true);
+
+            Destroy(gameObject);
+            return;
+        }
 
         if (PlayerPrefs.HasKey(playerRefKey))
             currentHealth = PlayerPrefs.GetInt(playerRefKey);
@@ -74,7 +84,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int dmg)
     {
         if (shieldCanvas != null && shieldCanvas.activeSelf)
-        return;
+            return;
 
         if (currentHealth <= 0) return;
 
@@ -106,19 +116,13 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-            Destroy(enemy);
-
-        foreach (GameObject bullet in GameObject.FindGameObjectsWithTag("Bullet"))
-            Destroy(bullet);
+        PlayerPrefs.SetInt(playerDeadKey, 1);
+        PlayerPrefs.Save();
 
         if (gameOverCanvas != null)
             gameOverCanvas.SetActive(true);
 
-        if (player != null)
-            player.SetActive(false);
-
-        Time.timeScale = 0f;
+        Destroy(gameObject);
     }
 
     void SaveHealth()

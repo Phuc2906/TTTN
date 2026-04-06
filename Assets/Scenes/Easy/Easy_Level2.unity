@@ -1230,7 +1230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4231899770765454465, guid: cdef638694c2d0849b82f756b4af5540, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4197.4604
+      value: 10.39744
       objectReference: {fileID: 0}
     - target: {fileID: 4231899770765454465, guid: cdef638694c2d0849b82f756b4af5540, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7715,7 +7715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameWinCanvas: {fileID: 292344735}
-  missionCanvas: {fileID: 1298212644}
+  missionCanvas: {fileID: 0}
   noticeCanvas: {fileID: 0}
   levelClearKey: Easy_Level2
 --- !u!1001 &807430875

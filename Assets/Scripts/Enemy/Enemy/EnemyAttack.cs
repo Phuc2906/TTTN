@@ -86,7 +86,12 @@ public class EnemyAttack : MonoBehaviour
 
     bool IsInRange(Transform target)
     {
-        return Vector2.Distance(transform.position, target.position) <= attackRange;
+        Collider2D myCol = GetComponent<Collider2D>();
+        Collider2D targetCol = target.GetComponent<Collider2D>();
+
+        if (myCol == null || targetCol == null) return false;
+
+        return myCol.Distance(targetCol).distance <= 0.05f;
     }
 
     void AttackPlayer(PlayerHealth p)
