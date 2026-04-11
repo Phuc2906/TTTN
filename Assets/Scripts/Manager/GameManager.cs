@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !gameoverCanvas.activeSelf && !gamewinCanvas.activeSelf)
+        if (Input.GetKeyDown(KeyCode.J) && !gameoverCanvas.activeSelf && !gamewinCanvas.activeSelf)
         {
             TogglePause();
         }

@@ -62,11 +62,7 @@ public class RestartGame : MonoBehaviour
         PlayerPrefs.DeleteKey("Room_06Canvas");
         PlayerPrefs.DeleteKey("Room_07Canvas");
         PlayerPrefs.DeleteKey("Room_08Canvas");
-
-        PlayerPrefs.DeleteKey("CloseDoor_01Canvas");
-        PlayerPrefs.DeleteKey("CloseDoor_02Canvas");
-        PlayerPrefs.DeleteKey("CloseDoor_03Canvas");
-        
+       
 
         PlayerPrefs.DeleteKey("NPC_A_Destroyed");
         PlayerPrefs.DeleteKey("Mission_A_Destroyed");
