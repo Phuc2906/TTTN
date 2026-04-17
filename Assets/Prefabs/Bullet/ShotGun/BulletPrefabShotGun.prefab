@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7915691595103950201}
   - component: {fileID: 7454020532706748185}
   m_Layer: 0
-  m_Name: BulletPrefab
+  m_Name: BulletPrefabShotGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,8 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   lifeTime: 2
-  buffCanvas: {fileID: 0}
-  normalDamage: 1
+  normalDamage: 150
 --- !u!50 &7915691595103950201
 Rigidbody2D:
   serializedVersion: 5

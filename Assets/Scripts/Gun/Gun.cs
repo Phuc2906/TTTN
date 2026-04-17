@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Gun : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class Gun : MonoBehaviour
     private float fireTimer = 0f;
     private SpriteRenderer playerSprite;
 
+    [Header("Shadow Lock")]
+    public List<GameObject> shadows = new List<GameObject>();
+
     void Start()
     {
         playerSprite = GetComponentInParent<SpriteRenderer>();
@@ -41,7 +45,7 @@ public class Gun : MonoBehaviour
         {
             AimAtEnemy(nearestEnemy.position);
 
-            if (fireTimer <= 0f)
+           if (fireTimer <= 0f && !IsAnyShadowActive())
             {
                 Shoot();
 
@@ -134,6 +138,16 @@ public class Gun : MonoBehaviour
         {
             rb.linearVelocity = firePoint.right * bulletSpeed;
         }
+    }
+
+    bool IsAnyShadowActive()
+    {
+        foreach (var s in shadows)
+        {
+            if (s != null && s.activeInHierarchy)
+                return true;
+        }
+        return false;
     }
 
     void OnDrawGizmosSelected()

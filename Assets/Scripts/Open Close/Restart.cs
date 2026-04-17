@@ -15,6 +15,9 @@ public class RestartGame : MonoBehaviour
     [Header("Total Box")]
     public int totalBox = 5;
 
+    [Header("Shadows")]
+    public int maxShadowCount = 100;
+
     public void RestartCurrentScene()
     {
         for (int i = 0; i < totalEnemies; i++)
@@ -39,6 +42,11 @@ public class RestartGame : MonoBehaviour
         for (int i = 0; i < totalBox; i++)
         {
             PlayerPrefs.DeleteKey("Box_" + i);
+        }
+
+         for (int i = 0; i < maxShadowCount; i++)
+        {
+            PlayerPrefs.DeleteKey("Shadow_" + i);
         }
         
         PlayerPrefs.DeleteKey("PlayerHealth");

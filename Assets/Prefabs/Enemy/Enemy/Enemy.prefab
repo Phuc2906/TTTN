@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyID: 7
-  maxHealth: 1
+  maxHealth: 15
   maxExp: 5
   healthBar: {fileID: 955953863442117340}
   healthValueText: {fileID: 939094357493369558}

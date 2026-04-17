@@ -18,6 +18,9 @@ public class Gun_Enemy : MonoBehaviour
 
     private SpriteRenderer enemySprite;
 
+    [Header("Shadow Lock")]
+    public List<GameObject> shadows = new List<GameObject>();
+
     void Start()
     {
         enemySprite = GetComponentInParent<SpriteRenderer>();
@@ -39,7 +42,7 @@ public class Gun_Enemy : MonoBehaviour
         {
             AimAtPlayer();
 
-            if (fireTimer <= 0f)
+            if (fireTimer <= 0f && !IsAnyShadowActive())
             {
                 Shoot();
                 fireTimer = fireRate;
@@ -77,6 +80,16 @@ public class Gun_Enemy : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
             rb.linearVelocity = firePoint.right * bulletSpeed;
+    }
+
+    bool IsAnyShadowActive()
+    {
+        foreach (var s in shadows)
+        {
+            if (s != null && s.activeInHierarchy)
+            return true;
+        }
+        return false;
     }
 
     void FlipWithEnemy()
