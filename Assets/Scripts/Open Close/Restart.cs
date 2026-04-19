@@ -98,6 +98,7 @@ public class RestartGame : MonoBehaviour
 
         
         PlayerPrefs.DeleteKey("Rent_NPC_01");
+        PlayerPrefs.DeleteKey("BossDestroyed_1");
 
         PlayerPrefs.Save();
 
