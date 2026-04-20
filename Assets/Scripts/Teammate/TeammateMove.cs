@@ -14,6 +14,9 @@ public class TeammateMove : MonoBehaviour
     public float moveSpeed = 2f;
     public float stopDistance = 1.5f;
 
+    [Header("Teleport Settings")]
+    public float teleportDistance = 8f; 
+
     private EnemyAttack attack;
     private SpriteRenderer sr;
     private Rigidbody2D rb;
@@ -93,6 +96,15 @@ public class TeammateMove : MonoBehaviour
     {
         float distance = Vector2.Distance(rb.position, player.position);
         Vector2 direction = ((Vector2)player.position - rb.position).normalized;
+
+        if (distance > teleportDistance)
+        {
+            Vector2 targetPos = (Vector2)player.position - direction * stopDistance;
+            rb.position = targetPos;
+
+            SetRunning(false);
+            return;
+        }
 
         if (distance > stopDistance)
         {

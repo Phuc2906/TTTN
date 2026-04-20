@@ -825,8 +825,7 @@ GameObject:
   - component: {fileID: 6401626389673401799}
   - component: {fileID: 9116858504355634284}
   - component: {fileID: 5332632711281736784}
-  - component: {fileID: 6865066633103986664}
-  - component: {fileID: 4957736197015721890}
+  - component: {fileID: 440831048858592541}
   m_Layer: 5
   m_Name: Continue
   m_TagString: Untagged
@@ -936,9 +935,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4957736197015721890}
-        m_TargetAssemblyTypeName: Mode, Assembly-CSharp
-        m_MethodName: LoadMode
+      - m_Target: {fileID: 440831048858592541}
+        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
+        m_MethodName: LoadSceneName
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -948,7 +947,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6865066633103986664
+--- !u!114 &440831048858592541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -957,21 +956,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6805576894096520955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01e702d2bdc3d774a9ace7ca78700f06, type: 3}
+  m_Script: {fileID: 11500000, guid: dbffdeb5ab2da3048a4785b69f686f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4957736197015721890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6805576894096520955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3106992a1b6257b4fa57b1201a977ad2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  sceneName: ChooseLevel
 --- !u!1 &6810359600506783621
 GameObject:
   m_ObjectHideFlags: 0

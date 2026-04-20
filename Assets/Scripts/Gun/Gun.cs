@@ -138,6 +138,11 @@ public class Gun : MonoBehaviour
         {
             rb.linearVelocity = firePoint.right * bulletSpeed;
         }
+
+          if (SoundManager.instance != null)
+        {
+            SoundManager.instance.PlaySFX(SoundManager.instance.shootSFX);
+        }
     }
 
     bool IsAnyShadowActive()
