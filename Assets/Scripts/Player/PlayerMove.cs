@@ -24,7 +24,15 @@ public class PlayerMove : MonoBehaviour
         moveAudio = gameObject.AddComponent<AudioSource>();
         moveAudio.loop = true;
         moveAudio.playOnAwake = false;
-        moveAudio.volume = SoundManager.instance.sfxSource.volume;
+
+        if (SoundManager.instance != null && SoundManager.instance.sfxSource != null)
+        {
+            moveAudio.volume = SoundManager.instance.sfxSource.volume;
+        }
+        else
+        {
+            moveAudio.volume = 1f;
+        }
 
         if (PlayerPrefs.HasKey("PlayerX"))
         {
@@ -68,7 +76,8 @@ public class PlayerMove : MonoBehaviour
 
     void HandleMoveSound()
     {
-        if (SoundManager.instance == null) return;
+        if (SoundManager.instance == null || moveAudio == null) return;
+        if (SoundManager.instance.sfxSource == null) return;
 
         bool isMoving = move.magnitude > 0;
 
@@ -76,7 +85,7 @@ public class PlayerMove : MonoBehaviour
 
         if (isMoving && !SoundManager.instance.sfxSource.mute)
         {
-            if (!moveAudio.isPlaying)
+            if (!moveAudio.isPlaying && SoundManager.instance.moveSFX != null)
             {
                 moveAudio.clip = SoundManager.instance.moveSFX;
                 moveAudio.pitch = Random.Range(0.9f, 1.1f);
