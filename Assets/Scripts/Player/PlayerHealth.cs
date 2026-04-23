@@ -16,6 +16,9 @@ public class PlayerHealth : MonoBehaviour
     [Header("Defense")]
     public GameObject shieldCanvas;
 
+    [Header("Immortal")]
+    public GameObject immortal;
+
     [Header("PlayerPrefs key")]
     public string playerRefKey = "PlayerHealth";
     public string playerDeadKey = "Player_Dead"; 
@@ -83,7 +86,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
-        if (shieldCanvas != null && shieldCanvas.activeSelf)
+        if ((shieldCanvas != null && shieldCanvas.activeSelf) || (immortal != null && immortal.activeSelf))
             return;
 
         if (currentHealth <= 0) return;

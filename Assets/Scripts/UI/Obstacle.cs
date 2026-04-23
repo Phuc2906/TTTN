@@ -2,11 +2,26 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        DealDamage(collision);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        DealDamage(collision);
+    }
+
+    void DealDamage(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
         {
-            GameManager.instance.GameOver();
+            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(99999);
+            }
         }
     }
 }
