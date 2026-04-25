@@ -18572,6 +18572,53 @@ MonoBehaviour:
   enemyAttacks: []
   shadowObject: {fileID: 1438466378}
   delayTime: 0.5
+--- !u!1 &1440244316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1440244317}
+  - component: {fileID: 1440244318}
+  m_Layer: 0
+  m_Name: Toggle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1440244317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440244316}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.975037, y: 1.0353876, z: -9.955253}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1440244318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440244316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d67e11ea232fe4db3082c29cda4799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggle: {fileID: 1093206732248350097}
+  targetObject: {fileID: 5425129351148823796}
+  key: MyToggleState
 --- !u!1001 &1441771566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28192,6 +28239,10 @@ PrefabInstance:
       propertyPath: 'canvasToDisable.Array.data[2]'
       value: 
       objectReference: {fileID: 489373378}
+    - target: {fileID: 1841532250415773674, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1988988960218290169, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
       propertyPath: 'canvasToEnable.Array.data[0]'
       value: 
@@ -28256,6 +28307,10 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 154473893}
+    - target: {fileID: 4084174183962952779, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5049551249352919197, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
       propertyPath: 'players.Array.data[0]'
       value: 
@@ -28288,6 +28343,10 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 154473893}
+    - target: {fileID: 6240163759966116638, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6431233103515240701, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
       propertyPath: 'canvasToEnable.Array.data[0]'
       value: 
@@ -28408,6 +28467,10 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 154473893}
+    - target: {fileID: 8780087810368312300, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8883977340099789311, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
       propertyPath: 'canvasToEnable.Array.data[0]'
       value: 
@@ -28429,6 +28492,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+--- !u!114 &1093206732248350097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6240163759966116638, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+  m_PrefabInstance: {fileID: 1093206732248350095}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2433751364942340851 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3017640013802650545, guid: 9c6f5e4b8445df64cbe8689da95dcbb5, type: 3}
@@ -44481,3 +44555,4 @@ SceneRoots:
   - {fileID: 1093206732248350095}
   - {fileID: 489373377}
   - {fileID: 793058729}
+  - {fileID: 1440244317}

@@ -17,6 +17,9 @@ public class HealthRuby : MonoBehaviour
     [Header("Game Over")]
     public bool pauseGameOnDeath = true;
 
+    [Header("Immortal")]
+    public GameObject immortal;
+
     private int currentHealth;
 
     private const string HEALTH_RUBY_KEY = "HealthRuby";
@@ -48,6 +51,9 @@ public class HealthRuby : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (immortal != null && immortal.activeSelf)
+        return;
+        
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 

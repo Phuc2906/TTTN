@@ -11,6 +11,9 @@ public class HealthWall : MonoBehaviour
     public Slider healthBar;
     public TMP_Text healthValueText;
 
+    [Header("Immortal")]
+    public GameObject immortal;
+
     private int currentHealth;
 
     private const string HEALTH_WALL_KEY = "HealthWall";
@@ -46,6 +49,9 @@ public class HealthWall : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (immortal != null && immortal.activeSelf)
+            return;
+
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
