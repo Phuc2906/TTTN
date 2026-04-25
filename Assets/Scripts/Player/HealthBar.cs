@@ -6,6 +6,7 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private TextMeshProUGUI HealthValueText;
 
     private int maxHealth;
 
@@ -29,5 +30,7 @@ public class HealthBar : MonoBehaviour
     {
         if (healthText != null)
             healthText.text = currentHealth + " / " + maxHealth;
+        if (HealthValueText != null)
+            HealthValueText.text = currentHealth.ToString();
     }
 }

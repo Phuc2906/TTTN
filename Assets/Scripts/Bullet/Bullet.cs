@@ -3,8 +3,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed = 10f;
-    public float lifeTime = 2f;   
-    public int normalDamage = 1;    
+    public float lifeTime = 2f;
+    public int normalDamage = 1;
 
     private Vector2 direction;
 
@@ -30,12 +30,9 @@ public class Bullet : MonoBehaviour
         EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
         if (enemy == null) return;
 
-        enemy.TakeDamage(normalDamage); 
-        Destroy(gameObject);
-    }
+        int finalDamage = DamageManager.instance.GetDamage(normalDamage);
 
-    public void SetDamage(int dmg)
-    {
-        normalDamage = dmg;
+        enemy.TakeDamage(finalDamage);
+        Destroy(gameObject);
     }
 }

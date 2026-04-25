@@ -21,30 +21,35 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("PlayerPrefs key")]
     public string playerRefKey = "PlayerHealth";
-    public string playerDeadKey = "Player_Dead"; 
+    public string playerDeadKey = "Player_Dead";
+
+    public string playerMaxHealthKey = "PlayerMaxHealth"; 
 
     private int baseMaxHealth; 
 
     void Awake()
+{
+    if (PlayerPrefs.HasKey(playerMaxHealthKey))
+        maxHealth = PlayerPrefs.GetInt(playerMaxHealthKey);
+
+    baseMaxHealth = maxHealth;
+
+    if (PlayerPrefs.GetInt(playerDeadKey, 0) == 1)
     {
-        baseMaxHealth = maxHealth; 
+        if (gameOverCanvas != null)
+            gameOverCanvas.SetActive(true);
 
-        if (PlayerPrefs.GetInt(playerDeadKey, 0) == 1)
-        {
-            if (gameOverCanvas != null)
-                gameOverCanvas.SetActive(true);
-
-            Destroy(gameObject);
-            return;
-        }
-
-        if (PlayerPrefs.HasKey(playerRefKey))
-            currentHealth = PlayerPrefs.GetInt(playerRefKey);
-        else
-            currentHealth = maxHealth;
-
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        Destroy(gameObject);
+        return;
     }
+
+    if (PlayerPrefs.HasKey(playerRefKey))
+        currentHealth = PlayerPrefs.GetInt(playerRefKey);
+    else
+        currentHealth = maxHealth;
+
+    currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+}
 
     void Start()
     {
@@ -111,6 +116,26 @@ public class PlayerHealth : MonoBehaviour
         SaveHealth();
     }
 
+    // ✅ ADMIN dùng (không cho = 0)
+    public void SetHealth(int value)
+{
+    int newHealth = Mathf.Max(1, value);
+
+    baseMaxHealth = newHealth;
+    maxHealth = newHealth;
+    currentHealth = newHealth;
+
+    PlayerPrefs.SetInt(playerDeadKey, 0);
+
+    if (healthBar != null)
+    {
+        healthBar.SetMaxHealth(maxHealth); // 🔥 QUAN TRỌNG
+        healthBar.SetHealth(currentHealth);
+    }
+
+    SaveHealth();
+}
+
     void UpdateUI()
     {
         if (healthBar != null)
@@ -131,26 +156,12 @@ public class PlayerHealth : MonoBehaviour
     void SaveHealth()
     {
         PlayerPrefs.SetInt(playerRefKey, currentHealth);
+        PlayerPrefs.SetInt(playerMaxHealthKey, maxHealth);
         PlayerPrefs.Save();
     }
 
-    public int GetCurrentHealth()
-    {
-        return currentHealth;
-    }
-
-    public int GetMaxHealth()
-    {
-        return maxHealth;
-    }
-
-    public bool IsAlive()
-    {
-        return currentHealth > 0;
-    }
-
-    public bool IsHealthFull()
-    {
-        return currentHealth >= maxHealth;
-    }
+    public int GetCurrentHealth() => currentHealth;
+    public int GetMaxHealth() => maxHealth;
+    public bool IsAlive() => currentHealth > 0;
+    public bool IsHealthFull() => currentHealth >= maxHealth;
 }

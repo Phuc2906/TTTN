@@ -14,6 +14,31 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
         playerSprite = GetComponent<SpriteRenderer>();
+
+        // Delay nhẹ để tránh lỗi timing Unity
+        Invoke(nameof(InitWeaponState), 0.05f);
+    }
+
+    void InitWeaponState()
+    {
+        Gun gun = GetComponentInChildren<Gun>();
+
+        if (gun != null && gun.bulletPrefab != null)
+        {
+            Bullet b = gun.bulletPrefab.GetComponent<Bullet>();
+            int realDamage = (b != null) ? b.normalDamage : 0;
+
+            currentWeapon = gun.gameObject;
+            DamageManager.instance.SetWeaponState(true, realDamage);
+        }
+        else if (defaultWeaponPrefab != null)
+        {
+            EquipWeapon(defaultWeaponPrefab);
+        }
+        else
+        {
+            DamageManager.instance.SetWeaponState(false, 0);
+        }
     }
 
     void Update()
@@ -63,6 +88,15 @@ public class WeaponController : MonoBehaviour
             weaponHolder.rotation,
             weaponHolder
         );
+
+        Gun gun = currentWeapon.GetComponent<Gun>();
+        if (gun != null && gun.bulletPrefab != null)
+        {
+            Bullet b = gun.bulletPrefab.GetComponent<Bullet>();
+            int realDamage = (b != null) ? b.normalDamage : 0;
+
+            DamageManager.instance.SetWeaponState(true, realDamage);
+        }
     }
 
     public void UnequipWeapon()
@@ -71,5 +105,10 @@ public class WeaponController : MonoBehaviour
             Destroy(currentWeapon);
 
         currentWeapon = null;
+
+        if (DamageManager.instance != null)
+        {
+            DamageManager.instance.SetWeaponState(false, 0);
+        }
     }
 }

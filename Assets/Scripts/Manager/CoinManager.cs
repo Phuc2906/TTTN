@@ -14,6 +14,13 @@ public class CoinManager : MonoBehaviour
     [Header("Total UI")]
     public TextMeshProUGUI coinText_Total;
 
+    [Header("UI Value")]
+    public TextMeshProUGUI coinText_Value;
+    [Header("Input Field")]
+    public TMP_InputField coinInputField;
+    [Header("Canvas")]    
+    public Canvas coinvalueCanvas;
+
     private int coin;
 
     private void Awake()
@@ -48,6 +55,20 @@ public class CoinManager : MonoBehaviour
         return true;
     }
 
+    public void SetCoinFromInput()
+    {
+        if (coinInputField == null) return;
+
+        string input = coinInputField.text;
+
+        if (int.TryParse(input, out int value))
+        {
+            coin = value;
+            SaveCoin();
+            coinvalueCanvas.gameObject.SetActive(false);
+        }
+    }
+
     private void SaveCoin()
     {
         PlayerPrefs.SetInt(COIN_KEY, coin);
@@ -63,6 +84,7 @@ public class CoinManager : MonoBehaviour
         if (coinText_GameWin != null) coinText_GameWin.text = s;
         if (coinText_GameOver != null) coinText_GameOver.text = s;
         if (coinText_Total != null) coinText_Total.text = s;
+        if (coinText_Value != null) coinText_Value.text = s;
     }
 
     public int GetCoin() => coin;

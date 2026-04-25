@@ -14,22 +14,32 @@ public class Gun : MonoBehaviour
     public GameObject rangeBuffCanvas;
     public float rangeBoost = 3f;
 
-    [Header("Buff Damage")]
-    public GameObject damageBuffCanvas;
-
     [Header("Buff Fire Rate")]
     public GameObject fireRateBuffCanvas;
     public float fireRateBoost = 0.2f; 
+
     private float fireTimer = 0f;
     private SpriteRenderer playerSprite;
 
     [Header("Shadow Lock")]
     public List<GameObject> shadows = new List<GameObject>();
 
+    [Header("Current Bullet Damage")]
+    public int currentBulletDamage = 1;
+
     void Start()
     {
         playerSprite = GetComponentInParent<SpriteRenderer>();
         fireTimer = 0f;
+
+        if (bulletPrefab != null)
+        {
+            Bullet b = bulletPrefab.GetComponent<Bullet>();
+            if (b != null)
+            {
+                currentBulletDamage = b.normalDamage;
+            }
+        }
     }
 
     void Update()
@@ -45,22 +55,51 @@ public class Gun : MonoBehaviour
         {
             AimAtEnemy(nearestEnemy.position);
 
-           if (fireTimer <= 0f && !IsAnyShadowActive())
+            if (fireTimer <= 0f && !IsAnyShadowActive())
             {
                 Shoot();
 
                 float finalFireRate = fireRate;
 
-            if (fireRateBuffCanvas != null && fireRateBuffCanvas.activeSelf)
-            {
-                finalFireRate -= fireRateBoost;
+                if (fireRateBuffCanvas != null && fireRateBuffCanvas.activeSelf)
+                {
+                    finalFireRate -= fireRateBoost;
 
-                if (finalFireRate < 0.05f)
-                finalFireRate = 0.05f;
-            }
+                    if (finalFireRate < 0.05f)
+                        finalFireRate = 0.05f;
+                }
 
                 fireTimer = finalFireRate;
             }
+        }
+    }
+
+    void Shoot()
+    {
+        if (!bulletPrefab) return;
+
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = firePoint.right * bulletSpeed;
+        }
+
+        if (SoundManager.instance != null)
+        {
+            SoundManager.instance.PlaySFX(SoundManager.instance.shootSFX);
+        }
+    }
+
+    public void SetBullet(GameObject newBullet)
+    {
+        bulletPrefab = newBullet;
+
+        Bullet b = newBullet.GetComponent<Bullet>();
+        if (b != null)
+        {
+            currentBulletDamage = b.normalDamage;
         }
     }
 
@@ -76,7 +115,7 @@ public class Gun : MonoBehaviour
 
     void StickGunHorizontally()
     {
-        transform.localEulerAngles = new Vector3(0, 0, 0);
+        transform.localEulerAngles = Vector3.zero;
     }
 
     Transform FindNearestEnemy()
@@ -87,7 +126,9 @@ public class Gun : MonoBehaviour
         {
             finalRange += rangeBoost;
         }
+
         Collider2D[] hits = Physics2D.OverlapCircleAll(firePoint.position, finalRange, enemyLayer);
+
         Transform nearest = null;
         float minDist = Mathf.Infinity;
 
@@ -103,6 +144,7 @@ public class Gun : MonoBehaviour
                 }
             }
         }
+
         return nearest;
     }
 
@@ -112,37 +154,6 @@ public class Gun : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         firePoint.rotation = Quaternion.Euler(0, 0, angle);
-    }
-
-    void Shoot()
-    {
-        if (!bulletPrefab) return;
-
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-
-        Bullet bulletScript = bullet.GetComponent<Bullet>();
-        if (bulletScript != null)
-        {
-            int finalDamage = bulletScript.normalDamage;
-
-            if (damageBuffCanvas != null && damageBuffCanvas.activeSelf)
-            {
-                finalDamage *= 2;
-            }
-
-            bulletScript.SetDamage(finalDamage);
-        }
-
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            rb.linearVelocity = firePoint.right * bulletSpeed;
-        }
-
-          if (SoundManager.instance != null)
-        {
-            SoundManager.instance.PlaySFX(SoundManager.instance.shootSFX);
-        }
     }
 
     bool IsAnyShadowActive()

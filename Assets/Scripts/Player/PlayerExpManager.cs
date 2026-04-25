@@ -10,6 +10,9 @@ public class PlayerExpManager : MonoBehaviour
     [Header("0/0")]
     public TMP_Text expValueText;   
 
+    [Header("Level Value Text")]
+    public TMP_Text levelValueText;
+
     private int level = 1;
     private int currentExp = 0;
     private int expToNextLevel;
@@ -17,11 +20,8 @@ public class PlayerExpManager : MonoBehaviour
     public static PlayerExpManager Instance;
 
     void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+    {   
+        Instance = this;
     }
 
     void Start()
@@ -50,6 +50,20 @@ public class PlayerExpManager : MonoBehaviour
         SaveLevel();
     }
 
+    // ✅ ADMIN dùng
+    public void SetLevel(int value)
+    {
+        if (value < 1) value = 1;
+
+        level = value;
+        currentExp = 0;
+
+        expToNextLevel = CalculateExpToNextLevel();
+
+        UpdateUI();
+        SaveLevel();
+    }
+
     void UpdateUI()
     {
         expToNextLevel = CalculateExpToNextLevel();
@@ -58,6 +72,8 @@ public class PlayerExpManager : MonoBehaviour
         expBar.value = currentExp;
 
         levelText.text = "LV " + level;
+        levelValueText.text = level.ToString();
+        
         expValueText.text = currentExp + " / " + expToNextLevel;
     }
 
@@ -75,8 +91,5 @@ public class PlayerExpManager : MonoBehaviour
         expToNextLevel = CalculateExpToNextLevel();
     }
 
-    public int GetLevel()
-    {
-        return level;
-    }
+    public int GetLevel() => level;
 }
