@@ -71899,37 +71899,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1033485494112612909, guid: f78c62e2a3407e84696307eea06b3c04, type: 3}
-      propertyPath: damageAmount
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 2079519665206964373, guid: f78c62e2a3407e84696307eea06b3c04, type: 3}
       propertyPath: m_Name
       value: Obstacle
-      objectReference: {fileID: 0}
-    - target: {fileID: 2387184249566619484, guid: f78c62e2a3407e84696307eea06b3c04, type: 3}
-      propertyPath: damageAmount
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 2548012459093638690, guid: f78c62e2a3407e84696307eea06b3c04, type: 3}
-      propertyPath: damageAmount
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3322804956578942541, guid: f78c62e2a3407e84696307eea06b3c04, type: 3}
-      propertyPath: damageAmount
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5748554051380796604, guid: f78c62e2a3407e84696307eea06b3c04, type: 3}
-      propertyPath: damageAmount
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5847081135164044822, guid: f78c62e2a3407e84696307eea06b3c04, type: 3}
-      propertyPath: damageAmount
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6547204539168770972, guid: f78c62e2a3407e84696307eea06b3c04, type: 3}
-      propertyPath: damageAmount
-      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6668470371066447762, guid: f78c62e2a3407e84696307eea06b3c04, type: 3}
       propertyPath: m_LocalPosition.x
@@ -71970,26 +71942,6 @@ PrefabInstance:
     - target: {fileID: 6668470371066447762, guid: f78c62e2a3407e84696307eea06b3c04, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6895149056198421193, guid: f78c62e2a3407e84696307eea06b3c04, type: 3}
-      propertyPath: damageAmount
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6961532424931104807, guid: f78c62e2a3407e84696307eea06b3c04, type: 3}
-      propertyPath: damageAmount
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7069247581771590050, guid: f78c62e2a3407e84696307eea06b3c04, type: 3}
-      propertyPath: damageAmount
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7207538239906148572, guid: f78c62e2a3407e84696307eea06b3c04, type: 3}
-      propertyPath: damageAmount
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7960342563071158772, guid: f78c62e2a3407e84696307eea06b3c04, type: 3}
-      propertyPath: damageAmount
-      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
