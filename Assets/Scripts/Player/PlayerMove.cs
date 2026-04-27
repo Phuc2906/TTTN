@@ -1,9 +1,16 @@
 using UnityEngine;
+using TMPro;
 
 public class PlayerMove : MonoBehaviour
 {
     public float speed = 5f;
     public GameObject buffCanvas;
+
+    [Header("Admin Speed Override")]
+    public float adminSpeed = 0f;
+
+    [Header("Text TMP")]
+    public TMP_Text speedText;
 
     private Rigidbody2D rb;
     private Vector2 move;
@@ -46,6 +53,13 @@ public class PlayerMove : MonoBehaviour
         {
             sr.flipX = PlayerPrefs.GetInt("PlayerFacing") == 1;
         }
+
+        if (PlayerPrefs.HasKey("AdminSpeed"))
+    {
+        adminSpeed = PlayerPrefs.GetFloat("AdminSpeed");
+    }
+
+        UpdateSpeedUI(); 
     }
 
     void Update()
@@ -60,18 +74,45 @@ public class PlayerMove : MonoBehaviour
         anim.SetBool("IsRunning", move.magnitude > 0);
 
         HandleMoveSound();
+
+        UpdateSpeedUI(); 
     }
 
     void FixedUpdate()
     {
-        float finalSpeed = speed;
+        float finalSpeed = GetFinalSpeed();
+
+        rb.MovePosition(rb.position + move * finalSpeed * Time.fixedDeltaTime);
+    }
+
+    float GetFinalSpeed()
+    {
+        float finalSpeed = (adminSpeed > 0) ? adminSpeed : speed;
 
         if (buffCanvas != null && buffCanvas.activeSelf)
         {
             finalSpeed += 2f;
         }
 
-        rb.MovePosition(rb.position + move * finalSpeed * Time.fixedDeltaTime);
+        return finalSpeed;
+    }
+
+    public void SetSpeed(float value)
+    {
+        adminSpeed = value;
+
+        PlayerPrefs.SetFloat("AdminSpeed", adminSpeed);
+        PlayerPrefs.Save();
+        
+        UpdateSpeedUI();
+    }
+
+    void UpdateSpeedUI()
+    {
+        if (speedText == null) return;
+
+        float finalSpeed = GetFinalSpeed();
+        speedText.text = finalSpeed.ToString();
     }
 
     void HandleMoveSound()

@@ -9722,6 +9722,26 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 154473893}
+    - target: {fileID: 3434425154501734258, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+      propertyPath: 'canvasToEnable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1492017967}
+    - target: {fileID: 3434425154501734258, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1415900511}
+    - target: {fileID: 3434425154501734258, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1415900510}
+    - target: {fileID: 3434425154501734258, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1415900512}
+    - target: {fileID: 3434425154501734258, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1415900509}
     - target: {fileID: 3697046621493062029, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
       propertyPath: 'players.Array.data[0]'
       value: 
@@ -18842,6 +18862,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1309208616364077421, guid: f8c297ab849145846b116ad834f79901, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1456866076}
+    - target: {fileID: 1309208616364077421, guid: f8c297ab849145846b116ad834f79901, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSpeed
+      objectReference: {fileID: 0}
     - target: {fileID: 1999191781692154185, guid: f8c297ab849145846b116ad834f79901, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -19762,10 +19790,12 @@ MonoBehaviour:
   healthInput: {fileID: 1415900514}
   levelInput: {fileID: 1415900516}
   damageInput: {fileID: 1415900513}
+  speedInput: {fileID: 1689392988}
   warningCanvas: {fileID: 790416343}
   expCanvas: {fileID: 1415900509}
   healthCanvas: {fileID: 1415900510}
   damageCanvas: {fileID: 1415900512}
+  speedCanvas: {fileID: 1492017967}
 --- !u!1001 &1472984121
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20297,6 +20327,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1492017967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3882000784167038464, guid: f8c297ab849145846b116ad834f79901, type: 3}
+  m_PrefabInstance: {fileID: 1415900508}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1496821206
 GameObject:
   m_ObjectHideFlags: 0
@@ -20521,6 +20556,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1168357506}
     - target: {fileID: 1375174883454840616, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 1709726431}
+    - target: {fileID: 1375174883454840616, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
       propertyPath: buffCanvas
       value: 
       objectReference: {fileID: 886775517}
@@ -20548,6 +20587,10 @@ PrefabInstance:
       propertyPath: HealthValueText
       value: 
       objectReference: {fileID: 1168357505}
+    - target: {fileID: 2750429110573795112, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 1709726431}
     - target: {fileID: 2750429110573795112, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
       propertyPath: buffCanvas
       value: 
@@ -20600,6 +20643,10 @@ PrefabInstance:
       propertyPath: HealthValueText
       value: 
       objectReference: {fileID: 1168357505}
+    - target: {fileID: 5699533429927028949, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 1709726431}
     - target: {fileID: 5699533429927028949, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
       propertyPath: buffCanvas
       value: 
@@ -20672,6 +20719,10 @@ PrefabInstance:
       propertyPath: gameOverCanvas
       value: 
       objectReference: {fileID: 508318439}
+    - target: {fileID: 8119269408504139787, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 1709726431}
     - target: {fileID: 8119269408504139787, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
       propertyPath: buffCanvas
       value: 
@@ -22674,6 +22725,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1689392988 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4036331143964602219, guid: f8c297ab849145846b116ad834f79901, type: 3}
+  m_PrefabInstance: {fileID: 1415900508}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1696566780
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22946,6 +23008,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1709726431 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6891584674438394743, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+  m_PrefabInstance: {fileID: 745953885}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1715494900
 GameObject:
   m_ObjectHideFlags: 0

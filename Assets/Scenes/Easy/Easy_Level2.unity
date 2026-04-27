@@ -4043,6 +4043,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 955195040}
     - target: {fileID: 1375174883454840616, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 1878700297}
+    - target: {fileID: 1375174883454840616, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
       propertyPath: buffCanvas
       value: 
       objectReference: {fileID: 810463336}
@@ -4070,6 +4074,10 @@ PrefabInstance:
       propertyPath: HealthValueText
       value: 
       objectReference: {fileID: 1749148627}
+    - target: {fileID: 2750429110573795112, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 1878700297}
     - target: {fileID: 2750429110573795112, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
       propertyPath: buffCanvas
       value: 
@@ -4126,6 +4134,10 @@ PrefabInstance:
       propertyPath: HealthValueText
       value: 
       objectReference: {fileID: 1749148627}
+    - target: {fileID: 5699533429927028949, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 1878700297}
     - target: {fileID: 5699533429927028949, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
       propertyPath: buffCanvas
       value: 
@@ -4206,6 +4218,10 @@ PrefabInstance:
       propertyPath: gameOverCanvas
       value: 
       objectReference: {fileID: 399515712}
+    - target: {fileID: 8119269408504139787, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 1878700297}
     - target: {fileID: 8119269408504139787, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
       propertyPath: buffCanvas
       value: 
@@ -20072,6 +20088,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasToClose: {fileID: 1480781326}
   communicateScript: {fileID: 2121373580}
+--- !u!114 &1878700297 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4206377595600491380, guid: a2e5e3fc2fd9cbb4ba250d3d26e6fbf6, type: 3}
+  m_PrefabInstance: {fileID: 1338220874091208167}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1879020088
 GameObject:
   m_ObjectHideFlags: 0
@@ -22664,10 +22691,12 @@ MonoBehaviour:
   healthInput: {fileID: 802484219}
   levelInput: {fileID: 140758972}
   damageInput: {fileID: 578890633}
+  speedInput: {fileID: 2718490485247905556}
   warningCanvas: {fileID: 308766369}
   expCanvas: {fileID: 1240828977}
   healthCanvas: {fileID: 1892447800}
   damageCanvas: {fileID: 316983884}
+  speedCanvas: {fileID: 2718490485247905555}
 --- !u!114 &2072798652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23613,6 +23642,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1551386766941512925, guid: a2e5e3fc2fd9cbb4ba250d3d26e6fbf6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 75.9201
+      objectReference: {fileID: 0}
     - target: {fileID: 1783061111171461013, guid: a2e5e3fc2fd9cbb4ba250d3d26e6fbf6, type: 3}
       propertyPath: 'players.Array.data[0]'
       value: 
@@ -23657,6 +23690,22 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 1093440338}
+    - target: {fileID: 2794233581299768700, guid: a2e5e3fc2fd9cbb4ba250d3d26e6fbf6, type: 3}
+      propertyPath: 'canvasToEnable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2718490485247905555}
+    - target: {fileID: 2794233581299768700, guid: a2e5e3fc2fd9cbb4ba250d3d26e6fbf6, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1892447800}
+    - target: {fileID: 2794233581299768700, guid: a2e5e3fc2fd9cbb4ba250d3d26e6fbf6, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[1]'
+      value: 
+      objectReference: {fileID: 316983884}
+    - target: {fileID: 2794233581299768700, guid: a2e5e3fc2fd9cbb4ba250d3d26e6fbf6, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1240828977}
     - target: {fileID: 2875526247248413255, guid: a2e5e3fc2fd9cbb4ba250d3d26e6fbf6, type: 3}
       propertyPath: 'players.Array.data[0]'
       value: 
@@ -23753,10 +23802,6 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 1093440338}
-    - target: {fileID: 4989073212159847511, guid: a2e5e3fc2fd9cbb4ba250d3d26e6fbf6, type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5861523897986332358, guid: a2e5e3fc2fd9cbb4ba250d3d26e6fbf6, type: 3}
       propertyPath: 'players.Array.data[0]'
       value: 
@@ -23837,6 +23882,10 @@ PrefabInstance:
       propertyPath: 'canvasToDisable.Array.data[0]'
       value: 
       objectReference: {fileID: 173606506}
+    - target: {fileID: 8155507046926918486, guid: a2e5e3fc2fd9cbb4ba250d3d26e6fbf6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 175
+      objectReference: {fileID: 0}
     - target: {fileID: 8296714746659068490, guid: a2e5e3fc2fd9cbb4ba250d3d26e6fbf6, type: 3}
       propertyPath: m_Camera
       value: 
@@ -23994,6 +24043,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1309208616364077421, guid: f8c297ab849145846b116ad834f79901, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2072798651}
+    - target: {fileID: 1309208616364077421, guid: f8c297ab849145846b116ad834f79901, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSpeed
+      objectReference: {fileID: 0}
     - target: {fileID: 1999191781692154185, guid: f8c297ab849145846b116ad834f79901, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -24063,6 +24120,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8c297ab849145846b116ad834f79901, type: 3}
+--- !u!1 &2718490485247905555 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3882000784167038464, guid: f8c297ab849145846b116ad834f79901, type: 3}
+  m_PrefabInstance: {fileID: 2718490485247905554}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2718490485247905556 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4036331143964602219, guid: f8c297ab849145846b116ad834f79901, type: 3}
+  m_PrefabInstance: {fileID: 2718490485247905554}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3613953322107223601 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 630125046612071276, guid: 1c4cd8e2c3dad4a4ea86f86eb7966b59, type: 3}

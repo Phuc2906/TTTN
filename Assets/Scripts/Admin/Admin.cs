@@ -16,6 +16,9 @@ public class Admin : MonoBehaviour
     public TMP_InputField levelInput;
     public TMP_InputField damageInput;
 
+    [Header("Speed")]
+    public TMP_InputField speedInput;
+
     [Header("Warning")]
     public GameObject warningCanvas;
 
@@ -27,6 +30,10 @@ public class Admin : MonoBehaviour
 
     [Header("Canvas")]
     public GameObject damageCanvas;
+
+    [Header("Speed Canvas")]
+    public GameObject speedCanvas;
+
 
     void Update()
     {
@@ -98,6 +105,28 @@ public class Admin : MonoBehaviour
             }
             DamageManager.instance.SetDamage(value);
             damageCanvas.SetActive(false);
+        }
+    }
+
+    public void SetSpeed()
+    {
+        if (speedInput == null) return;
+
+        if (float.TryParse(speedInput.text, out float value))
+        {
+            if (value <= 0)
+            {
+                if (warningCanvas != null)
+                    warningCanvas.SetActive(true);
+                    return;
+            }
+
+            PlayerMove player = FindFirstObjectByType<PlayerMove>();
+            if (player != null)
+            {
+                player.SetSpeed(value);
+                speedCanvas.SetActive(false);
+            }
         }
     }
 

@@ -12800,10 +12800,12 @@ MonoBehaviour:
   healthInput: {fileID: 1617789549}
   levelInput: {fileID: 1617789547}
   damageInput: {fileID: 1617789548}
+  speedInput: {fileID: 890617098}
   warningCanvas: {fileID: 1397957499}
   expCanvas: {fileID: 1656589651}
   healthCanvas: {fileID: 1656589653}
   damageCanvas: {fileID: 1656589652}
+  speedCanvas: {fileID: 682948548}
 --- !u!114 &636825424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13655,6 +13657,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672570892}
   m_CullTransparentMesh: 1
+--- !u!1 &682948548 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3882000784167038464, guid: f8c297ab849145846b116ad834f79901, type: 3}
+  m_PrefabInstance: {fileID: 1656589648}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &685214064
 GameObject:
   m_ObjectHideFlags: 0
@@ -17364,6 +17371,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888606248}
   m_CullTransparentMesh: 1
+--- !u!114 &890617098 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4036331143964602219, guid: f8c297ab849145846b116ad834f79901, type: 3}
+  m_PrefabInstance: {fileID: 1656589648}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &894673418
 GameObject:
   m_ObjectHideFlags: 0
@@ -37591,6 +37609,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1092356186697334099}
     - target: {fileID: 1375174883454840616, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 1533149308}
+    - target: {fileID: 1375174883454840616, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
       propertyPath: buffCanvas
       value: 
       objectReference: {fileID: 6552045992233636713}
@@ -37618,6 +37640,10 @@ PrefabInstance:
       propertyPath: HealthValueText
       value: 
       objectReference: {fileID: 7475413605842627821}
+    - target: {fileID: 2750429110573795112, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 1533149308}
     - target: {fileID: 2750429110573795112, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
       propertyPath: buffCanvas
       value: 
@@ -37670,6 +37696,10 @@ PrefabInstance:
       propertyPath: HealthValueText
       value: 
       objectReference: {fileID: 7475413605842627821}
+    - target: {fileID: 5699533429927028949, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 1533149308}
     - target: {fileID: 5699533429927028949, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
       propertyPath: buffCanvas
       value: 
@@ -37742,6 +37772,10 @@ PrefabInstance:
       propertyPath: gameOverCanvas
       value: 
       objectReference: {fileID: 758690378}
+    - target: {fileID: 8119269408504139787, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 1533149308}
     - target: {fileID: 8119269408504139787, guid: 12b9c6804f7b4844ea2243fa57a4a102, type: 3}
       propertyPath: buffCanvas
       value: 
@@ -49663,6 +49697,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1528393019}
   m_CullTransparentMesh: 1
+--- !u!114 &1533149308 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8631732141584036575, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+  m_PrefabInstance: {fileID: 7801032103485736521}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1533754393
 GameObject:
   m_ObjectHideFlags: 0
@@ -52620,6 +52665,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1309208616364077421, guid: f8c297ab849145846b116ad834f79901, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 636825423}
+    - target: {fileID: 1309208616364077421, guid: f8c297ab849145846b116ad834f79901, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSpeed
+      objectReference: {fileID: 0}
     - target: {fileID: 1999191781692154185, guid: f8c297ab849145846b116ad834f79901, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -73190,6 +73243,10 @@ PrefabInstance:
       propertyPath: 'canvasToDisable.Array.data[2]'
       value: 
       objectReference: {fileID: 1656589651}
+    - target: {fileID: 7180167393207463508, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 175
+      objectReference: {fileID: 0}
     - target: {fileID: 7276092188012090180, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
       propertyPath: 'players.Array.data[0]'
       value: 
@@ -73206,9 +73263,29 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 586593183}
-    - target: {fileID: 8793215580393897948, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 8378186848832155153, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToEnable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 682948548}
+    - target: {fileID: 8378186848832155153, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1656589654}
+    - target: {fileID: 8378186848832155153, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1656589653}
+    - target: {fileID: 8378186848832155153, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1656589652}
+    - target: {fileID: 8378186848832155153, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1656589651}
+    - target: {fileID: 9135018605837489172, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 75.9201
       objectReference: {fileID: 0}
     - target: {fileID: 9162290774284874377, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
       propertyPath: m_LocalPosition.x
