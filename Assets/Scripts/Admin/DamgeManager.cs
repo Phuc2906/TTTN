@@ -20,11 +20,23 @@ public class DamageManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+
+        if (PlayerPrefs.HasKey("ADMIN_DAMAGE"))
+        {
+            adminDamage = PlayerPrefs.GetInt("ADMIN_DAMAGE");
+        }
+    }
+
+    void Start()
+    {
+        RefreshAllUI();
     }
 
     public void SetDamage(int value)
     {
         adminDamage = value;
+        PlayerPrefs.SetInt("ADMIN_DAMAGE", adminDamage);
+        PlayerPrefs.Save();
         RefreshAllUI();
     }
 

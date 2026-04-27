@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Obstacle : MonoBehaviour
 {
+    public int damageAmount = 99999;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         DealDamage(collision);
@@ -20,7 +22,7 @@ public class Obstacle : MonoBehaviour
 
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(99999);
+                playerHealth.TakeDamage(damageAmount);
             }
         }
     }
