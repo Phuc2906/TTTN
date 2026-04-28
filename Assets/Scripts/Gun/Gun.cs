@@ -9,6 +9,7 @@ public class Gun : MonoBehaviour
     public float fireRate = 0.5f;
     public float detectionRange = 8f;
     public LayerMask enemyLayer;
+    public LayerMask enemyBossLayer;
 
     [Header("Fire Mode")]
     public bool isAutoFire = true;
@@ -145,14 +146,14 @@ public class Gun : MonoBehaviour
         if (rangeBuffCanvas != null && rangeBuffCanvas.activeSelf)
             finalRange += rangeBoost;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(firePoint.position, finalRange, enemyLayer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(firePoint.position, finalRange, enemyLayer | enemyBossLayer);
 
         Transform nearest = null;
         float minDist = Mathf.Infinity;
 
         foreach (Collider2D hit in hits)
         {
-            if (hit.CompareTag("Enemy"))
+            if (hit.CompareTag("Enemy") || hit.CompareTag("EnemyBoss"))
             {
                 float dist = Vector2.Distance(firePoint.position, hit.transform.position);
                 if (dist < minDist)

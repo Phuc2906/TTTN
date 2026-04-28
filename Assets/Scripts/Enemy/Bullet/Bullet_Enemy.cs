@@ -33,6 +33,18 @@ public class Bullet_Enemy : MonoBehaviour
                 player.TakeDamage(damage);
             }
 
+            HealthWall healthWall = collision.GetComponent<HealthWall>();
+            if (healthWall != null)            
+            {
+                healthWall.TakeDamage(damage);
+            }
+
+            HealthRuby healthRuby = collision.GetComponent<HealthRuby>();
+            if (healthRuby != null)
+            {
+                healthRuby.TakeDamage(damage);
+            }
+
             Destroy(gameObject);
         }
         else if (collision.CompareTag("Obstacle"))
