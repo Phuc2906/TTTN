@@ -25,6 +25,13 @@ public class EnemyMove : MonoBehaviour
     [Header("Wall Follow Fix")]
     public float wallPushForce = 0.2f;
 
+    [Header("A*")]
+    public float repathTime = 0.2f;
+
+    private List<Vector2> path = new List<Vector2>();
+    private int pathIndex;
+    private float repathTimer;
+
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private EnemyAttack attack;
@@ -69,20 +76,15 @@ public class EnemyMove : MonoBehaviour
         if (attack && attack.isAttacking)
         {
             rb.linearVelocity = Vector2.zero;
-
             Flip(player.position.x - transform.position.x);
-
             return;
         }
 
         UpdateState();
+        UpdatePath();   
         Move();
 
-        PlayerPrefs.SetFloat(keyX, transform.position.x);
-        PlayerPrefs.SetFloat(keyY, transform.position.y);
-
-        if (sr)
-            PlayerPrefs.SetInt(keyFacing, sr.flipX ? 1 : 0);
+        SaveData();
     }
 
     void FindPlayerIfNeeded()
@@ -112,6 +114,12 @@ public class EnemyMove : MonoBehaviour
             return;
         }
 
+        if (state != AIState.Chase && dist <= detectRange)
+        {
+            path = null;
+            pathIndex = 0;
+        }
+
         if (state == AIState.WallFollow)
         {
             if (HasClearPathToPlayer())
@@ -123,9 +131,7 @@ public class EnemyMove : MonoBehaviour
             if (CheckWallAhead(out RaycastHit2D hit))
             {
                 if (Vector2.Dot(hit.normal, lastWallNormal) < 0.95f)
-                {
                     EnterWallFollow(hit);
-                }
             }
 
             return;
@@ -140,13 +146,38 @@ public class EnemyMove : MonoBehaviour
         state = AIState.Chase;
     }
 
+    void UpdatePath()
+    {
+        if (state != AIState.Chase) return;
+        if (!player) return;
+        if (AStarGrid2D.Instance == null) return;
+
+        repathTimer -= Time.fixedDeltaTime;
+        if (repathTimer > 0) return;
+
+        repathTimer = repathTime;
+
+        path = AStarGrid2D.Instance.FindPath(rb.position, player.position);
+        pathIndex = 0;
+    }
+
     void Move()
     {
         Vector2 nextPos = rb.position;
 
         if (state == AIState.Chase)
         {
-            Vector2 dir = ((Vector2)player.position - rb.position).normalized;
+            Vector2 target = player.position;
+
+            if (path != null && pathIndex < path.Count)
+            {
+                target = path[pathIndex];
+
+                if (Vector2.Distance(rb.position, target) < 0.2f)
+                    pathIndex++;
+            }
+
+            Vector2 dir = (target - rb.position).normalized;
 
             if (Vector2.Distance(rb.position, player.position) > stopDistance)
                 nextPos += dir * moveSpeed * Time.fixedDeltaTime;
@@ -159,11 +190,10 @@ public class EnemyMove : MonoBehaviour
             Vector2 finalDir = wallDir + pushAway;
 
             if (finalDir.sqrMagnitude < 0.001f)
-            {
                 finalDir = wallDir;
-            }
 
             finalDir.Normalize();
+
             nextPos += finalDir * moveSpeed * Time.fixedDeltaTime;
 
             Flip(wallDir.x);
@@ -201,10 +231,19 @@ public class EnemyMove : MonoBehaviour
 
         Vector2 side = Vector2.Perpendicular(dir) * 0.3f;
 
-        RaycastHit2D left  = Physics2D.Raycast(rb.position + side, dir, dist, obstacleMask);
+        RaycastHit2D left = Physics2D.Raycast(rb.position + side, dir, dist, obstacleMask);
         RaycastHit2D right = Physics2D.Raycast(rb.position - side, dir, dist, obstacleMask);
 
         return center.collider == null || left.collider == null || right.collider == null;
+    }
+
+    void SaveData()
+    {
+        PlayerPrefs.SetFloat(keyX, transform.position.x);
+        PlayerPrefs.SetFloat(keyY, transform.position.y);
+
+        if (sr)
+            PlayerPrefs.SetInt(keyFacing, sr.flipX ? 1 : 0);
     }
 
     void Flip(float x)

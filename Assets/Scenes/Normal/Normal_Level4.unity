@@ -20996,6 +20996,7 @@ GameObject:
   - component: {fileID: 1456866076}
   - component: {fileID: 1456866075}
   - component: {fileID: 1456866074}
+  - component: {fileID: 1456866077}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -21267,6 +21268,22 @@ MonoBehaviour:
   healthCanvas: {fileID: 1924765827}
   damageCanvas: {fileID: 1924765829}
   speedCanvas: {fileID: 463538454}
+--- !u!114 &1456866077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456866064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb4144830b14b149aa49428fcea66eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 128
+  nodeSize: 0.5
 --- !u!1001 &1472984121
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47310,6 +47327,14 @@ PrefabInstance:
     - target: {fileID: 4638342137327699933, guid: 978892da463bb124fb432c8b6d2fa0c2, type: 3}
       propertyPath: m_SortingOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5861075608464778766, guid: 978892da463bb124fb432c8b6d2fa0c2, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5861075608464778766, guid: 978892da463bb124fb432c8b6d2fa0c2, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

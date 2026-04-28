@@ -12756,6 +12756,7 @@ GameObject:
   - component: {fileID: 636825425}
   - component: {fileID: 636825424}
   - component: {fileID: 636825423}
+  - component: {fileID: 636825426}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -13046,6 +13047,22 @@ MonoBehaviour:
   healthCanvas: {fileID: 2004484971}
   damageCanvas: {fileID: 2004484973}
   speedCanvas: {fileID: 188879548}
+--- !u!114 &636825426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636825412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb4144830b14b149aa49428fcea66eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 128
+  nodeSize: 0.5
 --- !u!1 &638007260
 GameObject:
   m_ObjectHideFlags: 0
@@ -58118,9 +58135,9 @@ GameObject:
   - component: {fileID: 1879797619}
   - component: {fileID: 1879797618}
   - component: {fileID: 1879797617}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
