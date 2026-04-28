@@ -14,9 +14,17 @@ public class HealthWall : MonoBehaviour
     [Header("Immortal")]
     public GameObject immortal;
 
+    [Header("Input")]
+    public TMP_InputField healthInputField;
+    public Canvas healthCanvas;
+
+    [Header("Text Debug / ToString")]
+    public TMP_Text healthText;
+
     private int currentHealth;
 
     private const string HEALTH_WALL_KEY = "HealthWall";
+    private const string HEALTH_WALL_MAX_KEY = "HealthWallMax";
     private const string HEALTH_WALL_DEAD_KEY = "HealthWall_Dead";
 
     private void Start()
@@ -27,6 +35,10 @@ public class HealthWall : MonoBehaviour
             return;
         }
 
+        // load max
+        maxHealth = PlayerPrefs.GetInt(HEALTH_WALL_MAX_KEY, maxHealth);
+
+        // load current
         if (PlayerPrefs.HasKey(HEALTH_WALL_KEY))
             currentHealth = PlayerPrefs.GetInt(HEALTH_WALL_KEY);
         else
@@ -38,10 +50,6 @@ public class HealthWall : MonoBehaviour
         {
             healthBar.maxValue = maxHealth;
             healthBar.value = currentHealth;
-        }
-        else
-        {
-            Debug.LogWarning("Chưa gán HealthBar vào HealthWall!");
         }
 
         UpdateHealthText();
@@ -75,10 +83,39 @@ public class HealthWall : MonoBehaviour
         UpdateHealthText();
     }
 
+    // ======================
+    // INPUT SET HEALTH (GIỮ LOGIC GAME)
+    // ======================
+    public void SetHealthWall()
+    {
+        if (healthInputField == null) return;
+
+        if (int.TryParse(healthInputField.text, out int value))
+        {
+            currentHealth = value;
+            maxHealth = value;
+
+            SaveHealth();
+            SaveMaxHealth();
+
+            UpdateHealthBar();
+            UpdateHealthText();
+
+            if (healthCanvas != null)
+                healthCanvas.gameObject.SetActive(false);
+        }
+    }
+
+    // ======================
+    // UI
+    // ======================
     private void UpdateHealthBar()
     {
         if (healthBar != null)
+        {
+            healthBar.maxValue = maxHealth;
             healthBar.value = currentHealth;
+        }
     }
 
     private void UpdateHealthText()
@@ -87,8 +124,31 @@ public class HealthWall : MonoBehaviour
         {
             healthValueText.text = $"{currentHealth}/{maxHealth}";
         }
+
+        if (healthText != null)
+        {
+            healthText.text = currentHealth.ToString();
+        }
     }
 
+    // ======================
+    // SAVE
+    // ======================
+    private void SaveHealth()
+    {
+        PlayerPrefs.SetInt(HEALTH_WALL_KEY, currentHealth);
+        PlayerPrefs.Save();
+    }
+
+    private void SaveMaxHealth()
+    {
+        PlayerPrefs.SetInt(HEALTH_WALL_MAX_KEY, maxHealth);
+        PlayerPrefs.Save();
+    }
+
+    // ======================
+    // DEATH (GIỮ NGUYÊN LOGIC)
+    // ======================
     private void Die()
     {
         currentHealth = 0;
@@ -101,12 +161,6 @@ public class HealthWall : MonoBehaviour
         UpdateHealthText();
 
         Destroy(gameObject);
-    }
-
-    private void SaveHealth()
-    {
-        PlayerPrefs.SetInt(HEALTH_WALL_KEY, currentHealth);
-        PlayerPrefs.Save();
     }
 
     public int GetCurrentHealth()
