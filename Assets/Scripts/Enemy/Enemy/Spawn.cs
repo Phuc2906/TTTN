@@ -5,58 +5,50 @@ public class Spawn : MonoBehaviour
     [Header("Boss")]
     public Transform boss;
 
-    [Header("Enemy")]
-    public GameObject enemyPrefab;
+    [Header("Prefabs")]
+    public GameObject obj1Prefab;
+    public GameObject obj2Prefab;
 
-    [Header("Cài đặt spawn")]
-    public float spawnDelay = 5f;
-    public int minSpawn = 2;
-    public int maxSpawn = 3;
+    [Header("Spawn settings")]
     public float spawnRadius = 5f;
+    public float spawnDelay = 5f;
 
-    [Header("ID bắt đầu cho quái spawn")]
-    public int startID = 2000;
-
-    private int currentSpawnID;
+    [Header("Y offset nhẹ")]
+    public float yOffset = 0.2f;
 
     void Start()
     {
-        currentSpawnID = startID;
-
-        if (boss == null)
-        {
-            GameObject b = GameObject.FindWithTag("Boss");
-            if (b != null) boss = b.transform;
-        }
-
         InvokeRepeating(nameof(SpawnWave), spawnDelay, spawnDelay);
     }
 
     void SpawnWave()
     {
-        if (boss == null || enemyPrefab == null) return;
+        if (boss == null) return;
 
-        int amount = Random.Range(minSpawn, maxSpawn + 1);
+        int unitCount = Random.Range(2, 4);
 
-        for (int i = 0; i < amount; i++)
+        for (int i = 0; i < unitCount; i++)
         {
             Vector2 rand = Random.insideUnitCircle * spawnRadius;
-            Vector3 spawnPos = boss.position + new Vector3(rand.x, rand.y, 0);
+            Vector3 basePos = boss.position + new Vector3(rand.x, rand.y, 0);
 
-            GameObject enemy = Instantiate(enemyPrefab);
-            enemy.transform.parent = null;
-            enemy.transform.position = spawnPos;
-            enemy.transform.rotation = Quaternion.identity;
+            GameObject obj1 = Instantiate(obj1Prefab);
+            GameObject obj2 = Instantiate(obj2Prefab);
 
-            enemy.transform.localScale = Vector3.one;
+            obj1.transform.position = basePos;
+            obj2.transform.position = basePos + new Vector3(0, yOffset, 0);
 
-            EnemyHealth eh = enemy.GetComponent<EnemyHealth>();
-            if (eh != null)
+            obj1.transform.rotation = Quaternion.identity;
+            obj2.transform.rotation = Quaternion.identity;
+
+            obj1.SetActive(true);
+            obj2.SetActive(false);
+
+            Skill skill = obj1.GetComponent<Skill>();
+            if (skill != null)
             {
-                eh.enemyID = currentSpawnID;
-                currentSpawnID++;
+                skill.obj2 = obj2;
             }
-
         }
     }
 }
