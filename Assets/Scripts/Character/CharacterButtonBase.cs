@@ -97,7 +97,7 @@ public class CharacterButtonBase : MonoBehaviour, ICharacterButton
     {
         if (isEquipped)
         {
-            buttonText.text = "Đã mặc";
+            buttonText.text = "Đã trang bị";
             equipButton.image.color = Color.yellow;
         }
         else if (!isPurchased)
@@ -107,7 +107,7 @@ public class CharacterButtonBase : MonoBehaviour, ICharacterButton
         }
         else
         {
-            buttonText.text = "Mặc";
+            buttonText.text = "Trang bị";
             equipButton.image.color = Color.blue;
         }
     }

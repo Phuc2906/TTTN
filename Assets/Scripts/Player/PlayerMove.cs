@@ -9,6 +9,9 @@ public class PlayerMove : MonoBehaviour
     [Header("Admin Speed Override")]
     public float adminSpeed = 0f;
 
+    [Header("PlayerPrefs Key")] 
+    public string adminSpeedKey = "AdminSpeed";
+
     [Header("Text TMP")]
     public TMP_Text speedText;
 
@@ -54,10 +57,10 @@ public class PlayerMove : MonoBehaviour
             sr.flipX = PlayerPrefs.GetInt("PlayerFacing") == 1;
         }
 
-        if (PlayerPrefs.HasKey("AdminSpeed"))
-    {
-        adminSpeed = PlayerPrefs.GetFloat("AdminSpeed");
-    }
+        if (PlayerPrefs.HasKey(adminSpeedKey))
+        {
+            adminSpeed = PlayerPrefs.GetFloat(adminSpeedKey);
+        }
 
         UpdateSpeedUI(); 
     }
@@ -101,7 +104,7 @@ public class PlayerMove : MonoBehaviour
     {
         adminSpeed = value;
 
-        PlayerPrefs.SetFloat("AdminSpeed", adminSpeed);
+        PlayerPrefs.SetFloat(adminSpeedKey, adminSpeed);
         PlayerPrefs.Save();
         
         UpdateSpeedUI();

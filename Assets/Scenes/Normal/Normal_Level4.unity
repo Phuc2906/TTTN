@@ -5965,6 +5965,10 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 154473893}
+    - target: {fileID: 368409318002986868, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+      propertyPath: 'canvasToEnable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1591005653}
     - target: {fileID: 503057061017515755, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
       propertyPath: 'players.Array.data[0]'
       value: 
@@ -21234,6 +21238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adminDamage: 0
+  damageKey: ADMIN_DAMAGE
   damageBuffCanvas: {fileID: 2074974155}
   damageText: {fileID: 437124066}
   damageButton: {fileID: 437124065}
@@ -23197,6 +23202,11 @@ MonoBehaviour:
   objectsToDisable: []
   useDelayDisable: 0
   disableDelay: 0.5
+--- !u!1 &1591005653 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3125908927643305698, guid: f8c297ab849145846b116ad834f79901, type: 3}
+  m_PrefabInstance: {fileID: 1924765825}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1596738700 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1077386732590409468, guid: 64bb7790a1bafb64582afb96ff7bed96, type: 3}
@@ -47690,19 +47700,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c48baf62398804d8f0b5294c9a6227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyList:
+  trapList:
   - {fileID: 1796967289}
   - {fileID: 252814014}
-  - {fileID: 252814014}
-  - {fileID: 1796967289}
-  - {fileID: 252814014}
-  - {fileID: 1796967289}
-  - {fileID: 1796967289}
-  - {fileID: 252814014}
-  - {fileID: 252814014}
-  - {fileID: 1796967289}
   delay: 5
-  saveKey: EnemyIndex
 --- !u!1001 &9083661543815929417
 PrefabInstance:
   m_ObjectHideFlags: 0

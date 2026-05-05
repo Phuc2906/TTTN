@@ -1214,6 +1214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adminDamage: 0
+  damageKey: ADMIN_DAMAGE
   damageBuffCanvas: {fileID: 864421783}
   damageText: {fileID: 2084053924}
   damageButton: {fileID: 2084053923}
@@ -7205,6 +7206,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2020924206638572135, guid: 67238caeeb23ea14d8d5efcb61496294, type: 3}
   m_PrefabInstance: {fileID: 156859039024338344}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1175108825 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3125908927643305698, guid: f8c297ab849145846b116ad834f79901, type: 3}
+  m_PrefabInstance: {fileID: 2122830318}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1205034368
 GameObject:
   m_ObjectHideFlags: 0
@@ -12445,6 +12451,15 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 104044313}
+    - target: {fileID: 4102586266476105627, guid: f8c297ab849145846b116ad834f79901, type: 3}
+      propertyPath: m_text
+      value: "To\xE0n b\u1ED9 ti\u1EBFn tr\xECnh trong game s\u1EBD b\u1ECB reset.
+        B\u1EA1n s\u1EBD quay v\u1EC1 ch\u1ECDn m\xE0n ch\u01A1i.\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798816823307063813, guid: f8c297ab849145846b116ad834f79901, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 7378340839678587303, guid: f8c297ab849145846b116ad834f79901, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.7837641
@@ -20103,10 +20118,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1289059494958524851, guid: 388fe9ba1955f984aa84e47d5ed444f9, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 75.920105
-      objectReference: {fileID: 0}
     - target: {fileID: 1698917797513638453, guid: 388fe9ba1955f984aa84e47d5ed444f9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.674776
@@ -20215,10 +20226,6 @@ PrefabInstance:
       propertyPath: 'canvasToDisable.Array.data[2]'
       value: 
       objectReference: {fileID: 2122830321}
-    - target: {fileID: 4798300394149890206, guid: 388fe9ba1955f984aa84e47d5ed444f9, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 175
-      objectReference: {fileID: 0}
     - target: {fileID: 5142582484358821393, guid: 388fe9ba1955f984aa84e47d5ed444f9, type: 3}
       propertyPath: 'players.Array.data[0]'
       value: 
@@ -20287,6 +20294,10 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 1590672794}
+    - target: {fileID: 8284249392930728504, guid: 388fe9ba1955f984aa84e47d5ed444f9, type: 3}
+      propertyPath: 'canvasToEnable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1175108825}
     - target: {fileID: 8897182123486294755, guid: 388fe9ba1955f984aa84e47d5ed444f9, type: 3}
       propertyPath: 'canvasToEnable.Array.data[0]'
       value: 

@@ -10922,6 +10922,10 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 154473893}
+    - target: {fileID: 368409318002986868, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+      propertyPath: 'canvasToEnable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1719756287}
     - target: {fileID: 503057061017515755, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
       propertyPath: 'players.Array.data[0]'
       value: 
@@ -22212,6 +22216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adminDamage: 0
+  damageKey: ADMIN_DAMAGE
   damageBuffCanvas: {fileID: 2074974155}
   damageText: {fileID: 745953889}
   damageButton: {fileID: 745953888}
@@ -26513,6 +26518,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1719756287 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3125908927643305698, guid: f8c297ab849145846b116ad834f79901, type: 3}
+  m_PrefabInstance: {fileID: 1415900508}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1730990968
 PrefabInstance:
   m_ObjectHideFlags: 0

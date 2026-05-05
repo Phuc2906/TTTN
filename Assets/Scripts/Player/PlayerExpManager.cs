@@ -19,6 +19,10 @@ public class PlayerExpManager : MonoBehaviour
 
     public static PlayerExpManager Instance;
 
+    [Header("PlayerPrefs Keys")] 
+    public string levelKey = "SavedLevel";
+    public string expKey = "SavedExp";
+
     void Awake()
     {   
         Instance = this;
@@ -50,7 +54,6 @@ public class PlayerExpManager : MonoBehaviour
         SaveLevel();
     }
 
-    // ✅ ADMIN dùng
     public void SetLevel(int value)
     {
         if (value < 1) value = 1;
@@ -79,15 +82,15 @@ public class PlayerExpManager : MonoBehaviour
 
     void SaveLevel()
     {
-        PlayerPrefs.SetInt("SavedLevel", level);
-        PlayerPrefs.SetInt("SavedExp", currentExp);
+        PlayerPrefs.SetInt(levelKey, level);     
+        PlayerPrefs.SetInt(expKey, currentExp);  
         PlayerPrefs.Save();
     }
 
     void LoadLevel()
     {
-        level = PlayerPrefs.GetInt("SavedLevel", 1);
-        currentExp = PlayerPrefs.GetInt("SavedExp", 0);
+        level = PlayerPrefs.GetInt(levelKey, 1);     
+        currentExp = PlayerPrefs.GetInt(expKey, 0);  
         expToNextLevel = CalculateExpToNextLevel();
     }
 

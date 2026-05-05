@@ -1579,6 +1579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adminDamage: 0
+  damageKey: ADMIN_DAMAGE
   damageBuffCanvas: {fileID: 0}
   damageText: {fileID: 365016338}
   damageButton: {fileID: 365016337}
@@ -3730,6 +3731,10 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 1590672794}
+    - target: {fileID: 8284249392930728504, guid: 388fe9ba1955f984aa84e47d5ed444f9, type: 3}
+      propertyPath: 'canvasToEnable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 555351906}
     - target: {fileID: 8897182123486294755, guid: 388fe9ba1955f984aa84e47d5ed444f9, type: 3}
       propertyPath: 'canvasToEnable.Array.data[0]'
       value: 
@@ -4999,6 +5004,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &555351906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3125908927643305698, guid: f8c297ab849145846b116ad834f79901, type: 3}
+  m_PrefabInstance: {fileID: 381210891}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &581703794 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3949956493406656842, guid: 01ae18a50c71e2242bc9f8989641bfae, type: 3}

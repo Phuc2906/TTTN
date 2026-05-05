@@ -1429,6 +1429,9 @@ MonoBehaviour:
   coinText_GameWin: {fileID: 0}
   coinText_GameOver: {fileID: 0}
   coinText_Total: {fileID: 1438775903}
+  coinText_Value: {fileID: 0}
+  coinInputField: {fileID: 0}
+  coinvalueCanvas: {fileID: 0}
 --- !u!4 &1393504046
 Transform:
   m_ObjectHideFlags: 0
@@ -3613,6 +3616,14 @@ PrefabInstance:
       propertyPath: 'canvasToEnable.Array.data[0]'
       value: 
       objectReference: {fileID: 246303572}
+    - target: {fileID: 6064230093195602766, guid: afdb977a2d446a1409695f61e11c0526, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064230093195602766, guid: afdb977a2d446a1409695f61e11c0526, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6282778826149801023, guid: afdb977a2d446a1409695f61e11c0526, type: 3}
       propertyPath: noticeCanvas
       value: 
@@ -3637,6 +3648,30 @@ PrefabInstance:
       propertyPath: 'canvasToEnable.Array.data[0]'
       value: 
       objectReference: {fileID: 1309448856}
+    - target: {fileID: 8142236498060695755, guid: afdb977a2d446a1409695f61e11c0526, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142236498060695755, guid: afdb977a2d446a1409695f61e11c0526, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8322094064160970760, guid: afdb977a2d446a1409695f61e11c0526, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8322094064160970760, guid: afdb977a2d446a1409695f61e11c0526, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143700306129743432, guid: afdb977a2d446a1409695f61e11c0526, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143700306129743432, guid: afdb977a2d446a1409695f61e11c0526, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 9159533716272437588, guid: afdb977a2d446a1409695f61e11c0526, type: 3}
       propertyPath: 'canvasToEnable.Array.data[0]'
       value: 

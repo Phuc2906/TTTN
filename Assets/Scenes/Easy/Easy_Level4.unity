@@ -12722,6 +12722,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b692e2e845f71ee43800132366779f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &958553329 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3125908927643305698, guid: f8c297ab849145846b116ad834f79901, type: 3}
+  m_PrefabInstance: {fileID: 489373377}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &965236744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19291,6 +19296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adminDamage: 0
+  damageKey: ADMIN_DAMAGE
   damageBuffCanvas: {fileID: 2074974155}
   damageText: {fileID: 3392108492692771005}
   damageButton: {fileID: 887133076021316777}
@@ -28810,6 +28816,10 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 154473893}
+    - target: {fileID: 368409318002986868, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+      propertyPath: 'canvasToEnable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 958553329}
     - target: {fileID: 503057061017515755, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
       propertyPath: 'players.Array.data[0]'
       value: 
@@ -28942,30 +28952,30 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 154473893}
-    - target: {fileID: 4084174183962952779, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5049551249352919197, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
-      propertyPath: 'players.Array.data[0]'
-      value: 
-      objectReference: {fileID: 154473896}
-    - target: {fileID: 5049551249352919197, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
-      propertyPath: 'players.Array.data[1]'
-      value: 
-      objectReference: {fileID: 154473895}
-    - target: {fileID: 5049551249352919197, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
-      propertyPath: 'players.Array.data[2]'
-      value: 
-      objectReference: {fileID: 154473894}
-    - target: {fileID: 5049551249352919197, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
-      propertyPath: 'players.Array.data[3]'
-      value: 
-      objectReference: {fileID: 154473893}
-    - target: {fileID: 6131158987699643745, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+    - target: {fileID: 4593768291709090389, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 175
+      value: -50.299698
       objectReference: {fileID: 0}
+    - target: {fileID: 5049551249352919197, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+      propertyPath: 'players.Array.data[0]'
+      value: 
+      objectReference: {fileID: 154473896}
+    - target: {fileID: 5049551249352919197, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+      propertyPath: 'players.Array.data[1]'
+      value: 
+      objectReference: {fileID: 154473895}
+    - target: {fileID: 5049551249352919197, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+      propertyPath: 'players.Array.data[2]'
+      value: 
+      objectReference: {fileID: 154473894}
+    - target: {fileID: 5049551249352919197, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+      propertyPath: 'players.Array.data[3]'
+      value: 
+      objectReference: {fileID: 154473893}
+    - target: {fileID: 5336978648125629698, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1908140814}
     - target: {fileID: 6178367149912528647, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
       propertyPath: 'players.Array.data[0]'
       value: 
@@ -28982,10 +28992,6 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 154473893}
-    - target: {fileID: 6240163759966116638, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6431233103515240701, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
       propertyPath: 'canvasToEnable.Array.data[0]'
       value: 
@@ -29020,7 +29026,7 @@ PrefabInstance:
       objectReference: {fileID: 154473893}
     - target: {fileID: 7439165419259126893, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 75.9201
+      value: 75.920105
       objectReference: {fileID: 0}
     - target: {fileID: 7504167121968106174, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
       propertyPath: 'players.Array.data[0]'
@@ -29110,10 +29116,6 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 154473893}
-    - target: {fileID: 8780087810368312300, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8883977340099789311, guid: 696b913f139a54d48bc7061e01570c9c, type: 3}
       propertyPath: 'canvasToEnable.Array.data[0]'
       value: 

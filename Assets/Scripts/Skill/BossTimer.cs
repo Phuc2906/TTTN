@@ -4,47 +4,29 @@ using UnityEngine;
 
 public class BossTimer : MonoBehaviour
 {
-    [Header("Danh sách enemy")]
-    public List<GameObject> enemyList = new List<GameObject>();
+    [Header("Danh sách trap")]
+    public List<GameObject> trapList = new List<GameObject>();
 
     [Header("Delay mỗi lần bật")]
     public float delay = 5f;
 
-    [Header("PlayerPrefs")]
-    public string saveKey = "EnemyIndex";
-
-    private int currentIndex = 0;
-
     void Start()
     {
-        currentIndex = PlayerPrefs.GetInt(saveKey, 0);
-
-    
-        for (int i = 0; i < currentIndex; i++)
-        {
-            if (enemyList[i] != null)
-                enemyList[i].SetActive(true);
-        }
-
-       
-        StartCoroutine(ActiveEnemies());
+        StartCoroutine(ActivateRandomTrap());
     }
 
-    IEnumerator ActiveEnemies()
-{
-    for (int i = currentIndex; i < enemyList.Count; i++)
+    IEnumerator ActivateRandomTrap()
     {
-        yield return new WaitForSeconds(delay); 
-
-        if (enemyList[i] != null)
+        while (true)
         {
-            enemyList[i].SetActive(true); 
+            yield return new WaitForSeconds(delay);
+
+            int i = Random.Range(0, trapList.Count);
+
+            if (trapList[i] != null)
+            {
+                trapList[i].SetActive(true);
+            }
         }
-
-        currentIndex = i + 1;
-
-        PlayerPrefs.SetInt(saveKey, currentIndex);
-        PlayerPrefs.Save();
     }
-}
 }

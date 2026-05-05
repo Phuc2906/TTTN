@@ -12773,6 +12773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adminDamage: 0
+  damageKey: ADMIN_DAMAGE
   damageBuffCanvas: {fileID: 3078279657708604464}
   damageText: {fileID: 7777766807941672951}
   damageButton: {fileID: 5168645315820633889}
@@ -42580,6 +42581,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225588441}
   m_CullTransparentMesh: 1
+--- !u!1 &1230558806 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3125908927643305698, guid: f8c297ab849145846b116ad834f79901, type: 3}
+  m_PrefabInstance: {fileID: 1656589648}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1235839021
 GameObject:
   m_ObjectHideFlags: 0
@@ -73177,10 +73183,10 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 586593183}
-    - target: {fileID: 540628382381992629, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 597317617602382951, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToEnable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1230558806}
     - target: {fileID: 1128167640740352630, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
       propertyPath: 'players.Array.data[0]'
       value: 
@@ -73237,90 +73243,90 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 839712939}
-    - target: {fileID: 4117056239156738379, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'canvasToEnable.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1656589651}
-    - target: {fileID: 4117056239156738379, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'canvasToDisable.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1656589654}
-    - target: {fileID: 4117056239156738379, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'canvasToDisable.Array.data[1]'
-      value: 
-      objectReference: {fileID: 1656589653}
-    - target: {fileID: 4117056239156738379, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'canvasToDisable.Array.data[2]'
-      value: 
-      objectReference: {fileID: 1656589652}
-    - target: {fileID: 4309934412048130290, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'canvasToEnable.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1656589653}
-    - target: {fileID: 4309934412048130290, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'canvasToDisable.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1656589654}
-    - target: {fileID: 4309934412048130290, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'canvasToDisable.Array.data[1]'
-      value: 
-      objectReference: {fileID: 1656589652}
-    - target: {fileID: 4309934412048130290, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'canvasToDisable.Array.data[2]'
-      value: 
-      objectReference: {fileID: 1656589651}
-    - target: {fileID: 5908791719981462731, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'players.Array.data[0]'
-      value: 
-      objectReference: {fileID: 586593186}
-    - target: {fileID: 5908791719981462731, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'players.Array.data[1]'
-      value: 
-      objectReference: {fileID: 586593185}
-    - target: {fileID: 5908791719981462731, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'players.Array.data[2]'
-      value: 
-      objectReference: {fileID: 586593184}
-    - target: {fileID: 5908791719981462731, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'players.Array.data[3]'
-      value: 
-      objectReference: {fileID: 586593183}
-    - target: {fileID: 6916301142389266231, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'players.Array.data[0]'
-      value: 
-      objectReference: {fileID: 586593186}
-    - target: {fileID: 6916301142389266231, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'players.Array.data[1]'
-      value: 
-      objectReference: {fileID: 586593185}
-    - target: {fileID: 6916301142389266231, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'players.Array.data[2]'
-      value: 
-      objectReference: {fileID: 586593184}
-    - target: {fileID: 6916301142389266231, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'players.Array.data[3]'
-      value: 
-      objectReference: {fileID: 586593183}
-    - target: {fileID: 7123784806475441276, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'canvasToEnable.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1656589654}
-    - target: {fileID: 7123784806475441276, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'canvasToDisable.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1656589653}
-    - target: {fileID: 7123784806475441276, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'canvasToDisable.Array.data[1]'
-      value: 
-      objectReference: {fileID: 1656589652}
-    - target: {fileID: 7123784806475441276, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: 'canvasToDisable.Array.data[2]'
-      value: 
-      objectReference: {fileID: 1656589651}
-    - target: {fileID: 7180167393207463508, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 175
+    - target: {fileID: 3838968194150692944, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: m_SortingOrder
+      value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 4117056239156738379, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToEnable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1656589651}
+    - target: {fileID: 4117056239156738379, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1656589654}
+    - target: {fileID: 4117056239156738379, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1656589653}
+    - target: {fileID: 4117056239156738379, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1656589652}
+    - target: {fileID: 4309934412048130290, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToEnable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1656589653}
+    - target: {fileID: 4309934412048130290, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1656589654}
+    - target: {fileID: 4309934412048130290, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1656589652}
+    - target: {fileID: 4309934412048130290, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1656589651}
+    - target: {fileID: 5908791719981462731, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'players.Array.data[0]'
+      value: 
+      objectReference: {fileID: 586593186}
+    - target: {fileID: 5908791719981462731, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'players.Array.data[1]'
+      value: 
+      objectReference: {fileID: 586593185}
+    - target: {fileID: 5908791719981462731, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'players.Array.data[2]'
+      value: 
+      objectReference: {fileID: 586593184}
+    - target: {fileID: 5908791719981462731, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'players.Array.data[3]'
+      value: 
+      objectReference: {fileID: 586593183}
+    - target: {fileID: 6916301142389266231, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'players.Array.data[0]'
+      value: 
+      objectReference: {fileID: 586593186}
+    - target: {fileID: 6916301142389266231, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'players.Array.data[1]'
+      value: 
+      objectReference: {fileID: 586593185}
+    - target: {fileID: 6916301142389266231, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'players.Array.data[2]'
+      value: 
+      objectReference: {fileID: 586593184}
+    - target: {fileID: 6916301142389266231, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'players.Array.data[3]'
+      value: 
+      objectReference: {fileID: 586593183}
+    - target: {fileID: 7123784806475441276, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToEnable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1656589654}
+    - target: {fileID: 7123784806475441276, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1656589653}
+    - target: {fileID: 7123784806475441276, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1656589652}
+    - target: {fileID: 7123784806475441276, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
+      propertyPath: 'canvasToDisable.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1656589651}
     - target: {fileID: 7276092188012090180, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
       propertyPath: 'players.Array.data[0]'
       value: 
@@ -73359,7 +73365,7 @@ PrefabInstance:
       objectReference: {fileID: 1656589651}
     - target: {fileID: 9135018605837489172, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 75.9201
+      value: 75.920105
       objectReference: {fileID: 0}
     - target: {fileID: 9162290774284874377, guid: b8cdb3934fc447d469848aa5d669c6ab, type: 3}
       propertyPath: m_LocalPosition.x

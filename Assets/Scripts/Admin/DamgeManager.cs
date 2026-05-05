@@ -8,6 +8,9 @@ public class DamageManager : MonoBehaviour
     [Header("Admin Override Damage")]
     public int adminDamage = 0;
 
+    [Header("PlayerPrefs Key")] 
+    public string damageKey = "ADMIN_DAMAGE";
+
     [Header("Buff Canvas (x2 damage)")]
     public GameObject damageBuffCanvas;
 
@@ -21,9 +24,9 @@ public class DamageManager : MonoBehaviour
     {
         instance = this;
 
-        if (PlayerPrefs.HasKey("ADMIN_DAMAGE"))
+        if (PlayerPrefs.HasKey(damageKey))
         {
-            adminDamage = PlayerPrefs.GetInt("ADMIN_DAMAGE");
+            adminDamage = PlayerPrefs.GetInt(damageKey);
         }
     }
 
@@ -35,7 +38,7 @@ public class DamageManager : MonoBehaviour
     public void SetDamage(int value)
     {
         adminDamage = value;
-        PlayerPrefs.SetInt("ADMIN_DAMAGE", adminDamage);
+        PlayerPrefs.SetInt(damageKey, adminDamage);
         PlayerPrefs.Save();
         RefreshAllUI();
     }

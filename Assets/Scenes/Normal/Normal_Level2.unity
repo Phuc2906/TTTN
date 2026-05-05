@@ -15707,6 +15707,11 @@ MonoBehaviour:
   - {fileID: 1965821960}
   shadowObject: {fileID: 1491850253}
   delayTime: 0.5
+--- !u!1 &1499438476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3125908927643305698, guid: f8c297ab849145846b116ad834f79901, type: 3}
+  m_PrefabInstance: {fileID: 98112595}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1508637716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16185,6 +16190,10 @@ PrefabInstance:
       propertyPath: 'players.Array.data[3]'
       value: 
       objectReference: {fileID: 1093440338}
+    - target: {fileID: 5448533381570829385, guid: a2e5e3fc2fd9cbb4ba250d3d26e6fbf6, type: 3}
+      propertyPath: 'canvasToEnable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1499438476}
     - target: {fileID: 5861523897986332358, guid: a2e5e3fc2fd9cbb4ba250d3d26e6fbf6, type: 3}
       propertyPath: 'players.Array.data[0]'
       value: 
@@ -23049,6 +23058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adminDamage: 0
+  damageKey: ADMIN_DAMAGE
   damageBuffCanvas: {fileID: 0}
   damageText: {fileID: 1513536382}
   damageButton: {fileID: 1513536381}
