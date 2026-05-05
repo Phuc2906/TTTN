@@ -2176,14 +2176,13 @@ GameObject:
   m_Component:
   - component: {fileID: 207435173}
   - component: {fileID: 207435174}
-  - component: {fileID: 207435175}
   m_Layer: 0
   m_Name: Shadow_02 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &207435173
 Transform:
   m_ObjectHideFlags: 0
@@ -2254,23 +2253,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &207435175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 207435172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 214dd8f873b5a224592b4b231c710837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameObject_01:
-  - {fileID: 207435172}
-  GameObject_02:
-  - {fileID: 1513059469}
-  delay: 1
 --- !u!1001 &208907855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2908,14 +2890,13 @@ GameObject:
   m_Component:
   - component: {fileID: 239628070}
   - component: {fileID: 239628071}
-  - component: {fileID: 239628072}
   m_Layer: 0
   m_Name: Shadow_02 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &239628070
 Transform:
   m_ObjectHideFlags: 0
@@ -2986,23 +2967,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &239628072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 239628069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 214dd8f873b5a224592b4b231c710837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameObject_01:
-  - {fileID: 239628069}
-  GameObject_02:
-  - {fileID: 1226534036}
-  delay: 1
 --- !u!1001 &243564700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3399,6 +3363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 252814015}
   - component: {fileID: 252814016}
+  - component: {fileID: 252814017}
   m_Layer: 0
   m_Name: Combo_02
   m_TagString: Untagged
@@ -3445,6 +3410,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noticeCanvas: {fileID: 252814014}
   delay: 3
+--- !u!114 &252814017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252814014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 214dd8f873b5a224592b4b231c710837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameObject_01:
+  - {fileID: 1629878416}
+  - {fileID: 752458601}
+  - {fileID: 207435172}
+  - {fileID: 329818883}
+  - {fileID: 239628069}
+  GameObject_02:
+  - {fileID: 1254392169}
+  - {fileID: 1487485220}
+  - {fileID: 1513059469}
+  - {fileID: 995317173}
+  - {fileID: 1226534036}
+  delayToSecond: 1
+  delayToOff: 1.75
 --- !u!4 &272222177 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7725359876163614397, guid: b3b9418d3f2176242b45868258f3ec39, type: 3}
@@ -4291,14 +4282,13 @@ GameObject:
   m_Component:
   - component: {fileID: 329818884}
   - component: {fileID: 329818885}
-  - component: {fileID: 329818886}
   m_Layer: 0
   m_Name: Shadow_02 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &329818884
 Transform:
   m_ObjectHideFlags: 0
@@ -4369,23 +4359,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &329818886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 329818883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 214dd8f873b5a224592b4b231c710837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameObject_01:
-  - {fileID: 329818883}
-  GameObject_02:
-  - {fileID: 995317173}
-  delay: 1
 --- !u!1 &331603810
 GameObject:
   m_ObjectHideFlags: 0
@@ -7407,14 +7380,13 @@ GameObject:
   m_Component:
   - component: {fileID: 505034896}
   - component: {fileID: 505034897}
-  - component: {fileID: 505034898}
   m_Layer: 0
   m_Name: Shadow_02 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &505034896
 Transform:
   m_ObjectHideFlags: 0
@@ -7485,23 +7457,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &505034898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 505034895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 214dd8f873b5a224592b4b231c710837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameObject_01:
-  - {fileID: 505034895}
-  GameObject_02:
-  - {fileID: 1244729739}
-  delay: 1
 --- !u!1 &507622138
 GameObject:
   m_ObjectHideFlags: 0
@@ -10755,14 +10710,13 @@ GameObject:
   m_Component:
   - component: {fileID: 752458602}
   - component: {fileID: 752458603}
-  - component: {fileID: 752458604}
   m_Layer: 0
   m_Name: Shadow_02 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &752458602
 Transform:
   m_ObjectHideFlags: 0
@@ -10833,23 +10787,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &752458604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752458601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 214dd8f873b5a224592b4b231c710837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameObject_01:
-  - {fileID: 752458601}
-  GameObject_02:
-  - {fileID: 1487485220}
-  delay: 1
 --- !u!1 &785384860
 GameObject:
   m_ObjectHideFlags: 0
@@ -12156,14 +12093,13 @@ GameObject:
   m_Component:
   - component: {fileID: 872442112}
   - component: {fileID: 872442113}
-  - component: {fileID: 872442114}
   m_Layer: 0
   m_Name: Shadow_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &872442112
 Transform:
   m_ObjectHideFlags: 0
@@ -12234,23 +12170,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &872442114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 872442111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 214dd8f873b5a224592b4b231c710837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameObject_01:
-  - {fileID: 872442111}
-  GameObject_02:
-  - {fileID: 1388317930}
-  delay: 1
 --- !u!1 &873628119
 GameObject:
   m_ObjectHideFlags: 0
@@ -24436,14 +24355,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1629878417}
   - component: {fileID: 1629878418}
-  - component: {fileID: 1629878419}
   m_Layer: 0
   m_Name: Shadow_02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1629878417
 Transform:
   m_ObjectHideFlags: 0
@@ -24514,23 +24432,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1629878419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1629878416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 214dd8f873b5a224592b4b231c710837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameObject_01:
-  - {fileID: 1629878416}
-  GameObject_02:
-  - {fileID: 1254392169}
-  delay: 1
 --- !u!1001 &1631839109
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26520,6 +26421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1796967290}
   - component: {fileID: 1796967291}
+  - component: {fileID: 1796967292}
   m_Layer: 0
   m_Name: Combo_01
   m_TagString: Untagged
@@ -26566,6 +26468,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noticeCanvas: {fileID: 1796967289}
   delay: 3
+--- !u!114 &1796967292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796967289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 214dd8f873b5a224592b4b231c710837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameObject_01:
+  - {fileID: 872442111}
+  - {fileID: 2073160002}
+  - {fileID: 2104180314}
+  - {fileID: 1820292247}
+  - {fileID: 505034895}
+  GameObject_02:
+  - {fileID: 1388317930}
+  - {fileID: 35027390}
+  - {fileID: 903965752}
+  - {fileID: 1530950128}
+  - {fileID: 1244729739}
+  delayToSecond: 1
+  delayToOff: 1.75
 --- !u!1 &1805646975
 GameObject:
   m_ObjectHideFlags: 0
@@ -26914,14 +26842,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1820292248}
   - component: {fileID: 1820292249}
-  - component: {fileID: 1820292250}
   m_Layer: 0
   m_Name: Shadow_02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1820292248
 Transform:
   m_ObjectHideFlags: 0
@@ -26992,23 +26919,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1820292250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820292247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 214dd8f873b5a224592b4b231c710837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameObject_01:
-  - {fileID: 1820292247}
-  GameObject_02:
-  - {fileID: 1530950128}
-  delay: 1
 --- !u!1 &1822366722
 GameObject:
   m_ObjectHideFlags: 0
@@ -29616,14 +29526,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2073160003}
   - component: {fileID: 2073160004}
-  - component: {fileID: 2073160005}
   m_Layer: 0
   m_Name: Shadow_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2073160003
 Transform:
   m_ObjectHideFlags: 0
@@ -29694,23 +29603,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2073160005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2073160002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 214dd8f873b5a224592b4b231c710837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameObject_01:
-  - {fileID: 2073160002}
-  GameObject_02:
-  - {fileID: 35027390}
-  delay: 1
 --- !u!1 &2073273176
 GameObject:
   m_ObjectHideFlags: 0
@@ -30230,14 +30122,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2104180315}
   - component: {fileID: 2104180316}
-  - component: {fileID: 2104180317}
   m_Layer: 0
   m_Name: Shadow_02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2104180315
 Transform:
   m_ObjectHideFlags: 0
@@ -30308,23 +30199,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2104180317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2104180314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 214dd8f873b5a224592b4b231c710837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameObject_01:
-  - {fileID: 2104180314}
-  GameObject_02:
-  - {fileID: 903965752}
-  delay: 1
 --- !u!1001 &2106439014
 PrefabInstance:
   m_ObjectHideFlags: 0

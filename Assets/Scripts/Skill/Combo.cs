@@ -7,36 +7,45 @@ public class Combo : MonoBehaviour
     public List<GameObject> GameObject_01 = new List<GameObject>();
     public List<GameObject> GameObject_02 = new List<GameObject>();
 
-    public float delay = 1f;
+    public float delayToSecond = 1f;
+    public float delayToOff = 1.75f;
 
-    private bool state = true;
+    private Coroutine currentRoutine;
 
-    void Start()
+    void OnEnable()
     {
-        ApplyState();
-        StartCoroutine(ToggleOnce());
+        SetList(GameObject_01, false);
+        SetList(GameObject_02, false);
+
+        currentRoutine = StartCoroutine(PlaySequence());
     }
 
-    IEnumerator ToggleOnce()
+    void OnDisable()
     {
-        yield return new WaitForSeconds(delay);
-
-        state = !state;
-        ApplyState();
+        if (currentRoutine != null)
+            StopCoroutine(currentRoutine);
     }
 
-    void ApplyState()
+    IEnumerator PlaySequence()
     {
-        foreach (GameObject obj in GameObject_01)
-        {
-            if (obj != null)
-                obj.SetActive(state);
-        }
+        SetList(GameObject_01, true);
 
-        foreach (GameObject obj in GameObject_02)
+        yield return new WaitForSeconds(delayToSecond);
+
+        SetList(GameObject_01, false);
+        SetList(GameObject_02, true);
+
+        yield return new WaitForSeconds(delayToOff);
+
+        SetList(GameObject_02, false);
+    }
+
+    void SetList(List<GameObject> list, bool value)
+    {
+        foreach (GameObject obj in list)
         {
             if (obj != null)
-                obj.SetActive(!state);
+                obj.SetActive(value);
         }
     }
 }
